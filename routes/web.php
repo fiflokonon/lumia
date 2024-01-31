@@ -22,6 +22,13 @@ Route::get('/contact', function (){
 Route::get('/about', function () {
     return view('pages.landing.about');
 })->name('about');
+
+Route::get('/login-2', function (){
+    return view('auth.login-2');
+});
+Route::get('/register-2', function (){
+    return view('auth.register-2');
+});
 Route::get('/dashboard', function (){
     return view('pages.dashboard.home');
 });

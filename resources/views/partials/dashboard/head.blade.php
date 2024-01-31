@@ -4,18 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
-    <meta name="author" content="DexignLab" />
-    <meta name="robots" content="" />
+    <meta name="author" content="Arnaud Fifonsi" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Discover Akademi - the ultimate django admin dashboard and Bootstrap 5 template. Specially designed for professionals, and for business. Akademi provides advanced features and an easy-to-use interface for creating a top-quality website with School and Education Dashboard" />
-    <meta property="og:title" content="Akademi - Django School and Education Management Admin Dashboard Template" />
-    <meta property="og:description" content="Akademi - the ultimate django admin dashboard and Bootstrap 5 template. Specially designed for professionals, and for business. Akademi provides advanced features and an easy-to-use interface for creating a top-quality website with School and Education Dashboard" />
-    <meta property="og:image" content="https://akademi.dexignlab.com/django/social-image.png" />
+    <meta name="description" content="" />
     <meta name="format-detection" content="telephone=no">
 
 
     <!-- PAGE TITLE HERE -->
-    <title>Akademi - Django School and Education Management Admin Dashboard Template</title>
+    <title>Lumia - Tableau de bord</title>
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="../static/akademi/images/favicon.png" />
