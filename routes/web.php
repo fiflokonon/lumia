@@ -32,7 +32,7 @@ Route::get('/register-2', function (){
 });
 Route::get('/dashboard', function (){
     return view('pages.dashboard.home');
-});
+})->name('dashboard');
 
 Auth::routes();
 

@@ -4,17 +4,20 @@
 
 <div class="dlabnav">
     <div class="dlabnav-scroll">
-        <ul class="metismenu" id="menu">
-            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+
+        @if(auth()->user()->isNotClient())
+            <ul class="metismenu" id="menu">
+            <li>
+                <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="material-symbols-outlined">home</i>
                     <span class="nav-text">Dashboard</span>
                 </a>
+
                 <ul aria-expanded="false">
                     <li><a href="../index_2/index.html">Utilisateurs</a></li>
                     <li><a href="../finance/index.html">Roles et permissions</a></li>
                     <li><a href="../finance/index.html">Transactions</a></li>
                 </ul>
-
             </li>
             <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                     <i class="material-symbols-outlined">school</i>
@@ -48,7 +51,6 @@
                     <li><a href="../app-profile/index.html">Emplois en cours</a></li>
                     <li><a href="../edit-profile/index.html">Emplois expirés</a></li>
                     <li><a href="../post-details/index.html">Emplois archivés</a></li>
-
                 </ul>
             </li>
 
@@ -63,6 +65,30 @@
                 </ul>
             </li>
         </ul>
+        @else
+            <ul class="metismenu" id="menu">
+                <li>
+                    <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                        <i class="material-symbols-outlined">school</i>
+                        <span class="nav-text">Mes formations</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="../student/index.html">Formations vidéo</a></li>
+                        <li><a href="../student-details/index.html">Formations en ligne</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                        <i class="material-symbols-outlined">school</i>
+                        <span class="nav-text">Mes certificats</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="../student/index.html">Certificats validés</a></li>
+                        <li><a href="../student-details/index.html">Certificats en cours</a></li>
+                    </ul>
+                </li>
+            </ul>
+        @endif
         <div class="copyright">
             <p><strong>Lumia Dashboard</strong></p>
             <p class="fs-12">Made with <span class="heart"></span></p>

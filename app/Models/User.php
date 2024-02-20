@@ -55,6 +55,14 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function isNotClient()
+    {
+        if ($this->role->code == 'client'){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public function permissions()
     {
         if ($this->role) {
