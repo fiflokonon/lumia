@@ -248,8 +248,8 @@
                                                      alt="">
                                             </li>
                                             <li class="ms-2">
-                                                <h4 class="mb-0">Nella Vita</h4>
-                                                <span>Admin</span>
+                                                <h4 class="mb-0">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</h4>
+                                                <span>{{ auth()->user()->role->title }}</span>
                                             </li>
                                         </ul>
 

@@ -24,7 +24,9 @@ class User extends Authenticatable
         'phone',
         'status',
         'address',
+        'profile_picture',
         'email',
+        'role_id',
         'password',
     ];
 
@@ -47,4 +49,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function permissions()
+    {
+        if ($this->role) {
+            return $this->role->permissions;
+        }
+
+        return collect(); // Retourner une collection vide si l'utilisateur n'a pas de rôle défini.
+    }
+
+    public function permissionCodes()
+    {
+        return $this->permissions()->pluck('code')->unique()->toArray();
+    }
+
+    public function canDo(string $code)
+    {
+        if (in_array($code, $this->permissionCodes()))
+            return true;
+        else
+            return false;
+    }
 }
