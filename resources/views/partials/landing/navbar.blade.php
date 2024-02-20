@@ -104,7 +104,7 @@
                             </ul>
                         </li>--}}
                         <li class="">
-                            <a href="#" class="btn btn-info bg-none rounded-pill text-dark text-center" style="background-color: #ffe000; border: none; margin-top: 10px;">Espace membre</a>
+                            <a href="{{ route('login') }}" class="btn btn-info bg-none rounded-pill text-dark text-center" style="background-color: #ffe000; border: none; margin-top: 10px;">Espace membre</a>
                         </li>
                     </ul>
                 </div>

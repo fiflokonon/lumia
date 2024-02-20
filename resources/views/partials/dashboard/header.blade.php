@@ -1,8 +1,6 @@
 <!--**********************************
             Header start
-        ***********************************-->
-
-
+ ***********************************-->
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -27,28 +25,10 @@
                                 </g>
                             </svg>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end p-0">
+                         <div class="dropdown-menu dropdown-menu-end p-0">
                             <div class="card mb-0">
                                 <div class="card-header border-0 d-block h-auto">
                                     <ul class="d-flex align-items-center justify-content-around">
-                                        <li class="nav-item dropdown notification_dropdown">
-                                            <a class="nav-link  menu-wallet" href="javascript:void(0);">
-                                                <svg id="Layer_1" enable-background="new 0 0 512 512"
-                                                     height="18" viewBox="0 0 512 512" width="18"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <g>
-                                                        <path
-                                                            d="m174 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                                        <path
-                                                            d="m446 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                                        <path
-                                                            d="m392 512c-66.168 0-120-53.832-120-120s53.832-120 120-120 120 53.832 120 120-53.832 120-120 120zm0-208c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88z" />
-                                                        <path
-                                                            d="m174 512h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                                    </g>
-                                                </svg>
-                                            </a>
-                                        </li>
                                         <li class="nav-item dropdown notification_dropdown">
                                             <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
                                                 <svg id="icon-light" xmlns="http://www.w3.org/2000/svg"
@@ -104,128 +84,6 @@
                             </div>
 
                         </div>
-                    </li>
-                    <li class="nav-item dropdown notification_dropdown search-area-header">
-                        <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                            <svg width="24" height="24" viewBox="0 0 32 32" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M27.6 25.8L22 20.2C23.3 18.5 24.1 16.4 24.1 14.1C24.1 8.60001 19.6 4.10001 14.1 4.10001C8.6 4.10001 4 8.60001 4 14.1C4 19.6 8.5 24.1 14 24.1C16.3 24.1 18.5 23.3 20.2 21.9L25.8 27.5C26 27.7 26.4 27.9 26.7 27.9C27 27.9 27.3 27.8 27.6 27.5C28.1 27.1 28.1 26.3 27.6 25.8ZM6.5 14.1C6.5 10 9.9 6.60001 14 6.60001C18.1 6.60001 21.5 10 21.5 14.1C21.5 18.2 18.1 21.6 14 21.6C9.9 21.6 6.5 18.3 6.5 14.1Z"
-                                    fill="#A098AE" />
-                            </svg>
-
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end p-0 rounded">
-                            <div class="card mb-0">
-                                <div class="card-body px-0">
-                                    <div class="px-3">
-                                        <div class="input-group search-area w-100">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Search here...">
-                                            <span class="input-group-text"><a href="javascript:void(0)">
-															<svg width="15" height="15" viewBox="0 0 18 18" fill="none"
-                                                                 xmlns="http://www.w3.org/2000/svg">
-																<path
-                                                                    d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
-                                                                    fill="#01A3FF"></path>
-															</svg>
-														</a></span>
-                                        </div>
-                                        <h6 class="my-2 mt-3">Recently Searched:</h6>
-                                    </div>
-                                    <div class="dlab-scroll px-3 mt-3 height300">
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/1.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/2.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Oliver</a>
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/1.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Lucas</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/2.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/4.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/3.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/2.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                        <ul class="d-flex align-items-center mb-3">
-                                            <li>
-                                                <img src="../static/akademi/images/avatar/1.jpg"
-                                                     class="avatar avatar-sm" alt="">
-                                                <a href="javascript:void(0);" class="ms-2">Benjamin</a>
-
-                                            </li>
-                                            <li class="ms-auto"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link  menu-wallet" href="javascript:void(0);">
-                            <svg id="Layer_2" enable-background="new 0 0 512 512" height="18"
-                                 viewBox="0 0 512 512" width="18" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <path
-                                        d="m174 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                    <path
-                                        d="m446 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                    <path
-                                        d="m392 512c-66.168 0-120-53.832-120-120s53.832-120 120-120 120 53.832 120 120-53.832 120-120 120zm0-208c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88z" />
-                                    <path
-                                        d="m174 512h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z" />
-                                </g>
-                            </svg>
-                        </a>
                     </li>
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
@@ -368,76 +226,6 @@
                             </div>
                             <a class="all-notification" href="javascript:void(0);">See all notifications <i
                                     class="ti-arrow-end"></i></a>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link me-0 " href="javascript:void(0);" data-bs-toggle="dropdown">
-                            <svg width="20" class="setting-svg" height="20" viewBox="0 0 32 32" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12.2631 2.66667L11.4167 6.46615C10.9353 6.69779 10.4752 6.96458 10.0339 7.26563L6.32035 6.09636L2.58337 12.5703L5.39848 15.1484C5.28849 15.9648 5.33831 16.3672 5.39848 16.8516L2.58337 19.4297L6.32035 25.9037L10.0339 24.7344C10.4752 25.0354 10.9353 25.3022 11.4167 25.5339L12.2631 29.3333H19.737L20.5834 25.5339C21.0647 25.3022 21.5249 25.0354 21.9662 24.7344L25.6797 25.9037L29.4167 19.4297L26.6016 16.8516C26.6246 16.5682 26.6664 16.2845 26.6667 16C26.6678 15.7069 26.6216 15.4108 26.6016 15.1484L29.4167 12.5703L25.6797 6.09636L21.9662 7.26563C21.5249 6.96458 21.0647 6.69779 20.5834 6.46615L19.737 2.66667H12.2631ZM14.4037 5.33334H17.5964L18.2552 8.29167L18.9167 8.55209C19.6649 8.84512 20.3644 9.24846 20.9922 9.75001L21.5495 10.1927L24.4401 9.28386L26.0365 12.0495L23.8021 14.099L23.9089 14.8021C24.0346 15.5797 24.0101 16.4746 23.9089 17.1979L23.8021 17.901L26.0365 19.9505L24.4401 22.7162L21.5495 21.8073L20.9922 22.25C20.3644 22.7516 19.6649 23.1549 18.9167 23.4479L18.2552 23.7083L17.5964 26.6667H14.4037L13.7448 23.7083L13.0834 23.4479C12.3351 23.1549 11.6357 22.7516 11.0079 22.25L10.4506 21.8073L7.55994 22.7162L5.96358 19.9505L8.19796 17.901L8.09119 17.1979C7.96095 16.4046 7.98095 15.4967 8.09119 14.8021L8.19796 14.099L5.96358 12.0495L7.55994 9.28386L10.4506 10.1927L11.0079 9.75001C11.6357 9.24846 12.3351 8.84512 13.0834 8.55209L13.7448 8.29167L14.4037 5.33334ZM16 10.6667C13.0703 10.6667 10.6667 13.0703 10.6667 16C10.6667 18.9297 13.0703 21.3333 16 21.3333C18.9298 21.3333 21.3334 18.9297 21.3334 16C21.3334 13.0703 18.9298 10.6667 16 10.6667ZM16 13.3333C17.4886 13.3333 18.6667 14.5115 18.6667 16C18.6667 17.4886 17.4886 18.6667 16 18.6667C14.5115 18.6667 13.3334 17.4886 13.3334 16C13.3334 14.5115 14.5115 13.3333 16 13.3333Z"
-                                    fill="#A098AE" />
-                            </svg>
-
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <div id="DZ_W_TimeLine02" class="widget-timeline dlab-scroll style-1 p-3 height370">
-                                <ul class="timeline">
-                                    <li>
-                                        <div class="timeline-badge primary"></div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>10 minutes ago</span>
-                                            <h6 class="mb-0">Youtube, a video-sharing website, goes live <strong
-                                                    class="text-primary">$500</strong>.</h6>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge info">
-                                        </div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>20 minutes ago</span>
-                                            <h6 class="mb-0">New order placed <strong
-                                                    class="text-info">#XF-2356.</strong></h6>
-                                            <p class="mb-0">Quisque a consequat ante Sit amet magna at
-                                                volutapt...</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge danger">
-                                        </div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>30 minutes ago</span>
-                                            <h6 class="mb-0">john just buy your product <strong
-                                                    class="text-warning">Sell $250</strong></h6>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge success">
-                                        </div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>15 minutes ago</span>
-                                            <h6 class="mb-0">StumbleUpon is acquired by eBay. </h6>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge warning">
-                                        </div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>20 minutes ago</span>
-                                            <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="timeline-badge dark">
-                                        </div>
-                                        <a class="timeline-panel text-muted" href="javascript:void(0);">
-                                            <span>20 minutes ago</span>
-                                            <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </li>
                     <li class="nav-item">
