@@ -76,6 +76,15 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
+                                    <select name="sex" id="" class="form-control">
+                                        <option value="" selected disabled>Sélectionnez votre sexe</option>
+                                        <option value="M">Masculin</option>
+                                        <option value="M">Féminin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Entre votre email">
                                 </div>
                             </div>

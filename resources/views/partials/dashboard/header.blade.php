@@ -157,8 +157,7 @@
                                     <li>
                                         <div class="timeline-panel">
                                             <div class="media me-2">
-                                                <img alt="image" width="50"
-                                                     src="../static/akademi/images/avatar/1.jpg">
+                                                <img src="/static/akademi/images/avatar/1.jpg" alt="image" width="50" >
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="mb-1">Dr sultads Send you Photo</h6>
@@ -192,7 +191,7 @@
                                         <div class="timeline-panel">
                                             <div class="media me-2">
                                                 <img alt="image" width="50"
-                                                     src="../static/akademi/images/avatar/1.jpg">
+                                                     src="/static/akademi/images/avatar/1.jpg">
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="mb-1">Dr sultads Send you Photo</h6>
@@ -236,7 +235,7 @@
                                     <div class="d-flex align-items-center sidebar-info">
 
                                     </div>
-                                    <img src="../static/akademi/images/user.jpg" alt="">
+                                    <img src="/static/akademi/images/user.jpg" alt="">
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end pb-0" style="">
@@ -244,7 +243,7 @@
                                     <div class="card-header p-3">
                                         <ul class="d-flex align-items-center">
                                             <li>
-                                                <img src="../static/akademi/images/user.jpg" class="ms-0"
+                                                <img src="/static/akademi/images/user.jpg" class="ms-0"
                                                      alt="">
                                             </li>
                                             <li class="ms-2">

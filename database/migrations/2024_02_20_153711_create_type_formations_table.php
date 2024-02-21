@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('type_formations', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->string('code');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

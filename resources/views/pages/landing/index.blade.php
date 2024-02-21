@@ -37,7 +37,7 @@
                                     </p>--}}
                                 </div>
                                 <div class="slider-btn bnt2">
-                                    <a href="#" class="box-btn">Nos formations</a>
+                                    <a href="{{ route('formations') }}" class="box-btn">Nos formations</a>
                                     <a href="#" class="border-btn">Jobs & Emplois</a>
                                 </div>
                             </div>

@@ -23,7 +23,7 @@
                             <div>
                                 <!-- Button trigger modal -->
                                 <a href="" class="btn btn-primary">
-                                    + Nouvel utilisateur
+                                    + Ajouter un {{ strtolower($role->title) }}
                                 </a>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <tr>
                                     <td>
                                         <div class="trans-list">
-                                            <img src="../static/akademi/images/trans/10.jpg" alt="" class="avatar me-3">
+                                            <img src="/static/akademi/images/trans/10.jpg" alt="" class="avatar me-3">
                                             <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                                         </div>
                                     </td>

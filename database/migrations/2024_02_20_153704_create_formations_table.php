@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->foreignId('type_formation_id');
+            $table->string('image');
+            $table->date('enrolment_deadline')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->bigInteger('duration')->nullable();
+            $table->bigInteger('price')->nullable();
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

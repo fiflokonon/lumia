@@ -23,7 +23,7 @@
                             <a href="index.html#" class="nav-link dropdown-toggle">Formations</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="classes.html" class="nav-link">Nos formations</a>
+                                    <a href="{{ route('formations') }}" class="nav-link">Nos formations</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="special-class.html" class="nav-link">Cours spéciaux</a>

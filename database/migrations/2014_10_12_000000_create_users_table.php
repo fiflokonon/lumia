@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->string('sex')->nullable();
             $table->string('address')->nullable();
             $table->string('profile_picture')->nullable();
             $table->foreignId('role_id');

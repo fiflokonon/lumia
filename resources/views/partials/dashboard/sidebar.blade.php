@@ -12,9 +12,18 @@
                     <i class="material-symbols-outlined">home</i>
                     <span class="nav-text">Dashboard</span>
                 </a>
-
+                @php
+                $roles = \App\Models\Role::all();
+                $type_formations = \App\Models\TypeFormation::all();
+                @endphp
                 <ul aria-expanded="false">
-                    <li><a href="../index_2/index.html">Utilisateurs</a></li>
+                    <li><a class="has-arrow" href="{{ route('users') }}" aria-expanded="false">Utilisateurs</a>
+                        <ul aria-expanded="false">
+                            @foreach($roles as $role)
+                            <li><a href="{{ route('role_users', ['code' => $role->code]) }}">{{ $role->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
                     <li><a href="../finance/index.html">Roles et permissions</a></li>
                     <li><a href="../finance/index.html">Transactions</a></li>
                 </ul>
@@ -24,10 +33,10 @@
                     <span class="nav-text">Formations</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="../student/index.html">Formations vidéo</a></li>
-                    <li><a href="../student-details/index.html">Formations en ligne</a></li>
+                    @foreach($type_formations as $type)
+                        <li><a href="{{ route('type_formations', ['code' => $type->code]) }}">{{ $type->title }}</a></li>
+                    @endforeach
                     <li><a href="../add-student/index.html">Formations expirées </a></li>
-
                 </ul>
 
             </li>

@@ -77,8 +77,7 @@
                             <a href="index.html#"><i class="flaticon-next"></i> +1 (281) 384 574</a>
                         </li>
                         <li>
-                            <a href="index.html#"><i class="flaticon-next"></i> <span class="__cf_email__"
-                                                                                      data-cfemail="9cf4f9f0f0f3dcf9f8eaf5b2fff3f1">lumiaconcsulting@gmail.com</span></a>
+                            <a href=""><i class="flaticon-next"></i> <span class="__cf_email__" data-cfemail="9cf4f9f0f0f3dcf9f8eaf5b2fff3f1">sulting@gmail.com</span></a>
                         </li>
                         <li>
                             <a href="index.html#">

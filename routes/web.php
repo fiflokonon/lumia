@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\FormationController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +32,18 @@ Route::get('/login-2', function (){
 Route::get('/register-2', function (){
     return view('auth.register-2');
 });
-Route::get('/dashboard', function (){
-    return view('pages.dashboard.home');
-})->name('dashboard');
+Route::get('/formations', [FormationController::class, 'index'])->name('formations');
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware("auth")->group(function () {
+    Route::get('/dashboard', function (){
+        return view('pages.dashboard.home');
+    })->name('dashboard');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/roles/{code}/users', [UserController::class, 'role_users'])->name('role_users');
+
+    Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
+});
