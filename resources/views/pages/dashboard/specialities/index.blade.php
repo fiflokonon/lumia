@@ -92,7 +92,47 @@
         <!--**********************************
             Footer start
         ***********************************-->
-    </div></div>
+    </div>
+</div>
+@php
+    $fields = \App\Models\Field::all();
+@endphp
+<!-- Modal -->
+<div class="modal fade" id="basicModal">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('new_field') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter une spécialité</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nom de la spécialité</label>
+                        <input type="text" placeholder="Nom de la spécialité" class="form-control" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Choisissez le domaine</label>
+                        <select name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="text" name="description" id="" class="form-control" placeholder="Description">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
 
 <!--**********************************

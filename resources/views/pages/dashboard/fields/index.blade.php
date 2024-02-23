@@ -7,6 +7,22 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Row -->
         <div class="row">
             <div class="col-xl-12">
@@ -98,30 +114,31 @@
 <!-- Modal -->
 <div class="modal fade" id="basicModal">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ajouter un domaine</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                </button>
+        <form method="POST" action="{{ route('new_field') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter un domaine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nom du domaine</label>
+                            <input type="text" placeholder="Nom du domaine" class="form-control" name="title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" name="description" id="" class="form-control" placeholder="Description">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <form method="POST" action="">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label">Nom du domaine</label>
-                        <input type="text" placeholder="Nom du domaine" class="form-control" name="title">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <input type="text" name="description" id="" class="form-control" placeholder="Description">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Enregistrer</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection

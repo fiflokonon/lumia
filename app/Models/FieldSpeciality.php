@@ -12,7 +12,6 @@ class FieldSpeciality extends Model
     protected $table = 'field_specialities';
     protected $fillable = [
         'title',
-        'code',
         'description',
         'field_id',
         'status'

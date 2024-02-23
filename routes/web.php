@@ -50,5 +50,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
+    Route::post('/fields', [FieldController::class, 'store'])->name('new_field');
     Route::get('/specialities', [FieldSpecialityController::class, 'index'])->name('specialities');
+    Route::post('/');
 });
