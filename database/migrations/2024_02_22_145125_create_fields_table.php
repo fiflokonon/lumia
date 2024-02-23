@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('code');
+            $table->string('description')->nullable();
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

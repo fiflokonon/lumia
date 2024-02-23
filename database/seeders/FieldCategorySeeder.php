@@ -22,35 +22,28 @@ class FieldCategorySeeder extends Seeder
         DB::table('field_categories')->insert([
             [
                 'title' => 'Marketing digital',
-                'code'=> 'marketing_digital',
+                'code'=> 'digital_marketing',
                 'field_id' => $digital->id,
                 'status' => true,
                 'created_at' => now()
             ],
             [
                 'title' => 'Design graphique',
-                'code'=> 'design_graphique',
-                'field_id' => $digital->id,
-                'status' => true,
-                'created_at' => now()
-            ],
-            [
-                'title' => 'Design graphique',
-                'code'=> 'design_graphique',
+                'code'=> 'graphic_designe',
                 'field_id' => $digital->id,
                 'status' => true,
                 'created_at' => now()
             ],
             [
                 'title' => 'Développement web et mobile',
-                'code'=> 'developpement_web_mobile',
+                'code'=> 'web_mobile_development',
                 'field_id' => $digital->id,
                 'status' => true,
                 'created_at' => now()
             ],
             [
                 'title' => 'Informatique de base et avancée',
-                'code'=> 'informatique_de_base_et_avancee',
+                'code'=> 'basic_and_advanced_computer_science',
                 'field_id' => $digital->id,
                 'status' => true,
                 'created_at' => now()
@@ -64,14 +57,14 @@ class FieldCategorySeeder extends Seeder
             ],
             [
                 'title' => 'Management de projet',
-                'code'=> 'management_de_projet',
+                'code'=> 'project_management',
                 'field_id' => $management->id,
                 'status' => true,
                 'created_at' => now()
             ],
             [
                 'title' => 'Suivi évaluation apprentissage et recevabilité',
-                'code'=> 'suivi_evaluation',
+                'code'=> 'learning_evaluation',
                 'field_id' => $management->id,
                 'status' => true,
                 'created_at' => now()
