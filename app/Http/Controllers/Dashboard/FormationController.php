@@ -10,7 +10,7 @@ class FormationController extends Controller
 {
     public function index()
     {
-        return view('pages.landing.formations.index', ['formations' => Formation::all()]);
+        return view('pages.landing.formations', ['formations' => Formation::all()]);
     }
 
     public function type_formations($code)

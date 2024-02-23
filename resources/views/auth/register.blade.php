@@ -99,7 +99,19 @@
                                     <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
                                 </div>
                             </div>
-
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <select name="sex" id="" class="form-control">
+                                        <option value="" selected disabled>Sélectionnez votre secteur d'activité</option>
+                                        <option value="M">Féminin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="file"  name="graduation" class="form-control">
+                                </div>
+                            </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <input type="password"  name="password_confirmation" class="form-control" placeholder="Confirmez votre mot de passe">
