@@ -117,12 +117,6 @@ class FieldSpecialitySeeder extends Seeder
                 'created_at' => now()
             ],
             [
-                'title' => 'Management de projet',
-                'field_id' => $administration->id,
-                'status' => true,
-                'created_at' => now()
-            ],
-            [
                 'title' => 'Secrétariat comptable',
                 'field_id' => $administration->id,
                 'status' => true,

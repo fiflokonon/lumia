@@ -7,6 +7,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
+        @include('partials.back_message')
         <!-- Row -->
         <div class="row">
             <div class="col-xl-12">
@@ -23,9 +24,9 @@
                             </div>
                             <div>
                                 <!-- Button trigger modal -->
-                                <a href="" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#basicModal">
                                     + Nouvelle spécialité
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -100,7 +101,7 @@
 <!-- Modal -->
 <div class="modal fade" id="basicModal">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('new_field') }}">
+        <form method="POST" action="{{ route('new_speciality') }}">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,15 +116,16 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Choisissez le domaine</label>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <select name="field" id="" class="form-control">
+                            @foreach($fields as $field)
+                            <option value="{{ $field->id }}">{{ $field->title }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
                         <input type="text" name="description" id="" class="form-control" placeholder="Description">
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
