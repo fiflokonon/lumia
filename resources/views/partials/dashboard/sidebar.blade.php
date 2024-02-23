@@ -33,8 +33,8 @@
                     <span class="nav-text">Formations</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="">Secteur de formations</a></li>
-                    <li><a href="">Catégories de formations</a></li>
+                    <li><a href="{{ route('fields') }}">Domaines</a></li>
+                    <li><a href="{{ route('specialities') }}">Spécialités</a></li>
                 @foreach($type_formations as $type)
                         <li><a href="{{ route('type_formations', ['code' => $type->code]) }}">{{ $type->title }}</a></li>
                     @endforeach

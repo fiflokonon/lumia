@@ -16,4 +16,9 @@ class Field extends Model
         'description',
         'status'
     ];
+
+    public function specialities()
+    {
+        return $this->hasMany(FieldSpeciality::class);
+    }
 }

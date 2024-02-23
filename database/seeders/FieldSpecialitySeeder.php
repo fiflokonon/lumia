@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FieldCategorySeeder extends Seeder
+class FieldSpecialitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class FieldCategorySeeder extends Seeder
         $sante = Field::where('code', 'sante')->first();
         $administration = Field::where('code', 'administration')->first();
 
-        DB::table('field_categories')->insert([
+        DB::table('field_specialities')->insert([
             [
                 'title' => 'Marketing digital',
                 'code'=> 'digital_marketing',

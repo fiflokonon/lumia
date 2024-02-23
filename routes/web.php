@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\FieldController;
+use App\Http\Controllers\Dashboard\FieldSpecialityController;
 use App\Http\Controllers\Dashboard\FormationController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -46,4 +48,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/roles/{code}/users', [UserController::class, 'role_users'])->name('role_users');
 
     Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
+
+    Route::get('/fields', [FieldController::class, 'index'])->name('fields');
+    Route::get('/specialities', [FieldSpecialityController::class, 'index'])->name('specialities');
 });

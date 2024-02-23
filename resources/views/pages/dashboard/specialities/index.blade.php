@@ -1,4 +1,5 @@
 @extends('pages.dashboard.index')
+@section('page_title', 'Liste des spécialités')
 <!--**********************************
     Content body start
 ***********************************-->
@@ -23,7 +24,7 @@
                             <div>
                                 <!-- Button trigger modal -->
                                 <a href="" class="btn btn-primary">
-                                    + Nouveau secteur
+                                    + Nouvelle spécialité
                                 </a>
                             </div>
                         </div>
@@ -35,24 +36,23 @@
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Description</th>
+                                    <th>Domaine</th>
                                     <th>Statut</th>
                                     <th>Date de création</th>
                                     <th class="text-end">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($fields as $field)
+                                @foreach($specialities as $specialitie)
                                 <tr>
                                     <td>
                                         <div class="trans-list">
-                                            <h4>{{ $user->first_name }}</h4>
+                                            <h4>{{ $specialitie->title }}</h4>
                                         </div>
                                     </td>
-                                    <td><span class="text-primary font-w600">{{ $user->email }}</span></td>
-                                    <td><span class="text-primary font-w600">{{ $user->phone }}</span></td>
+                                    <td><span class="text-primary font-w600">{{ $specialitie->field->title }}</span></td>
                                     <td>
-                                        @if($user->status)
+                                        @if($specialitie->status)
                                             <div class="badge badge-sm light badge-success">
                                                 Actif
                                             </div>
@@ -63,7 +63,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="date">{{ \Carbon\Carbon::parse($user->created_at)->locale('fr')->translatedFormat('d F Y')  }}</div>
+                                        <div class="date">{{ \Carbon\Carbon::parse($specialitie->created_at)->locale('fr')->translatedFormat('d F Y')  }}</div>
                                     </td>
                                     <td>
                                         <div class="dropdown custom-dropdown float-end">

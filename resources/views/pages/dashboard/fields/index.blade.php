@@ -1,5 +1,5 @@
 @extends('pages.dashboard.index')
-@section('page_title', "Liste des ".strtolower($role->title).'s')
+@section('page_title', 'Liste des domaines')
 <!--**********************************
     Content body start
 ***********************************-->
@@ -23,9 +23,9 @@
                             </div>
                             <div>
                                 <!-- Button trigger modal -->
-                                <a href="" class="btn btn-primary">
-                                    + Ajouter un {{ strtolower($role->title) }}
-                                </a>
+                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#basicModal">
+                                    + Nouveau domaine
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -35,27 +35,24 @@
                             <table class="table-responsive-lg table display dataTablesCard student-tab dataTable no-footer" id="example-student">
                                 <thead>
                                 <tr>
-                                    <th>Identité</th>
-                                    <th>Email</th>
-                                    <th>Téléphone</th>
+                                    <th>Nom</th>
+                                    <th>Description</th>
                                     <th>Statut</th>
                                     <th>Date de création</th>
                                     <th class="text-end">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($fields as $field)
                                 <tr>
                                     <td>
                                         <div class="trans-list">
-                                            <img src="/static/akademi/images/trans/10.jpg" alt="" class="avatar me-3">
-                                            <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
+                                            <h4>{{ $field->title }}</h4>
                                         </div>
                                     </td>
-                                    <td><span class="text-primary font-w600">{{ $user->email }}</span></td>
-                                    <td><span class="text-primary font-w600">{{ $user->phone }}</span></td>
+                                    <td><span class="text-primary font-w600">{{ $field->description }}</span></td>
                                     <td>
-                                        @if($user->status)
+                                        @if($field->status)
                                             <div class="badge badge-sm light badge-success">
                                                 Actif
                                             </div>
@@ -66,7 +63,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="date">{{ \Carbon\Carbon::parse($user->created_at)->locale('fr')->translatedFormat('d F Y')  }}</div>
+                                        <div class="date">{{ \Carbon\Carbon::parse($field->created_at)->locale('fr')->translatedFormat('d F Y')  }}</div>
                                     </td>
                                     <td>
                                         <div class="dropdown custom-dropdown float-end">
@@ -92,10 +89,41 @@
                 </div>
             </div>
         </div>
+
         <!--**********************************
             Footer start
         ***********************************-->
-    </div></div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="basicModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter un domaine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Nom du domaine</label>
+                        <input type="text" placeholder="Nom du domaine" class="form-control" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="text" name="description" id="" class="form-control" placeholder="Description">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 <!--**********************************

@@ -1,4 +1,5 @@
 @extends('pages.dashboard.index')
+@section('page_title', 'Liste des formations')
 <!--**********************************
     Content body start
 ***********************************-->
