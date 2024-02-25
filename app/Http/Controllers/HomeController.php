@@ -19,8 +19,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        #dd(auth()->user()->isNotClient());
-        #return redirect()->route('dashboard');
-        return view('pages.dashboard.home');
+        if (auth()->user()->isNotClient()){
+            return view('pages.dashboard.home');
+        }else{
+            return view('pages.dashboard.client_home');
+        }
     }
 }
