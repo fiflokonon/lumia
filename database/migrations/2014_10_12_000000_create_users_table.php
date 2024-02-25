@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('sex')->nullable();
             $table->string('address')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->string('graduation_file')->nullable();
+            $table->string('field')->nullable();
             $table->foreignId('role_id');
             $table->boolean('status')->default(false);
             $table->timestamp('email_verified_at')->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Field;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -56,6 +57,8 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'graduation' => ['required'],
+            'field' => ['required', 'exists:fields,id']
         ]);
     }
 
@@ -68,15 +71,21 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role_client = Role::where('code', 'client')->first();
-
+        // Enregistrer le fichier sur le serveur
+        $file = $data['graduation'];
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/graduation', $fileName); // Enregistrer le fichier dans le dossier "avatars"
+        $field = Field::find($data['field']);
         return User::create([
         'first_name' => $data['first_name'],
         'last_name' => $data['last_name'],
         'phone' => $data['phone'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
+        'field' =>$field->title,
         'sex' => $data['sex'],
-        'status' => true,
+        'graduation_file' => $fileName,
+        'status' => false,
         'role_id' => $role_client->id
         ]);
     }

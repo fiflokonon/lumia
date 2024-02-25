@@ -26,6 +26,8 @@ class User extends Authenticatable
         'status',
         'address',
         'profile_picture',
+        'graduation_file',
+        'field',
         'email',
         'role_id',
         'password',

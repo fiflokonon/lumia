@@ -49,7 +49,9 @@
     </div>
 </div>
 
-
+@php
+    $fields = \App\Models\Field::all();
+@endphp
 <section class="signup-area">
     <div class="container">
         <div class="row align-items-center">
@@ -61,55 +63,58 @@
                     <h2 class="text-center">Inscrivez-vous !</h2>
                     <h5 class="text-center">Renseignez vos informations</h5>
                     <p></p>
-                    <form action="{{ route('register') }}" method="POST">
+                    @include('partials.back_message')
+                    <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="text" name="last_name" class="form-control" placeholder="Entrez votre nom">
+                                    <input type="text" name="last_name" class="form-control" placeholder="Entrez votre nom" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="text" name="first_name" class="form-control" placeholder="Entrez votre/vos prénom(s)">
+                                    <input type="text" name="first_name" class="form-control" placeholder="Entrez votre/vos prénom(s)" value="{{ old('first_name') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <select name="sex" id="" class="form-control">
-                                        <option value="" selected disabled>Sélectionnez votre sexe</option>
-                                        <option value="M">Masculin</option>
-                                        <option value="M">Féminin</option>
+                                    <select name="sex" class="form-control">
+                                        <option value="" disabled>Sélectionnez votre sexe</option>
+                                        <option value="M" {{ old('sex') == 'M' ? 'selected' : '' }}>Masculin</option>
+                                        <option value="F" {{ old('sex') == 'F' ? 'selected' : '' }}>Féminin</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Entre votre email">
+                                    <input type="email" name="email" class="form-control" placeholder="Entre votre email" value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="tel" name="phone" class="form-control" placeholder="Entre votre numéro de télépone">
+                                    <input type="tel" name="phone" class="form-control" placeholder="Entre votre numéro de télépone" value="{{ old('phone') }}">
                                 </div>
                             </div>
-
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <select name="field" id="" class="form-control">
+                                        <option value="" selected disabled>Sélectionnez votre secteur d'activité</option>
+                                        @foreach($fields as $field)
+                                        <option value="{{ $field->id }}">{{ $field->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-file-label mb-1">Entrez votre diplôme</label>
+                                    <input type="file"  name="graduation" class="form-control-file">
+                                </div>
+                            </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <select name="sex" id="" class="form-control">
-                                        <option value="" selected disabled>Sélectionnez votre secteur d'activité</option>
-                                        <option value="M">Féminin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input type="file"  name="graduation" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-12">

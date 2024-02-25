@@ -40,16 +40,11 @@
                                 @endfor
                             </div>
                             <!-- Dropdown pour les options -->
-                            <div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Éditer</a>
-                                        <a class="dropdown-item" href="#">Supprimer</a>
-                                        <!-- Autres options ici -->
-                                    </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Acions</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="javascript:void(0);">Dropdown link</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Dropdown link</a>
                                 </div>
                             </div>
                         </div>
@@ -58,10 +53,12 @@
                         <p class="card-text mb-2">Description de la formation 1...</p>
                         <!-- Liste des détails de la formation -->
                         <ul class="list-group list-group-flush mb-1">
+                            <li class="list-group-item py-1">Spécialité: </li>
                             <li class="list-group-item py-1">Clôture des inscriptions: 21 Mars 2023</li>
                             <li class="list-group-item py-1">Date de début: 28 Mars 2023</li>
                             <li class="list-group-item py-1">Date de fin: 28 Mai 2023</li>
                             <li class="list-group-item py-1">Prix: $200</li>
+                            <li class="list-group-item py-1">Date de création: 28 Mai 2023</li>
                         </ul>
                     </div>
                 </div>
