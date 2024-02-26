@@ -20,11 +20,17 @@ class Formation extends Model
       'price',
       'image',
       'status',
-      'type_formation_id'
+      'type_formation_id',
+      'field_speciality_id'
     ];
 
     public function type_formation()
     {
         return $this->belongsTo(TypeFormation::class);
+    }
+
+    public function field_speciality()
+    {
+        return $this->belongsTo(FieldSpeciality::class);
     }
 }

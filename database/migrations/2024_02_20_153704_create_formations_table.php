@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->foreignId('type_formation_id');
+            $table->foreignId('field_speciality_id');
             $table->string('image');
             $table->date('enrolment_deadline')->nullable();
             $table->date('start_date')->nullable();

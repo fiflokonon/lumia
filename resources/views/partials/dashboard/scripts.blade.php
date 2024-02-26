@@ -34,7 +34,21 @@
 
 <script src="/static/akademi/vendor/bootstrap-select-country/js/bootstrap-select-country.min.js"></script>
 
+<script src="/static/akademi/vendor/pickadate/picker.js"></script>
 
+<script src="/static/akademi/vendor/pickadate/picker.time.js"></script>
+
+<script src="/static/akademi/vendor/pickadate/picker.date.js"></script>
+
+<script src="/static/akademi/js/plugins-init/bs-daterange-picker-init.js"></script>
+
+<script src="/static/akademi/js/plugins-init/clock-picker-init.js"></script>
+
+<script src="/static/akademi/js/plugins-init/jquery-asColorPicker.init.js"></script>
+
+<script src="/static/akademi/js/plugins-init/material-date-picker-init.js"></script>
+
+<script src="/static/akademi/js/plugins-init/pickadate-init.js"></script>
 
 <script src="/static/akademi/js/custom.min.js"></script>
 

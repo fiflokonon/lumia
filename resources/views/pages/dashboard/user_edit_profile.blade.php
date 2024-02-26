@@ -51,7 +51,8 @@
                         <div class="card-header">
                             <h6 class="title">Informations du compte</h6>
                         </div>
-                        <form class="profile-form">
+                        <form class="profile-form" method="POST" action="" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6 m-b30">
@@ -91,6 +92,10 @@
                                     <div class="col-sm-6 m-b30">
                                         <label class="form-label">Email address</label>
                                         <input type="text" class="form-control" name="email" value="{{ $user->email }}">
+                                    </div>
+                                    <div class="col-sm-6 m-b30">
+                                        <label class="form-label">Justificatif de niveau d'études</label>
+                                        <input type="file" class="form-control" name="graduation" value="">
                                     </div>
                                     {{--
                                     <div class="col-sm-6 m-b30">

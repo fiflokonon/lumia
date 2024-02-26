@@ -19,6 +19,8 @@
     <link href="/static/akademi/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" >
     <link href="/static/akademi/vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
     <link href="/static/akademi/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/static/akademi/vendor/pickadate/themes/default.css" rel="stylesheet" >
+    <link href="/static/akademi/vendor/pickadate/themes/default.date.css" rel="stylesheet">
     <link href="/static/akademi/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     @php
