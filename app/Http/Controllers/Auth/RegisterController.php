@@ -70,6 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $role_client = Role::where('code', 'client')->first();
         // Enregistrer le fichier sur le serveur
         $file = $data['graduation'];

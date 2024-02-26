@@ -36,6 +36,21 @@
         body{
             background-color: #fef6f6;
         }
+        .phone-input {
+            padding-left: 200px; /* Ajustez le décalage du texte pour laisser de la place au drapeau */
+        }
+
+        .iti {
+            width: 100%; /* Assurez-vous que le conteneur du champ de numéro de téléphone occupe toute la largeur */
+        }
+        #phone{
+            height: 50px;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+        }
+        .phone-input:focus {
+            border-color: blue !important; /* Modifier la couleur de la bordure lorsqu'il est en focus */
+        }
     </style>
 </head>
 
@@ -96,7 +111,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="          Entre votre numéro de télépone" value="{{ old('phone') }}">
+                                    <input id="phone" name="phone" type="tel" placeholder="Entrez votre numéro de téléphone" class="phone-input w-100" value="{{ old('phone') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -168,8 +183,6 @@
 <a href="signin.html#" class="scroll-top wow animate__animated animate__bounceInDown">
     <i class="fas fa-angle-double-up"></i>
 </a>
-
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -188,14 +201,37 @@
 <script src="assets/js/contact-form-script.js"></script>
 
 <script src="assets/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"></script>
+
 <script>
-    // Initialise intl-tel-input
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        initialCountry: "auto", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+    // Attendez que le DOM soit chargé
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sélectionnez le champ de numéro de téléphone
+        var input = document.querySelector("#phone");
+
+        // Initialisez intl-tel-input
+        var iti = window.intlTelInput(input, {
+            initialCountry: "auto", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+            separateDialCode: true, // Inclure le code de pays dans le champ de numéro de téléphone
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+        });
+
+        // Écoutez l'événement de soumission du formulaire
+        document.querySelector("form").addEventListener("submit", function () {
+            // Récupérez le code de pays sélectionné
+            var countryCode = iti.getSelectedCountryData().dialCode;
+
+            // Récupérez la valeur du numéro de téléphone
+            var phoneNumber = input.value;
+
+            // Concaténez le code de pays avec le numéro de téléphone
+            input.value = "+" + countryCode + phoneNumber;
+        });
     });
+
 </script>
+
+
 
 </body>
 

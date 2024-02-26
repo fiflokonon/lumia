@@ -87,7 +87,7 @@
                                     </div>--}}
                                     <div class="col-sm-6 m-b30">
                                         <label class="form-label">Phone</label>
-                                        <input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
+                                        <input type="tel" class="form-control" name="phone" value="{{ $user->phone }}">
                                     </div>
                                     <div class="col-sm-6 m-b30">
                                         <label class="form-label">Email address</label>
