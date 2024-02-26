@@ -40,6 +40,7 @@
 <section class="events">
     <div class="container">
         <div class="row">
+            @foreach($formations as $formation)
             <div class="col-lg-4 col-md-6">
                 <div class="single-events">
                     <div class="events-img">
@@ -58,23 +59,24 @@
                             </div>
                         </div>
                         <a href="single-events.html">
-                            <h2>Soccer completed successfully</h2>
+                            <h2>{{ $formation->title }}</h2>
                         </a>
                         <p class="text">
-                            Spécialité : Management de projet
+                            Spécialité : {{ $formation->field_speciality->title }}
                             <br>
-                            Fin des inscriptions : 01 April, 2021
+                            Fin des inscriptions : {{ \Carbon\Carbon::parse($formation->enrolment_date)->locale('fr')->translatedFormat('d F Y')  }}
                             <br>
-                            Date de début : 01 April, 2021
+                            Date de début : {{ \Carbon\Carbon::parse($formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}
                             <br>
-                            Date de fin : 01 April, 2021
+                            Date de fin : {{ \Carbon\Carbon::parse($formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}
                             <br>
-                            Prix : 80 000 FCFA
+                            Prix : {{ $formation->price }} FCFA
                         </p>
                         <a href="single-events.html" class="btn btn-primary text-light">S'inscrire</a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">

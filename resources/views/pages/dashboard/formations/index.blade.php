@@ -55,12 +55,12 @@
                         <p class="card-text mb-2">{{ $formation->description }}</p>
                         <!-- Liste des détails de la formation -->
                         <ul class="list-group list-group-flush mb-1">
-                            <li class="list-group-item py-1">Spécialité: {{ $formation->field_speciality->title }}</li>
-                            <li class="list-group-item py-1">Clôture des inscriptions: </li>
-                            <li class="list-group-item py-1">Date de début: 28 Mars 2023</li>
-                            <li class="list-group-item py-1">Date de fin: 28 Mai 2023</li>
-                            <li class="list-group-item py-1">Prix: $200</li>
-                            <li class="list-group-item py-1">Date de création: 28 Mai 2023</li>
+                            <li class="list-group-item py-1"> <b>Spécialité:</b> {{ $formation->field_speciality->title }}</li>
+                            <li class="list-group-item py-1"> <b>Clôture des inscriptions:</b> {{ \Carbon\Carbon::parse($formation->enrolment_date)->locale('fr')->translatedFormat('d F Y')  }} </li>
+                            <li class="list-group-item py-1"><b>Date de début:</b>  {{ \Carbon\Carbon::parse($formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                            <li class="list-group-item py-1"> <b>Date de fin:</b> {{ \Carbon\Carbon::parse($formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                            <li class="list-group-item py-1"><b>Prix:</b> {{ $formation->price }} Franc CFA</li>
+                            <li class="list-group-item py-1"><b>Date de création:</b> {{ \Carbon\Carbon::parse($formation->created_at)->locale('fr')->translatedFormat('d F Y')  }}</li>
                         </ul>
                     </div>
                 </div>

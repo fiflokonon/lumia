@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="assets/css/dark.css" />
 
     <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <title>Lumia Consulting - Connexion</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.ico">
     <style>
@@ -93,7 +96,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="tel" name="phone" class="form-control" placeholder="Entre votre numéro de télépone" value="{{ old('phone') }}">
+                                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="          Entre votre numéro de télépone" value="{{ old('phone') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -185,6 +188,15 @@
 <script src="assets/js/contact-form-script.js"></script>
 
 <script src="assets/js/main.js"></script>
+<script>
+    // Initialise intl-tel-input
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        initialCountry: "auto", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+    });
+</script>
+
 </body>
 
 </html>
