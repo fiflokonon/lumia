@@ -47,128 +47,31 @@
                             <img src="assets/images/events/img1.png" alt="events" />
                         </a>
                     </div>
+
                     <div class="content">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <!-- Étoiles -->
+                            <div>
+                                @for ($i = 0; $i < 5; $i++)
+                                    <i class="fas fa-star{{ $i < 4 ? ' text-warning' : '' }}"></i>
+                                @endfor
+                            </div>
+                        </div>
                         <a href="single-events.html">
                             <h2>Soccer completed successfully</h2>
                         </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
+                        <p class="text">
+                            Spécialité : Management de projet
+                            <br>
+                            Fin des inscriptions : 01 April, 2021
+                            <br>
+                            Date de début : 01 April, 2021
+                            <br>
+                            Date de fin : 01 April, 2021
+                            <br>
+                            Prix : 80 000 FCFA
                         </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-events">
-                    <div class="events-img">
-                        <a href="single-events.html">
-                            <img src="assets/images/events/img2.png" alt="events" />
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a href="single-events.html">
-                            <h2>Music Program 2 Mar, 2021</h2>
-                        </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
-                        </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-events">
-                    <div class="events-img">
-                        <a href="single-events.html">
-                            <img src="assets/images/events/img3.png" alt="events" />
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a href="single-events.html">
-                            <h2>Motivation Speach 3 Mar, 2021</h2>
-                        </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
-                        </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-events">
-                    <div class="events-img">
-                        <a href="single-events.html">
-                            <img src="assets/images/events/img4.png" alt="events" />
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a href="single-events.html">
-                            <h2>Edvi Fair 10 Mar, 2021</h2>
-                        </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
-                        </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-events">
-                    <div class="events-img">
-                        <a href="single-events.html">
-                            <img src="assets/images/events/img5.png" alt="events" />
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a href="single-events.html">
-                            <h2>Dance Rehearsal 15 Mar, 2021</h2>
-                        </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
-                        </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-events">
-                    <div class="events-img">
-                        <a href="single-events.html">
-                            <img src="assets/images/events/img6.png" alt="events" />
-                        </a>
-                    </div>
-                    <div class="content">
-                        <a href="single-events.html">
-                            <h2>School Picnic 5 Apr, 2021</h2>
-                        </a>
-                        <p class="calender">
-                            <i class="flaticon-calendar"></i> 01 April, 2021
-                        </p>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page.
-                        </p>
-                        <a href="single-events.html" class="line-bnt">Read More <i class="flaticon-next"></i></a>
+                        <a href="single-events.html" class="btn btn-primary text-light">S'inscrire</a>
                     </div>
                 </div>
             </div>

@@ -86,7 +86,12 @@
                 <div class="card">
                     <div class="card-body pb-xl-4 pb-sm-3 pb-0">
                         <p class="text-danger fw-bolder">Votre compte n'est pas encore validé ! Veuillez répondre aux exigences de notre support par messagerie afin d'avoir validation de votre compte!</p>
-                        <button class="btn btn-success"> Modifier vos informations</button>
+                        <div class="text-center">
+                            <a class="btn btn-success" href="{{ route('edit_profile', ['id' => auth()->user()->id]) }}"> Modifier vos informations</a>
+                            <a class="btn btn-info" href="{{ route('formations') }}"> Consulter le catalogue de formations</a>
+
+                        </div>
+
                     </div>
                 </div>
             </div>

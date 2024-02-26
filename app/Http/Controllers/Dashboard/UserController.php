@@ -19,4 +19,10 @@ class UserController extends Controller
         $role = Role::where('code', $code)->first();
         return view('pages.dashboard.role_users', ['role' => $role, 'users' => $role->users]);
     }
+
+    public function edit_profile($id)
+    {
+        $user = User::findOrFail($id);
+        return view('pages.dashboard.user_edit_profile', ['user' => $user]);
+    }
 }

@@ -53,5 +53,5 @@ Route::middleware("auth")->group(function () {
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');
     Route::get('/specialities', [FieldSpecialityController::class, 'index'])->name('specialities');
     Route::post('/specialities', [FieldSpecialityController::class, 'store'])->name('new_speciality');
-    Route::post('/');
+    Route::get('/edit-profile/{id}', [UserController::class, 'edit_profile'] )->name('edit_profile');
 });
