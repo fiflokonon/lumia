@@ -42,7 +42,8 @@
                                     <th class="text-end">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="mb-3">
+
                                 @foreach($users as $user)
                                 <tr>
                                     <td>
@@ -75,15 +76,28 @@
                                                 </svg>
                                             </div>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="javascript:void(0);">Option 1</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Option 2</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Option 3</a>
+                                                @if($user->status)
+                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa fa-cross text-danger"></i> Désactiver</a>
+                                                @else
+                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa fa-check"></i> Activer</a>
+                                                @endif
+                                                <a class="dropdown-item" href="{{ route('show_user', $user->id) }}">Détails</a>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Identité</th>
+                                    <th>Email</th>
+                                    <th>Téléphone</th>
+                                    <th>Statut</th>
+                                    <th>Date de création</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
