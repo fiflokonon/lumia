@@ -32,8 +32,8 @@
                                         <img src="../static/akademi/images/avatar/9.jpg" alt="" class="avatar avatar-xxl">
                                     </div>
                                     <div>
-                                        <h2 class="mb-0">Karen Hope</h2>
-                                        <p class="text-primary font-w600">Student</p>
+                                        <h2 class="mb-0">{{ $user->first_name }} {{ $user->last_name }}</h2>
+                                        <p class="text-primary font-w600">{{ $user->role->title }}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown custom-dropdown">

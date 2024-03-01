@@ -19,7 +19,8 @@
                 <ul aria-expanded="false">
                     <li><a class="has-arrow" href="{{ route('users') }}" aria-expanded="false">Utilisateurs</a>
                         <ul aria-expanded="false">
-                            @foreach($roles as $role)
+                            <li><a href="{{ route('users')}}">Tous</a></li>
+                        @foreach($roles as $role)
                             <li><a href="{{ route('role_users', ['code' => $role->code]) }}">{{ $role->title }}</a></li>
                             @endforeach
                         </ul>
