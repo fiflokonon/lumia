@@ -63,7 +63,7 @@
                                 </p>--}}
                                 </div>
                                 <div class="slider-btn bnt2">
-                                    <a href="#" class="box-btn">Nos formations</a>
+                                    <a href="{{ route('formations') }}" class="box-btn">Nos formations</a>
                                     <a href="#" class="border-btn">Jobs & Emplois</a>
                                 </div>
                             </div>
@@ -133,6 +133,10 @@
                 pouvez vous y inscrire!
             </p>
         </div>
+        @php
+        $formations = \App\Models\Formation::all();
+        @endphp
+        {{--
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="single-ragular-course">
@@ -226,8 +230,51 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
 
+    </div>
+</section>
+<section class="events">
+    <div class="container bg-white">
+        <div class="row">
+            @foreach($formations as $formation)
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-events">
+                        <div class="events-img">
+                            <a href="single-events.html">
+                                <img src="/storage/formations/{{ $formation->image }}" alt="events" />
+                            </a>
+                        </div>
+
+                        <div class="content">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <!-- Étoiles -->
+                                <div>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <i class="fas fa-star{{ $i < 4 ? ' text-warning' : '' }}"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                            <a href="single-events.html">
+                                <h2>{{ $formation->title }}</h2>
+                            </a>
+                            <p class="text">
+                                Spécialité : {{ $formation->field_speciality->title }}
+                                <br>
+                                Fin des inscriptions : {{ \Carbon\Carbon::parse($formation->enrolment_date)->locale('fr')->translatedFormat('d F Y')  }}
+                                <br>
+                                Date de début : {{ \Carbon\Carbon::parse($formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}
+                                <br>
+                                Date de fin : {{ \Carbon\Carbon::parse($formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}
+                                <br>
+                                Prix : {{ $formation->price }} FCFA
+                            </p>
+                            <a href="single-events.html" class="btn btn-primary text-light">S'inscrire</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>
 

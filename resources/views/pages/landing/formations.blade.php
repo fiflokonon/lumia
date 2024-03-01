@@ -43,9 +43,9 @@
             @foreach($formations as $formation)
             <div class="col-lg-4 col-md-6">
                 <div class="single-events">
-                    <div class="events-img">
+                    <div class="events-img bg-white">
                         <a href="single-events.html">
-                            <img src="assets/images/events/img1.png" alt="events" />
+                            <img src="/storage/formations/{{ $formation->image }}" alt="events" />
                         </a>
                     </div>
 

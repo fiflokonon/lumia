@@ -20,7 +20,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="index.html#" class="nav-link dropdown-toggle">Formations</a>
+                            <a href="{{ route('formations') }}" class="nav-link dropdown-toggle">Formations</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <a href="{{ route('formations') }}" class="nav-link">Nos formations</a>
@@ -66,46 +66,26 @@
                         <li class="nav-item">
                             <a href="{{ route('contact') }}" class="nav-link">Contactez-nous</a>
                         </li>
-                        {{--
-                        <li class="nav-item">
-                            <a href="index.html#" class="nav-link dropdown-toggle">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="admission.html" class="nav-link">Admission</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pricing.html" class="nav-link">Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="gallery.html" class="nav-link">Gallery</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="testimonials.html" class="nav-link">Testimonials</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://templates.hibootstrap.com/edvi/default/singnup.html"
-                                       class="nav-link">Signup</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="signin.html" class="nav-link">Signin</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="404.html" class="nav-link">Error 404</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="faq.html" class="nav-link">FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="terms&amp;condition.html" class="nav-link">Terms & Conditions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="privecy.html" class="nav-link">Privacy Policy</a>
-                                </li>
-                            </ul>
-                        </li>--}}
-                        <li class="">
-                            <a href="{{ route('login') }}" class="btn btn-info bg-none rounded-pill text-dark text-center" style="background-color: #ffe000; border: none; margin-top: 10px;">Espace membre</a>
-                        </li>
+                        @if(auth()->user())
+                            <li class="nav-item" style="background-color: #ffe000; border: none;">
+                                <a href="" class="nav-link dropdown-toggle">
+                                   {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="news.html" class="nav-link">Profil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ 'dashboard' }}" class="nav-link">Tableau <span class="text-lowercase">de bord</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="">
+                                <a href="{{ route('login') }}" class="btn btn-info bg-none rounded-pill text-dark text-center" style="background-color: #ffe000; border: none; margin-top: 10px;">Espace membre</a>
+                            </li>
+                        @endif
+
                     </ul>
                 </div>
             </nav>

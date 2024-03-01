@@ -32,7 +32,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <!-- Image illustrative -->
-                    <img src="/static/akademi/images/card/1.png" class="card-img-top" alt="Image illustrative">
+                    <img src="/storage/formations/{{$formation->image}}" class="card-img-top" alt="Image illustrative">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <!-- Étoiles -->
@@ -45,8 +45,8 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Acions</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);">Dropdown link</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Dropdown link</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Voir les inscriptions</a>
                                 </div>
                             </div>
                         </div>
