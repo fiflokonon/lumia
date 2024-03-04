@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\FieldController;
 use App\Http\Controllers\Dashboard\FieldSpecialityController;
 use App\Http\Controllers\Dashboard\FormationController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\EnrolmentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,7 @@ Route::get('/register-2', function (){
     return view('auth.register-2');
 });
 Route::get('/formations', [FormationController::class, 'index'])->name('formations');
-
+Route::get('/callback/{id}', [EnrolmentController::class, 'callback'])->name('callback');
 
 Auth::routes();
 
@@ -55,6 +56,7 @@ Route::middleware("auth")->group(function () {
     Route::post('/formations', [FormationController::class, 'create'])->name('new_formation');
     Route::get('/add-formations', [FormationController::class, 'add_formation'])->name('add_formations');
     Route::get('/formations/{id}/enrol', [FormationController::class, 'enrol_formation'])->name('enrol_formation');
+    Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formation_enrolment_questions', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('formation_id');
-            $table->string('question_text');
-            $table->boolean('status')->default(false);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formation_enrolment_questions');
+        Schema::dropIfExists('partners');
     }
 };

@@ -15,15 +15,31 @@ class TypeFormationSeeder extends Seeder
     {
         TypeFormation::create(
             [
-                'title' => 'Formation en ligne',
-                'code' => 'online',
+                'title' => 'Formation certifiante',
+                'code' => 'certicated',
                 'status' => true
             ]
         );
         TypeFormation::create(
             [
-                'title' => 'Formation vidéo',
-                'code' => 'video',
+                'title' => 'Formation spécifique',
+                'code' => 'specific',
+                'status' => true
+            ]
+        );
+
+        TypeFormation::create(
+            [
+                'title' => 'Webinaire',
+                'code' => 'webinar',
+                'status' => true
+            ]
+        );
+
+        TypeFormation::create(
+            [
+                'title' => 'Formation présentielle',
+                'code' => 'onsite',
                 'status' => true
             ]
         );

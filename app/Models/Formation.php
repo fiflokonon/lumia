@@ -23,7 +23,8 @@ class Formation extends Model
       'image',
       'status',
       'type_formation_id',
-      'field_speciality_id'
+      'field_speciality_id',
+       'place'
     ];
 
     public function type_formation()

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('price')->nullable();
             $table->string('pre_link')->nullable();
             $table->string('official_link')->nullable();
+            $table->string('place')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();

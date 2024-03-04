@@ -124,12 +124,13 @@
                                     </select>
                                 </div>
                             </div>
+                            {{--
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-file-label mb-1">Entrez votre diplôme</label>
-                                    <input type="file"  name="graduation" class="form-control-file">
+                                    <input type="file" name="graduation" class="form-control-file">
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">

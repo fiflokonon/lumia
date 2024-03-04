@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput13" class="form-label text-primary">Lien du groupe de pré-inscription<span class="required">*</span></label>
-                                    <input type="number" name="pre_link" class="form-control" id="exampleFormControlInput13" placeholder="Lien" value="{{ old('pre_link') }}">
+                                    <input type="text" name="pre_link" class="form-control" id="exampleFormControlInput13" placeholder="Lien" value="{{ old('pre_link') }}">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-sm-6">
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput13" class="form-label text-primary">Lien du groupe officiel<span class="required">*</span></label>
-                                    <input type="number" name="official_link" class="form-control" id="exampleFormControlInput13" placeholder="Lien" value="{{ old('official_link') }}">
+                                    <input type="text" name="official_link" class="form-control" id="exampleFormControlInput13" placeholder="Lien" value="{{ old('official_link') }}">
                                 </div>
                             </div>
                         </div>

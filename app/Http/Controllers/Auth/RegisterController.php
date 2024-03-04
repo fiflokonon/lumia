@@ -54,10 +54,10 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'sex' => ['required', 'string', 'max:1'],
-            'phone' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'graduation' => ['required'],
+            'graduation' => ['nullable'],
             'field' => ['required', 'exists:fields,id']
         ]);
     }
@@ -70,24 +70,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $role_client = Role::where('code', 'client')->first();
-        // Enregistrer le fichier sur le serveur
-        $file = $data['graduation'];
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('public/graduation', $fileName); // Enregistrer le fichier dans le dossier "avatars"
+
+        // Vérifier si un fichier de diplôme a été soumis
+        if(isset($data['graduation'])) {
+            // Enregistrer le fichier sur le serveur
+            $file = $data['graduation'];
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/graduation', $fileName); // Enregistrer le fichier dans le dossier "graduation"
+        } else {
+            // Si aucun fichier de diplôme n'a été soumis, attribuer une valeur null au nom du fichier
+            $fileName = null;
+        }
+
         $field = Field::find($data['field']);
+
         return User::create([
-        'first_name' => $data['first_name'],
-        'last_name' => $data['last_name'],
-        'phone' => $data['phone'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-        'field' =>$field->title,
-        'sex' => $data['sex'],
-        'graduation_file' => $fileName,
-        'status' => false,
-        'role_id' => $role_client->id
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'field' => $field->title,
+            'sex' => $data['sex'],
+            'graduation_file' => $fileName, // Utiliser le nom du fichier enregistré ou null
+            'status' => false,
+            'role_id' => $role_client->id
         ]);
     }
+
 }

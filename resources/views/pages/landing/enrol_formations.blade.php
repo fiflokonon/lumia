@@ -44,33 +44,33 @@
         </div>
         <div class="admission-form">
             <h2>Renseignez ce formulaire et soumettez votre candidature</h2>
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('register_formation', $formation->id) }}">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Prénoms</label>
-                        <input type="text" class="form-control" id="inputEmail14" value="{{ auth()->user()->first_name }}" />
+                        <input type="text" name="first_name" class="form-control" id="inputEmail14" value="{{ auth()->user()->first_name }}" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Nom</label>
-                        <input type="text" class="form-control" id="inputEmail15" value="{{ auth()->user()->last_name }}" />
+                        <input type="text" name="last_name" class="form-control" id="inputEmail15" value="{{ auth()->user()->last_name }}" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Email</label>
-                        <input type="email" class="form-control" id="inputEmail16" value="{{ auth()->user()->email }}"/>
+                        <input type="email" name="email" class="form-control" id="inputEmail16" value="{{ auth()->user()->email }}"/>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Téléphone</label>
-                        <input type="tel" class="form-control" id="inputEmail17" value="{{ auth()->user()->phone }}" />
+                        <input type="tel" name="phone" class="form-control" id="inputEmail17" value="{{ auth()->user()->phone }}" />
                     </div>
-                    @foreach($formation->enrolment_questions() as $question)
+                    @foreach($formation->enrolment_questions as $question)
                         <div class="form-group col-md-6">
                             <label>{{ $question->question_text }}</label>
-                            <input type="text" class="form-control" id="inputEmail15"/>
+                            <input type="text" class="form-control" name="question_{{ $question->id }}" id="inputQuestion{{ $question->id }}">
                         </div>
                     @endforeach
                 </div>
-                <button class="box-btn" type="submit">Registration<button>
+                <button class="box-btn" type="submit">Enregistrer</button>
             </form>
         </div>
     </div>
