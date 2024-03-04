@@ -18,6 +18,8 @@ class Formation extends Model
       'start_date',
       'end_date',
       'price',
+      'pre_link',
+      'official_link',
       'image',
       'status',
       'type_formation_id',
@@ -32,5 +34,10 @@ class Formation extends Model
     public function field_speciality()
     {
         return $this->belongsTo(FieldSpeciality::class);
+    }
+
+    public function enrolment_questions()
+    {
+        return $this->hasMany(FormationEnrolmentQuestion::class);
     }
 }

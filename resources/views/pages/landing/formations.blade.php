@@ -72,7 +72,7 @@
                             <br>
                             Prix : {{ $formation->price }} FCFA
                         </p>
-                        <a href="single-events.html" class="btn btn-primary text-light">S'inscrire</a>
+                        <a href="{{ route('enrol_formation', $formation->id) }}" class="btn btn-primary text-light">S'inscrire</a>
                     </div>
                 </div>
             </div>
@@ -101,11 +101,11 @@
 </section>
 
 <div class="shape-ellips">
-    <img src="assets/images/shape.png" alt="shape"/>
+    <img src="/assets/images/shape.png" alt="shape"/>
 </div>
 
 <span class="left-shape">
-        <img src="assets/images/left-shape.png" alt="shape"/>
+        <img src="/assets/images/left-shape.png" alt="shape"/>
 </span>
 
 {{----}}

@@ -42,13 +42,19 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware("auth")->group(function () {
     Route::get('/dashboard', function (){
-        return view('pages.dashboard.home');
+        if (auth()->user()->isNotClient()){
+            return view('pages.dashboard.home');
+        }else{
+            return view('pages.dashboard.client_home');
+        }
     })->name('dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/roles/{code}/users', [UserController::class, 'role_users'])->name('role_users');
 
     Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
     Route::post('/formations', [FormationController::class, 'create'])->name('new_formation');
+    Route::get('/add-formations', [FormationController::class, 'add_formation'])->name('add_formations');
+    Route::get('/formations/{id}/enrol', [FormationController::class, 'enrol_formation'])->name('enrol_formation');
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');

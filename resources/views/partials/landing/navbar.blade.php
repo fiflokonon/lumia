@@ -2,16 +2,16 @@
 <div class="navbar-area">
     <div class="mobile-nav">
         <a href="index.html" class="logo">
-            <img src="assets/images/logo.png" class="main-logo" alt="logo" style="height: 50px"/>
-            <img src="assets/images/logo.png" class="white-logo" alt="logo" style="height: 50px"/>
+            <img src="/assets/images/logo.png" class="main-logo" alt="logo" style="height: 50px"/>
+            <img src="/assets/images/logo.png" class="white-logo" alt="logo" style="height: 50px"/>
         </a>
     </div>
     <div class="main-nav" style="padding-top: 5px; padding-bottom: 5px;">
         <div class="container" >
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" class="main-logo" alt="logo" style="height: 50px"/>
-                    <img src="assets/images/logo.png" class="white-logo" alt="logo" style="height: 50px"/>
+                    <img src="/assets/images/logo.png" class="main-logo" alt="logo" style="height: 50px"/>
+                    <img src="/assets/images/logo.png" class="white-logo" alt="logo" style="height: 50px"/>
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav text-right">

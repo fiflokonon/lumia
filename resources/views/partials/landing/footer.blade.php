@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="footer-left">
-                    <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="logo"/></a>
+                    <a href="index.html" class="logo"><img src="/assets/images/logo.png" alt="logo"/></a>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et
                         dolore magna aliqua.

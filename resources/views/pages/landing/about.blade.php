@@ -39,11 +39,11 @@
 
 
 <div class="shape-ellips">
-    <img src="assets/images/shape.png" alt="shape"/>
+    <img src="/assets/images/shape.png" alt="shape"/>
 </div>
 
 <span class="left-shape">
-        <img src="assets/images/left-shape.png" alt="shape"/>
+        <img src="/assets/images/left-shape.png" alt="shape"/>
     </span>
 
 {{----}}
@@ -55,7 +55,7 @@
             <div class="col-lg-8 col-md-7">
                 <div class="single-about">
                     <div class="about-img">
-                        <img src="assets/images/about-img.png" alt="about" />
+                        <img src="/assets/images/about-img.png" alt="about" />
                     </div>
                     <div class="about-contnet">
                         <h2>Edvi National Children School & Center</h2>
@@ -140,7 +140,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 ps-0">
                 <div class="home-choose-img">
-                    <img src="assets/images/choose1.png" alt="choose" />
+                    <img src="/assets/images/choose1.png" alt="choose" />
                 </div>
             </div>
             <div class="col-lg-6 home-choose">

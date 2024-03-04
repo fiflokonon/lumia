@@ -23,6 +23,8 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->bigInteger('duration')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->string('pre_link')->nullable();
+            $table->string('official_link')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();

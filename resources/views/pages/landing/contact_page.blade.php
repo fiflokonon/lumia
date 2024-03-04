@@ -39,11 +39,11 @@
 
 
 <div class="shape-ellips">
-    <img src="assets/images/shape.png" alt="shape"/>
+    <img src="/assets/images/shape.png" alt="shape"/>
 </div>
 
 <span class="left-shape">
-        <img src="assets/images/left-shape.png" alt="shape"/>
+        <img src="/assets/images/left-shape.png" alt="shape"/>
     </span>
 
 {{----}}

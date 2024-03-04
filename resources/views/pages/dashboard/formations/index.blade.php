@@ -22,9 +22,9 @@
                     </div>
                     <div>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        <a href="{{ route('add_formations') }}" class="btn btn-primary mb-2">
                             + Nouvelle formation
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -72,82 +72,6 @@
         ***********************************-->
     </div>
 </div>
-@php
-    $types = \App\Models\TypeFormation::all();
-    $specialities = \App\Models\FieldSpeciality::all();
-@endphp
-<!-- Modal -->
-<div class="modal fade" id="basicModal">
-    <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('new_formation') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Ajouter une formation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Intitulé de la formation</label>
-                        <input type="text" placeholder="Titre de la formation" class="form-control" name="title" value="{{ old('title') }}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description de la formation</label>
-                        <input type="text" name="description" id="" class="form-control" placeholder="Description" value="{{ old('description') }}">
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 mb-2">
-                            <label class="form-label">Type de formation</label>
-                            <select name="type" id="" class="form-control">
-                                @foreach($types as $type)
-                                <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-sm-6 mt-2 mt-sm-0 mb-2">
-                            <label class="form-label">Spécialité de la formation</label>
-                            <select name="speciality" id="" class="form-control">
-                                @foreach($specialities as $speciality)
-                                <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Date de fin des inscriptions</label>
-                        <input type="date" name="enrolment_deadline" class="form-control" value="{{ old('enrolment_date') }}">
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 mt-2 mt-sm-0 mb-2">
-                            <label class="form-label">Date de début de la formation</label>
-                            <input type="date" name="start_date" id="" class="form-control" value="{{ old('start_date') }}">
-                        </div>
-                        <div class="col-sm-6 mb-2">
-                            <label class="form-label">Date de fin de la formation</label>
-                            <input type="date" name="end_date" id="" class="form-control" value="{{ old('end_date') }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 mt-2 mt-sm-0 mb-2">
-                            <label class="form-label">Visuel de la formation</label>
-                            <input type="file" name="image" id="" class="form-control">
-                        </div>
-                        <div class="col-sm-6 mb-2">
-                            <label class="form-label">Prix de la formation</label>
-                            <input type="number" name="price" class="form-control" value="{{ old('price') }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
 @endsection
 
 <!--**********************************
