@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation d'inscription à la formation</title>
+    <title>Validation d'inscription à la formation</title>
     <style>
         /* Ajoutez ici vos styles CSS pour personnaliser l'e-mail */
         body {
@@ -51,9 +51,9 @@
         <img src="{{ asset('/assets/images/logo.png') }}" alt="Logo de la plateforme de formation">
     </div>
     <div class="content">
-        <h2>Confirmation de votre inscription à la formation</h2>
+        <h2>Validation de votre inscription à la formation</h2>
         <p>Bonjour {{ $enrolment->user->first_name }}  {{ $enrolment->user->last_name }},</p>
-        <p>Nous sommes ravis de vous informer que votre inscription à la formation <b>{{ $formation->title }}</b> a été enregistrée avec succès !</p>
+        <p>Nous sommes ravis de vous informer que votre inscription à la formation <b>{{ $formation->title }}</b> a été validée avec succès !</p>
         <p>Voici les détails de votre inscription :</p>
         <ul>
             <li><strong>Formation :</strong>{{ $formation->title }}</li>
@@ -61,8 +61,7 @@
             <li><strong>Date de fin :</strong> {{ $formation->end_date }}</li>
             <li><strong>Prix :</strong>{{ $formation->price }}</li>
         </ul>
-        <p><a href="{{ $formation->pre_link }}" class="button" style="color: white">Rejoindre le forum des pré-inscrits</a></p>
-        <p><a href="{{ $enrolment->payment_link }}" class="button" style="color: white">Payer maintenant</a></p>
+        <p><a href="{{ $formation->offical_link }}" class="button" style="color: white">Rejoindre le forum des inscrits</a></p>
         <p>Merci de votre confiance et nous avons hâte de vous accueillir dans notre communauté de formation.</p>
         <p>Cordialement,<br>L'équipe de Lumia Consulting</p>
     </div>

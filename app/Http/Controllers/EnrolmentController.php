@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InscriptionConfirmation;
+use App\Mail\InscriptionValidation;
 use App\Models\Enrolment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EnrolmentController extends Controller
 {
@@ -16,6 +19,7 @@ class EnrolmentController extends Controller
         ]);
         $enrolment->payment_status = 'validated';
         $enrolment->save();
+        Mail::to($enrolment->user->email)->send(new InscriptionValidation($formation, $enrolment));
         return view('payment_callback');
     }
 }

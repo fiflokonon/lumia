@@ -46,7 +46,7 @@
                                 <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Voir les inscriptions</a>
+                                    <a class="dropdown-item" href="{{ route('formation_enrolments', $formation->id) }}">Voir les inscriptions</a>
                                 </div>
                             </div>
                         </div>

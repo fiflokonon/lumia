@@ -195,7 +195,12 @@ class FormationController extends Controller
             Log::info($exception->getMessage());
             return back()->with('error', 'Une erreur est survenue lors de l\'inscription à la formation. Veuillez réessayer.');
         }
+    }
 
+    public function formation_enrolments($id)
+    {
+        $formation = Formation::findOrFail($id);
+        return view('pages.dashboard.formations.enrolments', ['formation' => $formation]);
     }
 
 
