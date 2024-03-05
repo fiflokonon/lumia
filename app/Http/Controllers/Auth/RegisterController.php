@@ -57,6 +57,8 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'study_level' => ['required', 'string'],
+            'high_graduation' => ['required', 'string'],
             'graduation' => ['nullable'],
             'field' => ['required', 'exists:fields,id']
         ]);
@@ -95,7 +97,9 @@ class RegisterController extends Controller
             'sex' => $data['sex'],
             'graduation_file' => $fileName, // Utiliser le nom du fichier enregistré ou null
             'status' => false,
-            'role_id' => $role_client->id
+            'role_id' => $role_client->id,
+            'high_graduation' => $data['high_graduation'],
+            'study_level' => $data['study_level']
         ]);
     }
 

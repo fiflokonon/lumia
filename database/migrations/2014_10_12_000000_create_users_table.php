@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('graduation_file')->nullable();
+            $table->string('study_level')->nullable();
+            $table->string('high_graduation')->nullable();
             $table->string('field')->nullable();
             $table->foreignId('role_id');
             $table->boolean('status')->default(false);

@@ -165,7 +165,7 @@ class FormationController extends Controller
             'vente' => 1,
             'action' => 2
         ]);
-        #dd($response);
+        dd($response);
         dd(json_decode($response->getBody()->getContents(), true));
         // Traitez la réponse de l'API pour récupérer le lien de paiement
         ##$paymentLink = json_decode($response->getBody()->getContents(), true)['payment_link'];

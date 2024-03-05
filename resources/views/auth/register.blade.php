@@ -2,28 +2,28 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Lumia consulting, connexion" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Lumia consulting, connexion"/>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
 
-    <link rel="stylesheet" href="assets/css/meanmenu.css" />
+    <link rel="stylesheet" href="assets/css/meanmenu.css"/>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/flaticon.css"/>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
 
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css"/>
 
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css"/>
 
-    <link rel="stylesheet" href="assets/css/dark.css" />
+    <link rel="stylesheet" href="assets/css/dark.css"/>
 
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
@@ -33,9 +33,11 @@
         .buy-now-btn {
             display: none !important;
         }
-        body{
+
+        body {
             background-color: #fef6f6;
         }
+
         .phone-input {
             padding-left: 200px; /* Ajustez le décalage du texte pour laisser de la place au drapeau */
         }
@@ -43,11 +45,13 @@
         .iti {
             width: 100%; /* Assurez-vous que le conteneur du champ de numéro de téléphone occupe toute la largeur */
         }
-        #phone{
+
+        #phone {
             height: 50px;
             border: 1px solid lightgray;
             border-radius: 20px;
         }
+
         .phone-input:focus {
             border-color: blue !important; /* Modifier la couleur de la bordure lorsqu'il est en focus */
         }
@@ -68,7 +72,9 @@
 </div>
 
 @php
-    $fields = \App\Models\Field::all();
+    use App\Models\Field, App\Models\StudyLevel;
+    $fields = Field::all();
+    $levels = StudyLevel::all();
 @endphp
 <section class="signup-area">
     <div class="container">
@@ -87,12 +93,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="text" name="last_name" class="form-control" placeholder="Entrez votre nom" value="{{ old('last_name') }}">
+                                    <input type="text" name="last_name" class="form-control"
+                                           placeholder="Entrez votre nom" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="text" name="first_name" class="form-control" placeholder="Entrez votre/vos prénom(s)" value="{{ old('first_name') }}">
+                                    <input type="text" name="first_name" class="form-control"
+                                           placeholder="Entrez votre/vos prénom(s)" value="{{ old('first_name') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -106,22 +114,41 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Entre votre email" value="{{ old('email') }}">
+                                    <input type="email" name="email" class="form-control"
+                                           placeholder="Entre votre email" value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input id="phone" name="phone" type="tel" placeholder="Entrez votre numéro de téléphone" class="phone-input w-100" value="{{ old('phone') }}">
+                                    <input id="phone" name="phone" type="tel"
+                                           placeholder="Entrez votre numéro de téléphone" class="phone-input w-100"
+                                           value="{{ old('phone') }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <select name="field" id="" class="form-control">
-                                        <option value="" selected disabled>Sélectionnez votre secteur d'activité</option>
+                                        <option value="" selected disabled>Sélectionnez votre secteur d'activité
+                                        </option>
                                         @foreach($fields as $field)
-                                        <option value="{{ $field->id }}">{{ $field->title }}</option>
+                                            <option value="{{ $field->id }}">{{ $field->title }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <select name="study_level" id="" class="form-control">
+                                        <option value="" selected disabled>Sélectionnez votre niveau d'étude</option>
+                                        @foreach($levels as $level)
+                                            <option value="{{ $level->id }}">{{ $level->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" name="high_graduation" class="form-control" placeholder="Intitulé de votre diplôme le plus élevé" value="{{ old('high_graduation') }}">
                                 </div>
                             </div>
                             {{--
@@ -133,21 +160,16 @@
                             </div>--}}
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
+                                    <input type="password" name="password" class="form-control"
+                                           placeholder="Entrez votre mot de passe">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input type="password"  name="password_confirmation" class="form-control" placeholder="Confirmez votre mot de passe">
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                           placeholder="Confirmez votre mot de passe">
                                 </div>
                             </div>
-                            {{--
-                            <div class="col-lg-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="checkme">
-                                    <label class="form-check-label" for="checkme">Remember me</label>
-                                </div>
-                            </div>--}}
                             <div class="col-lg-12">
                                 <button type="submit" class="box-btn">Enregistrer</button>
                             </div>
@@ -231,7 +253,6 @@
     });
 
 </script>
-
 
 
 </body>
