@@ -11,7 +11,10 @@ use App\Models\Formation;
 use App\Models\TypeFormation;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request as GRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -114,70 +117,86 @@ class FormationController extends Controller
         $user = auth()->user();
         $formation = Formation::findOrFail($id);
         // Créer une inscription à la formation
-        $enrolment = Enrolment::create([
-            'user_id' => auth()->user()->id,
-            'formation_id' => $formation->id,
-            'status' => true,
-            'payment_link' => 'https://'
-        ]);
+        try {
+            DB::beginTransaction();
+            $enrolment = Enrolment::create([
+                'user_id' => auth()->user()->id,
+                'formation_id' => $formation->id,
+                'status' => true,
+            ]);
 
-        // Enregistrer les réponses aux questions d'inscription
-        foreach ($formation->enrolment_questions as $question) {
-            $response = new EnrolmentResponse();
-            $response->enrolment_id = $enrolment->id;
-            $response->formation_enrolment_question_id = $question->id;
-            $response->response_text = $request->input('question_' . $question->id); // Assurez-vous que le nom de chaque champ de réponse dans le formulaire est "question_[ID_question]"
-            $response->save();
+            // Enregistrer les réponses aux questions d'inscription
+            foreach ($formation->enrolment_questions as $question) {
+                $response = new EnrolmentResponse();
+                $response->enrolment_id = $enrolment->id;
+                $response->formation_enrolment_question_id = $question->id;
+                $response->response_text = $request->input('question_' . $question->id);
+                $response->save();
+            }
+            // Appel de l'API pour générer le lien de paiement
+            $client = new Client();
+            // Obtenez l'URL de base actuelle
+            $baseUrl = URL::to('/');
+            // Concaténer l'URL de base avec la route de callback
+            $callbackUrl = $baseUrl . "/callback/$enrolment->id";
+            $email = env('PAYPLUS_API_EMAIL');
+            $password = env('PAYPLUS_API_PASSWORD');
+            // Faire une requête d'authentification pour obtenir le token
+            $response = Http::post('https://app.payplus.africa/api/connection', [
+                'source' => 'mailtab',
+                'mailtab_email' => $email,
+                'mailtab_password' => $password,
+                'auth_token' => 'auth_token'
+            ]);
+            $token = json_decode($response->getBody()->getContents(), true)['token'];
+            if (!$token){
+                DB::rollBack();
+                return back()->with('error', 'Erreur lors de la connexion à l\'agrégateur');
+            }
+            $headers = [
+                'Authorization' => 'Bearer ' . $token,
+                'Content-Type' => 'application/json',
+            ];
+            $endpoint = uniqid();
+            $body = json_encode([
+                'idauto' => 0,
+                'quantiteun' => 1,
+                'app' => 3466,
+                'libelle' => "Frais d'inscription à la formation intitulée $formation->title",
+                'description' => "Bonjour $user->first_name $user->last_name! Veuillez procéder au paiement des frais de formation. Cette formation est dispensée par le cabinet LUMIA CONSULTING.",
+                'prix' => $formation->price,
+                'endpoint' => $endpoint,
+                'callbackurl' =>  $callbackUrl,
+                'tarification' => 1,
+                'dureedevie' => 1,
+                'stock' => 1,
+                'vente' => 1,
+                'action' => 3,
+                'message' => "Félicitions $user->first_name $user->last_name ! Vous avez payé vos frais de formations!",
+                'lien' => $callbackUrl
+            ]);
+            $request = new GRequest('POST', 'https://app.payplus.africa/api/paylink', $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            $body = $res->getBody()->getContents();
+            $data = json_decode($body, true);
+            if ($data['error']){
+                DB::rollBack();
+                return back()->with('error', 'Erreur de la génération du lien de paiement ! Veuillez réesayer');
+            }
+            // Enregistrez le lien de paiement dans l'objet 'enrolment'
+            $enrolment->payment_link = "https://paylink.payplus.africa/$endpoint";
+            $enrolment->save();
+            // Envoi de l'e-mail de confirmation à l'utilisateur
+            Mail::to(auth()->user()->email)->send(new InscriptionConfirmation($formation, $enrolment));
+            DB::commit();
+            return redirect()->route('dashboard')->with('success', 'Inscription à la formation réussie!');
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::info($exception->getMessage());
+            return back()->with('error', 'Une erreur est survenue lors de l\'inscription à la formation. Veuillez réessayer.');
         }
 
-        // Appel de l'API pour générer le lien de paiement
-        $client = new Client();
-        // Obtenez l'URL de base actuelle
-        $baseUrl = URL::to('/');
-        // Concaténer l'URL de base avec la route de callback
-        $callbackUrl = $baseUrl . "/callback/$enrolment->id";
-
-        $email = env('PAYPLUS_API_EMAIL');
-        $password = env('PAYPLUS_API_PASSWORD');
-        // Faire une requête d'authentification pour obtenir le token
-        $response = Http::post('https://app.payplus.africa/api/connection', [
-            'source' => 'mailtab',
-            'mailtab_email' => $email,
-            'mailtab_password' => $password,
-            'auth_token' => 'auth_token'
-        ]);
-        #dd(json_decode($response->getBody()->getContents(), true));        // Extraire le token de la réponse
-        $token = json_decode($response->getBody()->getContents(), true)['token'];
-        #dd($token);
-        // Utiliser le token pour authentifier la requête de paylink
-        $response = Http::withToken($token)->post('https://app.payplus.africa/api/paylink', [
-            'idauto' => 0,
-            'quantiteun' => 0,
-            'app' => 3466,
-            'libelle' => "Frais d'inscription à la formation intitulée $formation->title",
-            'description' => "Bonjour $user->first_name $user->last_name! Veuillez procéder au paiement des frais de formation. Cette formation est dispensée par le cabinet LUMIA CONSULTING.",
-            'prix' => $formation->price,
-            'endpoint' => uniqid() . 'enrolement-lumia',
-            'callbackurl' =>  $callbackUrl,
-            'tarification' => 1,
-            'dureedevie' => 1,
-            #'stock' => 0,
-            'vente' => 1,
-            'action' => 2
-        ]);
-        dd($response);
-        dd(json_decode($response->getBody()->getContents(), true));
-        // Traitez la réponse de l'API pour récupérer le lien de paiement
-        ##$paymentLink = json_decode($response->getBody()->getContents(), true)['payment_link'];
-
-        // Enregistrez le lien de paiement dans l'objet 'enrolment'
-        #$enrolment->payment_link = $paymentLink;
-        #$enrolment->save();
-        // Envoi de l'e-mail de confirmation à l'utilisateur
-        Mail::to(auth()->user()->email)->send(new InscriptionConfirmation($formation, $enrolment));
-
-        // Rediriger avec un message de succès
-        return redirect()->route('dashboard')->with('success', 'Inscription à la formation réussie!');
     }
 
 

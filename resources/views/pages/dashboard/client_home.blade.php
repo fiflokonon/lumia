@@ -1,5 +1,5 @@
 @extends('pages.dashboard.index')
-@section('page_title', 'Tableau de bord')
+@section('page_title', 'Les formations auxquelles vous êtes inscrits')
 <!--**********************************
     Content body start
 ***********************************-->
@@ -80,15 +80,76 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            @if(auth()->user()->enrolments->isNotEmpty())
+            @foreach(auth()->user()->enrolments as $enrolment)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <!-- Image illustrative -->
+                        <img src="/storage/formations/{{$enrolment->formation->image}}" class="card-img-top" alt="Image illustrative">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <!-- Étoiles -->
+                                <div>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <i class="fas fa-star{{ $i < 4 ? ' text-warning' : '' }}"></i>
+                                    @endfor
+                                </div>
+                                <!-- Dropdown pour les options -->
+                                {{--
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-reddit dropdown-toggle"
+                                            data-bs-toggle="dropdown">Acions
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Voir les inscriptions</a>
+                                    </div>
+                                </div>
+                                --}}
+                            </div>
+                            <!-- Titre et description -->
+                            <h5 class="card-title">{{ $enrolment->formation->title }}</h5>
+                            <p class="card-text text-danger mb-2">{{ $enrolment->formation->type_formation->title }}</p>
+                            <!-- Liste des détails de la formation -->
+                            <ul class="list-group list-group-flush mb-1">
+                                <li class="list-group-item py-1"> <b>Spécialité:</b> {{ $enrolment->formation->field_speciality->title }}</li>
+                                <li class="list-group-item py-1"><b>Date de début:</b>  {{ \Carbon\Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                                <li class="list-group-item py-1"> <b>Date de fin:</b> {{ \Carbon\Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                                <li class="list-group-item py-1"><b>Prix:</b> {{ $enrolment->formation->price }} Franc CFA</li>
+                            </ul>
+                            @if($enrolment->payment_status != 'validated')
+                                <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les frais</a>
+                            @else
+                                <a class="btn btn-secondary">Accéder aux ressources</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            @else
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body pb-xl-4 pb-sm-3 pb-0">
+                            <p class="text-danger text-center fw-bolder">Vous n'êtes pas encore pas inscrit à une formation !</p>
+                            <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}"> Consulter le catalogue de formations</a></div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+        {{--
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body pb-xl-4 pb-sm-3 pb-0">
-                        <p class="text-danger fw-bolder">Votre compte n'est pas encore validé ! Veuillez répondre aux exigences de notre support par messagerie afin d'avoir validation de votre compte!</p>
+                        <p class="text-danger fw-bolder">Votre compte n'est pas encore validé ! Veuillez répondre aux
+                            exigences de notre support par messagerie afin d'avoir validation de votre compte!</p>
                         <div class="text-center">
-                            <a class="btn btn-success" href="{{ route('edit_profile', ['id' => auth()->user()->id]) }}"> Modifier vos informations</a>
-                            <a class="btn btn-info" href="{{ route('formations') }}"> Consulter le catalogue de formations</a>
+                            <a class="btn btn-success" href="{{ route('edit_profile', ['id' => auth()->user()->id]) }}">
+                                Modifier vos informations</a>
+                            <a class="btn btn-info" href="{{ route('formations') }}"> Consulter le catalogue de
+                                formations</a>
 
                         </div>
 
@@ -96,8 +157,7 @@
                 </div>
             </div>
         </div>
-        <!-- column-->
-
+        --}}
     </div>
 </div>
 @endsection

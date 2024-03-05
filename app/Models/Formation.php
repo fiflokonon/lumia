@@ -41,4 +41,9 @@ class Formation extends Model
     {
         return $this->hasMany(FormationEnrolmentQuestion::class);
     }
+
+    public function enrolments()
+    {
+        return $this->hasMany(Enrolment::class);
+    }
 }

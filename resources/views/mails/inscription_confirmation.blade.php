@@ -38,9 +38,10 @@
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            cursor: pointer; /* Ajout du style cursor pointer */
         }
-        a:hover{
-            cursor: pointer;
+        .button:hover {
+            background-color: #0056b3; /* Changement de couleur au survol */
         }
     </style>
 </head>
@@ -60,11 +61,12 @@
             <li><strong>Date de fin :</strong> {{ $formation->end_date }}</li>
             <li><strong>Prix :</strong>{{ $formation->price }}</li>
         </ul>
-        <p><strong>Lien de paiement :</strong> <a href="{{ $enrolment->payment_link }}">Payer maintenant</a></p>
-        <p><strong>Forum des inscrits :</strong> <a href="{{ $enrolment->formation->pre_link }}">Rejoindre le forum</a></p>
+        <p><a href="{{ $formation->pre_link }}" class="button">Rejoindre le forum des inscrits</a></p>
+        <p><a href="{{ $enrolment->payment_link }}" class="button">Payer maintenant</a></p>
         <p>Merci de votre confiance et nous avons hâte de vous accueillir dans notre communauté de formation.</p>
         <p>Cordialement,<br>L'équipe de Lumia Consulting</p>
     </div>
 </div>
 </body>
 </html>
+
