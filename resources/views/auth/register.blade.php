@@ -141,7 +141,7 @@
                                     <select name="study_level" id="" class="form-control">
                                         <option value="" selected disabled>Sélectionnez votre niveau d'étude</option>
                                         @foreach($levels as $level)
-                                            <option value="{{ $level->id }}">{{ $level->title }}</option>
+                                            <option value="{{ $level->title }}">{{ $level->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>

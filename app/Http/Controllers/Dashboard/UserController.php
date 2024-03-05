@@ -26,9 +26,14 @@ class UserController extends Controller
         return view('pages.dashboard.user_edit_profile', ['user' => $user]);
     }
 
-    public function show_profile($id)
+    public function show_user_details($id)
     {
         $user = User::findOrFail($id);
         return view('pages.dashboard.user_details', ['user' => $user]);
+    }
+
+    public function show_profile()
+    {
+        return view('pages.dashboard.user_profile', ['user' => auth()->user()]);
     }
 }

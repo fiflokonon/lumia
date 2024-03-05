@@ -94,8 +94,6 @@ class FormationController extends Controller
     public function enrol_formation($id)
     {
         $formation = Formation::findOrFail($id);
-        #dd($formation->enrolment_questions->first());
-        #dd($formation->enrolment_questions);
         return view('pages.landing.enrol_formations', ['formation' => $formation]);
     }
 
@@ -149,6 +147,7 @@ class FormationController extends Controller
                 'auth_token' => 'auth_token'
             ]);
             $token = json_decode($response->getBody()->getContents(), true)['token'];
+            #dd($token);
             if (!$token){
                 DB::rollBack();
                 return back()->with('error', 'Erreur lors de la connexion à l\'agrégateur');

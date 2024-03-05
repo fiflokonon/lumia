@@ -54,7 +54,7 @@
         </div>
         <div class="dashboard-link">
             <p>Pour accéder à votre tableau de bord, veuillez cliquer sur le bouton ci-dessous :</p>
-            <a href="[Lien vers le dashboard]" class="button">Accéder au dashboard</a>
+            <a href="{{ route('dashboard') }}" class="button">Accéder au dashboard</a>
         </div>
     </div>
 </div>

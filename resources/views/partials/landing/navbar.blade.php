@@ -73,10 +73,16 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a href="news.html" class="nav-link">Profil</a>
+                                        <a href="{{ route('show_profile') }}" class="nav-link">Profil</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ 'dashboard' }}" class="nav-link">Tableau <span class="text-lowercase">de bord</span></a>
+                                        <a href="{{ route('dashboard') }}" class="nav-link">Tableau <span class="text-lowercase">de bord</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                        <button type="submit" class="btn nav-link text-dark">Déconnexion</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>

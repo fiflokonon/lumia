@@ -43,6 +43,7 @@
             <h2>Inscription <span class="text-lowercase">à la formation intitulée</span> {{ $formation->title }}</h2>
         </div>
         <div class="admission-form">
+            @include('partials.back_message')
             <h2>Renseignez ce formulaire et soumettez votre candidature</h2>
             <form method="POST" action="{{ route('register_formation', $formation->id) }}">
                 @csrf

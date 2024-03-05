@@ -43,7 +43,7 @@
                             </div>
                             <!-- Dropdown pour les options -->
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Acions</button>
+                                <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
                                     <a class="dropdown-item" href="javascript:void(0);">Voir les inscriptions</a>

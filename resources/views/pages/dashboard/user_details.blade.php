@@ -54,35 +54,10 @@
                                     <ul class="student-details">
                                         <li class="me-2">
                                             <a class="icon-box bg-secondary">
-                                                <img src="../static/akademi/images/profile.svg" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <span>Parents:</span>
-                                            <h5 class="mb-0">Justin Hope</h5>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xl-3 col-xxl-6 col-sm-6">
-
-                                    <ul class="student-details">
-                                        <li class="me-2">
-                                            <a class="icon-box bg-secondary">
-                                                <img src="../static/akademi/images/svg/location.svg" alt="">
-                                            </a>
-
-                                        </li>
-                                        <li><span>Address:</span><h5 class="mb-0">Jakarta, Indonesia</h5></li>
-                                    </ul>
-                                </div>
-                                <div class="col-xl-3 col-xxl-6 col-sm-6">
-                                    <ul class="student-details">
-                                        <li class="me-2">
-                                            <a class="icon-box bg-secondary">
                                                 <img src="../static/akademi/images/svg/phone.svg" alt="">
                                             </a>
                                         </li>
-                                        <li><span>Phone:</span><h5 class="mb-0">+12 345 6789 0</h5></li>
+                                        <li><span>Phone:</span><h5 class="mb-0">{{ $user->phone }}</h5></li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-xxl-6 col-sm-6">
@@ -91,9 +66,58 @@
                                             <a class="icon-box bg-secondary">
                                                 <img src="../static/akademi/images/svg/email.svg" alt="">
                                             </a>
-
                                         </li>
-                                        <li><span>Email:</span><h5 class="mb-0">Historia@mail.com</h5></li>
+                                        <li><span>Email:</span><h5 class="mb-0">{{ $user->email }}</h5></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-xxl-6 col-sm-6">
+                                    <ul class="student-details">
+                                        <li class="me-2">
+                                            <a class="icon-box bg-secondary">
+                                                <img src="../static/akademi/images/profile.svg" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <span>Sexe</span>
+                                            @if($user->sex == 'M')
+                                                <h5 class="mb-0">Masculin</h5>
+                                            @else
+                                                <h5 class="mb-0">Féminin</h5>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-xxl-6 col-sm-6">
+                                    <ul class="student-details">
+                                        <li class="me-2">
+                                            <a class="icon-box bg-secondary">
+                                                <img src="../static/akademi/images/svg/location.svg" alt="">
+                                            </a>
+                                        </li>
+                                        <li><span>Niveau d'étude</span><h5 class="mb-0">{{ $user->study_level }}</h5></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-xxl-6 col-sm-6">
+                                    <ul class="student-details">
+                                        <li class="me-2">
+                                            <a class="icon-box bg-secondary">
+                                                <img src="../static/akademi/images/profile.svg" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <span>Diplome plus élevé</span>
+                                            <h5 class="mb-0">{{ $user->high_graduation }}</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-xxl-6 col-sm-6">
+                                    <ul class="student-details">
+                                        <li class="me-2">
+                                            <a class="icon-box bg-secondary">
+                                                <img src="../static/akademi/images/svg/location.svg" alt="">
+                                            </a>
+                                        </li>
+                                        <li><span>Secteur d'activité</span><h5 class="mb-0">{{ $user->field }}</h5></li>
                                     </ul>
                                 </div>
                             </div>
@@ -101,7 +125,7 @@
                     </div>
                     <div class="card h-auto">
                         <div class="card-header border-0 p-3">
-                            <h4 class="heading mb-0">Payment History</h4>
+                            <h4 class="heading mb-0">Inscriptions aux formations</h4>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive basic-tbl">

@@ -254,7 +254,7 @@
 
                                     </div>
                                     <div class="card-body p-3">
-                                        <a href="../app-profile/index.html" class="dropdown-item ai-icon ">
+                                        <a href="{{ route('show_profile') }}" class="dropdown-item ai-icon ">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                  height="24px" viewBox="0 0 24 24" version="1.1"
@@ -338,7 +338,6 @@
                                                 </svg>
                                                 <span class="ms-2 text-primary">Déconnexion </span>
                                             </button>
-
                                         </form>
                                     </div>
                                 </div>

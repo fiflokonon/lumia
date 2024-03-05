@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput14" class="form-label text-primary">Date de cloture des inscriptions<span class="required">*</span></label>
-                                    <input type="date" name="enrolment_deadline" class="form-control" id="exampleFormControlInput14" value="{{ old('enrolment_date') }}">
+                                    <input type="date" name="enrolment_deadline" class="form-control" id="exampleFormControlInput14" value="{{ old('enrolment_deadline') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput13" class="form-label text-primary">Prix de la formation<span class="required">*</span></label>

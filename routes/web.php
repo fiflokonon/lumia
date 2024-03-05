@@ -63,5 +63,6 @@ Route::middleware("auth")->group(function () {
     Route::get('/specialities', [FieldSpecialityController::class, 'index'])->name('specialities');
     Route::post('/specialities', [FieldSpecialityController::class, 'store'])->name('new_speciality');
     Route::get('/edit-profile/{id}', [UserController::class, 'edit_profile'] )->name('edit_profile');
-    Route::get('/users/{id}', [UserController::class, 'show_profile'])->name('show_user');
+    Route::get('/users/{id}', [UserController::class, 'show_user_details'])->name('show_user');
+    Route::get('/profile', [UserController::class, 'show_profile'])->name('show_profile');
 });
