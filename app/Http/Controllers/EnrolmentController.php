@@ -19,7 +19,7 @@ class EnrolmentController extends Controller
         ]);
         $enrolment->payment_status = 'validated';
         $enrolment->save();
-        Mail::to($enrolment->user->email)->send(new InscriptionValidation($formation, $enrolment));
+        Mail::to($enrolment->user->email)->send(new InscriptionValidation($enrolment->formation, $enrolment));
         return view('payment_callback');
     }
 }

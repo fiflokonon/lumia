@@ -8,6 +8,7 @@ use App\Models\Enrolment;
 use App\Models\EnrolmentResponse;
 use App\Models\FieldSpeciality;
 use App\Models\Formation;
+use App\Models\FormationResource;
 use App\Models\TypeFormation;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -203,5 +204,50 @@ class FormationController extends Controller
         return view('pages.dashboard.formations.enrolments', ['formation' => $formation]);
     }
 
+    public function createResource(Request $request, $formation_id)
+    {
+        // Valider les données de la requête
+        $validator = Validator::make($request->all(), [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'type' => ['required', 'string', 'in:link,file'],
+            'link' => ['required_if:type,link', 'string', 'url'],
+            'file' => ['required_if:type,file', 'file'],
+        ]);
 
+        // Vérifier si la validation a échoué
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Créer une nouvelle ressource dans la formation donnée
+        $resource = new FormationResource();
+        $resource->title = $request->input('title');
+        $resource->description = $request->input('description');
+        $resource->type = $request->input('type');
+        $resource->formation_id = $formation_id;
+        $resource->status = true;
+
+        // Si le type est un lien, enregistrer le lien
+        if ($request->input('type') === 'link') {
+            $resource->link = $request->input('link');
+        } else { // Si le type est un fichier, enregistrer le fichier téléchargé
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/resources', $fileName);
+            $resource->link = $fileName;
+        }
+        // Enregistrer la ressource dans la base de données
+        $resource->save();
+        // Redirection avec un message de succès
+        return redirect()->back()->with('success', 'Ressource ajoutée avec succès');
+    }
+
+    public function show_resources($id)
+    {
+        $formation = Formation::findOrFail($id);
+        return view('pages.dashboard.formations.resources', ['formation' => $formation]);
+    }
 }

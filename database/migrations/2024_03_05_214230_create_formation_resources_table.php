@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('formation_resources', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('formation_id');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->string('type')->nullable();
+            $table->string('link')->nullable();
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -47,6 +47,8 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
                                     <a class="dropdown-item" href="{{ route('formation_enrolments', $formation->id) }}">Voir les inscriptions</a>
+                                    <!-- Bouton pour ajouter une ressource -->
+                                    <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addResourceModal">Ajouter une ressource</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +75,67 @@
     </div>
 </div>
 @endsection
+<!-- Modal pour ajouter une ressource -->
+<div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addResourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addResourceModalLabel">Ajouter une ressource</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulaire pour ajouter une ressource -->
+                <form method="POST" action="{{ route('add_resources', $formation->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="resourceTitle" class="form-label">Titre</label>
+                        <input type="text" name="title" class="form-control" id="resourceTitle" placeholder="Titre de la ressource" value="{{ old('title') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceDescription" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="resourceDescription" rows="3" placeholder="Description de la ressource"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceType" class="form-label">Type de ressource</label>
+                        <select class="form-control" name="type" id="resourceType">
+                            <option value="" selected disabled>Sélectionnez un type de ressource</option>
+                            <option value="link">Lien</option>
+                            <option value="file">Fichier</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="fileUploadContainer" style="display: none;">
+                        <label for="resourceFile" class="form-label">Fichier</label>
+                        <input type="file" name="file" value="{{ old('file') }}" class="form-control" id="resourceFile">
+                    </div>
+                    <div class="mb-3" id="linkInputContainer" style="display: none;">
+                        <label for="resourceLink" class="form-label">Lien</label>
+                        <input type="text" value="{{ old('link') }}" name="link" class="form-control" id="resourceLink" placeholder="Lien de la ressource">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+    // Afficher/masquer le champ de téléchargement de fichier en fonction du type sélectionné
+    document.getElementById('resourceType').addEventListener('change', function() {
+        var fileUploadContainer = document.getElementById('fileUploadContainer');
+        var linkInputContainer = document.getElementById('linkInputContainer');
+
+        if (this.value === 'file') {
+            fileUploadContainer.style.display = 'block';
+            linkInputContainer.style.display = 'none';
+        }else if (this.value === 'link') {
+            fileUploadContainer.style.display = 'none';
+            linkInputContainer.style.display = 'block';
+        }else{
+            fileUploadContainer.style.display = 'none';
+            linkInputContainer.style.display = 'none';
+        }
+    });
+</script>
 <!--**********************************
             Content body end
 ***********************************-->

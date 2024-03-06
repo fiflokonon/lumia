@@ -46,4 +46,9 @@ class Formation extends Model
     {
         return $this->hasMany(Enrolment::class);
     }
+
+    public function resources()
+    {
+        return $this->hasMany(FormationResource::class);
+    }
 }
