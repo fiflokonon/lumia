@@ -65,7 +65,7 @@ class FormationController extends Controller
 
         // Enregistrer l'image sur le serveur
         $image = $request->file('image');
-        $imageName = uniqid() . '_.' . $image->getClientOriginalExtension();
+        $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('public/formations', $imageName);
         // Créer une nouvelle formation avec les données validées
         $formation = Formation::create([
