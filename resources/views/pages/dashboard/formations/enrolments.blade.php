@@ -82,7 +82,7 @@
                                                 @else
                                                     <a class="dropdown-item" href="javascript:void(0);"><i class="fa fa-check"></i> Activer</a>
                                                 @endif
-                                                <a class="dropdown-item" href="{{ route('show_user', $enrolment->user->id) }}">Détails</a>
+                                                <a class="dropdown-item" href="{{ route('preview_certificate', $enrolment->id) }}" target="_blank">Aperçu du certificat</a>
                                             </div>
                                         </div>
                                     </td>

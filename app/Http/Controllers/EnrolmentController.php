@@ -23,4 +23,11 @@ class EnrolmentController extends Controller
         Mail::to($enrolment->user->email)->send(new InscriptionValidation($enrolment->formation, $enrolment));
         return view('payment_callback');
     }
+
+    public function preview_certificate($id)
+    {
+        $enrolment = Enrolment::findOrFail($id);
+        return view('pages.dashboard.formations.preview_certificate', ['enrolment' => $enrolment]);
+    }
+
 }
