@@ -42,6 +42,7 @@
                                 @endfor
                             </div>
                             <!-- Dropdown pour les options -->
+                            @if(isset($formation))
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-reddit dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
                                 <div class="dropdown-menu">
@@ -57,6 +58,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <!-- Titre et description -->
                         <h5 class="card-title">{{ $formation->title }}</h5>
