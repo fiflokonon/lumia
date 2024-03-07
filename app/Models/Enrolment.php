@@ -14,6 +14,7 @@ class Enrolment extends Model
         'user_id',
         'formation_id',
         'payment_link',
+        'resource_access',
         'payment_details',
         'payment_status',
         'enrolment_confirmation',

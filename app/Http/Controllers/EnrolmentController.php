@@ -18,6 +18,7 @@ class EnrolmentController extends Controller
             'token' => $token
         ]);
         $enrolment->payment_status = 'validated';
+        $enrolment->resource_access = true;
         $enrolment->save();
         Mail::to($enrolment->user->email)->send(new InscriptionValidation($enrolment->formation, $enrolment));
         return view('payment_callback');

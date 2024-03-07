@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class FormationController extends Controller
 {
@@ -115,6 +116,10 @@ class FormationController extends Controller
         }
         $user = auth()->user();
         $formation = Formation::findOrFail($id);
+        $enrolment_exists = Enrolment::where('formation_id', $formation->id)->where('user_id', $user->id)->first();
+        if ($enrolment_exists){
+            return redirect()->route('dashboard')->with('success', 'Inscription à la formation réussie!');
+        }
         // Créer une inscription à la formation
         try {
             DB::beginTransaction();
@@ -206,12 +211,15 @@ class FormationController extends Controller
 
     public function createResource(Request $request, $formation_id)
     {
+        #dd($request->type);
         // Valider les données de la requête
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'type' => ['required', 'string', 'in:link,file'],
-            'link' => ['required_if:type,link', 'string', 'url'],
+            'link' => ['nullable', 'string', 'url', Rule::requiredIf(function () use ($request) {
+                return $request->type === 'link';
+            })],
             'file' => ['required_if:type,file', 'file'],
         ]);
 
@@ -250,4 +258,44 @@ class FormationController extends Controller
         $formation = Formation::findOrFail($id);
         return view('pages.dashboard.formations.resources', ['formation' => $formation]);
     }
+
+    public function manage_resource_access($id)
+    {
+        $formation = Formation::findOrFail($id);
+        return view('pages.dashboard.formations.resource_access', ['formation' => $formation]);
+    }
+
+    public function update_access($formationId, Request $request)
+    {
+        // Valider les données du formulaire
+        $request->validate([
+            'access' => 'nullable|array', // Rendre le champ access nullable
+            'access.*' => 'exists:enrolments,id'
+        ]);
+
+        // Récupérer la formation
+        $formation = Formation::findOrFail($formationId);
+
+        // Si aucune case n'est cochée, tous les utilisateurs inscrits à cette formation perdent l'accès aux ressources
+        $enrolmentsToUpdate = $formation->enrolments;
+        if (!$request->has('access')) {
+            foreach ($enrolmentsToUpdate as $enrolment) {
+                $enrolment->resource_access = false;
+                $enrolment->save();
+            }
+        } else {
+            // Si des cases sont cochées, mettre à jour les 'enrolments' correspondants
+            foreach ($request->access as $enrolmentId) {
+                $enrolment = Enrolment::find($enrolmentId);
+                if ($enrolment && $enrolment->formation_id == $formation->id) {
+                    $enrolment->resource_access = true;
+                    $enrolment->save();
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Accès aux ressources de la formation mis à jour avec succès.');
+    }
+
+
 }

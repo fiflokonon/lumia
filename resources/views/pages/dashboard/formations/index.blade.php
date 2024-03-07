@@ -49,6 +49,7 @@
                                     <a class="dropdown-item" href="{{ route('formation_enrolments', $formation->id) }}">Voir les inscriptions</a>
                                     <!-- Bouton pour ajouter une ressource -->
                                     <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addResourceModal">Ajouter une ressource</button>
+                                    <a class="dropdown-item" href="{{ route('formation_resources', $formation->id) }}">Voir les ressources</a>
                                 </div>
                             </div>
                         </div>

@@ -83,6 +83,9 @@
                     </div>
                 </div>
             </div>
+            <div class="mb-3 text-end">
+                <button class="btn btn-success">Gérer les accès aux ressources</button>
+            </div>
             <div class="row">
                 @if(auth()->user()->enrolments->isNotEmpty())
                     @foreach(auth()->user()->enrolments as $enrolment)

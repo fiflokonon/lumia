@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('payment_status')->nullable();
             $table->boolean('enrolment_confirmation')->default(false);
             $table->string('certificate_link')->nullable();
+            $table->boolean('resource_access')->default(false);
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();
