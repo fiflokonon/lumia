@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('type')->nullable();
             $table->string('link')->nullable();
+            $table->boolean('visible_for_student')->default(false);
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();

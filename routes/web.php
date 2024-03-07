@@ -59,6 +59,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/formations/{id}/resources', [FormationController::class, 'show_resources'])->name('formation_resources');
     Route::get('/formations/{id}/resource-access', [FormationController::class, 'manage_resource_access'])->name('resource_access');
     Route::post('/formations/{id}/resource-access', [FormationController::class, 'update_access'])->name('update_resource_access');
+    Route::get('/resources/{id}/change-visibility', [FormationController::class, 'resource_visibility'])->name('change_resource_visibility');
 
     Route::get('/formations/{id}/enrol', [FormationController::class, 'enrol_formation'])->name('enrol_formation');
     Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');

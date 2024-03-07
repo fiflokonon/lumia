@@ -16,6 +16,7 @@ class FormationResource extends Model
         'formation_id',
         'type',
         'link',
+        'visible_for_student',
         'status'
     ];
 

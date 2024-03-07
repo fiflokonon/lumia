@@ -267,7 +267,6 @@ class FormationController extends Controller
 
     public function update_access($formationId, Request $request)
     {
-        // Valider les données du formulaire
         $request->validate([
             'access' => 'nullable|array', // Rendre le champ access nullable
             'access.*' => 'exists:enrolments,id'
@@ -275,7 +274,6 @@ class FormationController extends Controller
 
         // Récupérer la formation
         $formation = Formation::findOrFail($formationId);
-
         // Si aucune case n'est cochée, tous les utilisateurs inscrits à cette formation perdent l'accès aux ressources
         $enrolmentsToUpdate = $formation->enrolments;
         if (!$request->has('access')) {
@@ -293,8 +291,20 @@ class FormationController extends Controller
                 }
             }
         }
-
         return redirect()->back()->with('success', 'Accès aux ressources de la formation mis à jour avec succès.');
+    }
+
+    public function resource_visibilty($id)
+    {
+        $resource = FormationResource::findOrFail($id);
+        if ($resource->visible_for_student){
+            $resource->visible_for_student = false;
+            $resource->save();
+        }else{
+            $resource->visible_for_student = true;
+            $resource->save();
+        }
+        return redirect()->back()->with('success', 'Visibilité de la ressource mise à jour avec succès.');
     }
 
 
