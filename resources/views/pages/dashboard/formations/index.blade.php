@@ -82,6 +82,7 @@
         ***********************************-->
     </div>
 </div>
+@if(isset($formation))
 <!-- Modal pour ajouter une ressource -->
 <div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addResourceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -124,6 +125,7 @@
         </div>
     </div>
 </div>
+@endif
 
 @endsection
 
