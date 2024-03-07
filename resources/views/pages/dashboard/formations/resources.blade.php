@@ -92,8 +92,6 @@
         </div>
     </div>
 @endif
-
-@endsection
 <!-- Modal pour ajouter une ressource -->
 <div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addResourceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -136,7 +134,7 @@
         </div>
     </div>
 </div>
-
+@endsection
 <script>
     // Afficher/masquer le champ de téléchargement de fichier en fonction du type sélectionné
     document.getElementById('resourceType').addEventListener('change', function() {

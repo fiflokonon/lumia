@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Mail\InscriptionConfirmation;
 use App\Models\Enrolment;
 use App\Models\EnrolmentResponse;
+use App\Models\ExamQuestion;
 use App\Models\FieldSpeciality;
 use App\Models\Formation;
+use App\Models\FormationExam;
 use App\Models\FormationResource;
+use App\Models\QuestionOption;
 use App\Models\TypeFormation;
+use App\Rules\AtLeastOneCorrectAnswer;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use GuzzleHttp\Psr7\Request as GRequest;
@@ -307,5 +311,65 @@ class FormationController extends Controller
         return redirect()->back()->with('success', 'Visibilité de la ressource mise à jour avec succès.');
     }
 
+    public function add_exam($id)
+    {
+        $formation = Formation::findOrFail($id);
+        return view('pages.dashboard.formations.create_exam', ['formation' => $formation]);
+    }
+    public function create_exam($id, Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'total_points' => ['required', 'integer', 'min:1'],
+            'accepted_score' => ['required', 'integer', 'min:0', 'max:' . $request->total_points],
+            'questions' => ['required', 'array'],
+            'questions.*' => ['required', 'string'],
+            'question_points' => ['required', 'array'],
+            'question_points.*' => ['required', 'integer', 'min:1'],
+            'options' => ['required', 'array'],
+            'options.*' => ['required', 'array'],
+            'options.*.*' => ['required', 'string'],
+            'correct_options' => ['required', 'array'],
+            'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
+        ]);
+        $formation = Formation::findOrFail($id);
+        // Créer l'évaluation
+        $evaluation = FormationExam::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'total_points' => $request->total_points,
+            'accepted_score' => $request->accepted_score,
+            'formation_id' => $formation->id
+        ]);
+        // Ajouter les questions et les réponses
+        foreach ($request->questions as $key => $question) {
+            $examQuestion = ExamQuestion::create([
+                'formation_exam_id' => $evaluation->id,
+                'question' => $question,
+                'points' => $request->question_points[$key],
+            ]);
+
+            foreach ($request->options[$key] as $optionKey => $option) {
+                $isCorrect = isset($request->correct_options[$key]) && in_array($optionKey, $request->correct_options[$key]) ? 1 : 0;
+                QuestionOption::create([
+                    'exam_question_id' => $examQuestion->id,
+                    'option' => $option,
+                    'is_correct' => $isCorrect,
+                ]);
+            }
+        }
+        return redirect()->back()->with('success', 'Évaluation créée avec succès.');
+    }
+
+    public function exam_details($id)
+    {
+        $exam = FormationExam::findOrFail($id);
+        #dd($exam->questions->first()->answers);
+        /*foreach ($exam->questions->first()->answers as $option){
+            dd($option->option);
+        }*/
+        return view('pages.dashboard.formations.exam_details', ['evaluation' => $exam]);
+    }
 
 }

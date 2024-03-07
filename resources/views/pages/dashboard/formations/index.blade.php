@@ -50,6 +50,11 @@
                                     <!-- Bouton pour ajouter une ressource -->
                                     <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addResourceModal">Ajouter une ressource</button>
                                     <a class="dropdown-item" href="{{ route('formation_resources', $formation->id) }}">Voir les ressources</a>
+                                    @if(isset($formation->exams->first()->id))
+                                        <a class="dropdown-item" href="{{ route('exam_details', $formation->exams->first->id) }}">Aperçu de l'examen</a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('add_exam', $formation->id) }}">Ajouter l'évaluation</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -75,7 +80,6 @@
         ***********************************-->
     </div>
 </div>
-@endsection
 <!-- Modal pour ajouter une ressource -->
 <div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addResourceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -118,6 +122,8 @@
         </div>
     </div>
 </div>
+
+@endsection
 
 <script>
     // Afficher/masquer le champ de téléchargement de fichier en fonction du type sélectionné

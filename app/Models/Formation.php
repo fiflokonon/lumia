@@ -49,6 +49,11 @@ class Formation extends Model
 
     public function resources()
     {
-        return $this->hasMany(FormationResource::class);
+        return $this->hasMany(FormationResource::class)->orderBy('created_at');
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(FormationExam::class);
     }
 }
