@@ -125,10 +125,6 @@
         </div>
     </div>
 </div>
-@endif
-
-@endsection
-
 <script>
     // Afficher/masquer le champ de téléchargement de fichier en fonction du type sélectionné
     document.getElementById('resourceType').addEventListener('change', function() {
@@ -147,6 +143,11 @@
         }
     });
 </script>
+@endif
+
+@endsection
+
+
 <!--**********************************
             Content body end
 ***********************************-->
