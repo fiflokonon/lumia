@@ -83,9 +83,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3 text-end">
-                <button class="btn btn-success">Gérer les accès aux ressources</button>
-            </div>
             <div class="row">
                 @if(auth()->user()->enrolments->isNotEmpty())
                     @foreach(auth()->user()->enrolments as $enrolment)
@@ -136,7 +133,14 @@
                                         <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les
                                             frais</a>
                                     @else
-                                        <a class="btn btn-secondary">Accéder aux ressources</a>
+                                        @if($enrolment->resource_access)
+                                            <a class="btn btn-secondary"  href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
+                                        @else
+                                            <button class="btn btn-red mb-2 me-2" id="toastr-danger-top-right">Ressources</button>
+                                        @endif
+                                    @endif
+                                    @if(isset($enrolment->formation->exams->first()->id))
+                                        <a class="btn btn-info">Passer l'examen</a>
                                     @endif
                                 </div>
                             </div>

@@ -22,6 +22,7 @@
     <link href="/static/akademi/vendor/pickadate/themes/default.css" rel="stylesheet" >
     <link href="/static/akademi/vendor/pickadate/themes/default.date.css" rel="stylesheet">
     <link href="/static/akademi/css/style.css" rel="stylesheet">
+    <link href="/static/akademi/vendor/toastr/css/toastr.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     @php
         setcookie('navheaderBg', 'color_1', time() + 3600, '/');
