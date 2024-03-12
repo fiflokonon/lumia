@@ -342,7 +342,8 @@ class FormationController extends Controller
             'total_points' => $request->total_points,
             'accepted_score' => $request->accepted_score,
             'formation_id' => $formation->id,
-            'duration' => $request->duration
+            'duration' => $request->duration,
+            'status' => true
         ]);
         // Ajouter les questions et les réponses
         foreach ($request->questions as $key => $question) {
@@ -350,6 +351,7 @@ class FormationController extends Controller
                 'formation_exam_id' => $evaluation->id,
                 'question' => $question,
                 'points' => $request->question_points[$key],
+                'status' => true
             ]);
 
             foreach ($request->options[$key] as $optionKey => $option) {
@@ -358,6 +360,7 @@ class FormationController extends Controller
                     'exam_question_id' => $examQuestion->id,
                     'option' => $option,
                     'is_correct' => $isCorrect,
+                    'status' => true
                 ]);
             }
         }
@@ -367,11 +370,69 @@ class FormationController extends Controller
     public function exam_details($id)
     {
         $exam = FormationExam::findOrFail($id);
-        #dd($exam->questions->first()->answers);
-        /*foreach ($exam->questions->first()->answers as $option){
-            dd($option->option);
-        }*/
-        return view('pages.dashboard.formations.exam_details', ['evaluation' => $exam]);
+        return view('pages.dashboard.formations.exam_details', ['evaluation' => $exam ]);
     }
+
+    public function edit_exam($id)
+    {
+        $exam = FormationExam::findOrFail($id);
+        return view('pages.dashboard.formations.edit_exam', ['evaluation' => $exam]);
+    }
+
+    public function update_exam($id, Request $request)
+    {
+        #dd($request->all());
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'total_points' => ['required', 'integer', 'min:1'],
+            'accepted_score' => ['required', 'integer', 'min:0', 'max:' . $request->total_points],
+            'duration' => ['required', 'integer', 'min:1'],
+            'questions' => ['required', 'array'],
+            'questions.*' => ['required', 'string'],
+            'question_points' => ['required', 'array'],
+            'question_points.*' => ['required', 'integer', 'min:1'],
+            'options' => ['required', 'array'],
+            'options.*' => ['required', 'array'],
+            'options.*.*' => ['required', 'string'],
+            'correct_options' => ['required', 'array'],
+            'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
+        ]);
+
+        $evaluation = FormationExam::findOrFail($id);
+        $evaluation->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'total_points' => $request->total_points,
+            'accepted_score' => $request->accepted_score,
+            'duration' => $request->duration
+        ]);
+
+        // Supprimer les questions et réponses existantes
+        $evaluation->questions()->forceDelete();
+        // Ajouter les nouvelles questions et réponses
+        foreach ($request->questions as $key => $question) {
+            $examQuestion = ExamQuestion::create([
+                'formation_exam_id' => $evaluation->id,
+                'question' => $question,
+                'points' => $request->question_points[$key],
+                'status' => true
+            ]);
+
+            foreach ($request->options[$key] as $optionKey => $option) {
+                $isCorrect = isset($request->correct_options[$key]) && in_array($optionKey, $request->correct_options[$key]) ? 1 : 0;
+                QuestionOption::create([
+                    'exam_question_id' => $examQuestion->id,
+                    'option' => $option,
+                    'is_correct' => $isCorrect,
+                    'status' => true
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Évaluation mise à jour avec succès.');
+    }
+
+
 
 }

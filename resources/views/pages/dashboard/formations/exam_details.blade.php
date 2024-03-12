@@ -8,7 +8,7 @@
         @include('partials.back_message')
         <div class="container-fluid">
             <div class="text-end">
-                <a href="" class="btn btn-secondary">Éditer l'évaluation</a>
+                <a href="{{ route('edit_exam', $evaluation->id) }}" class="btn btn-secondary">Éditer l'évaluation</a>
             </div>
             <h2>{{ $evaluation->title }}</h2>
             <p>{{ $evaluation->description }}</p>
