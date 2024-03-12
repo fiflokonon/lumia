@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\EvaluationController;
 use App\Http\Controllers\Dashboard\FieldController;
 use App\Http\Controllers\Dashboard\FieldSpecialityController;
 use App\Http\Controllers\Dashboard\FormationController;
@@ -67,7 +68,8 @@ Route::middleware("auth")->group(function () {
     Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');
     Route::get('/formations/{id}/enrolments', [FormationController::class, 'formation_enrolments'])->name('formation_enrolments');
     Route::get('/enrolments/{id}/certificate', [EnrolmentController::class, 'preview_certificate'])->name('preview_certificate');
-    Route::get('/formations/{id}/evaluations', [FormationController::class, 'evaluation'])->name('get_evaluation');
+    Route::get('/enrolments/{id}/evaluations', [EvaluationController::class, 'evaluation'])->name('get_evaluation');
+    Route::post('/enrolments/{id}/submit-exam', [EvaluationController::class, 'submitExam'])->name('submit_exam');
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');

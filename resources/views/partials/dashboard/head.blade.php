@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Lumia, espace membre" />
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- PAGE TITLE HERE -->
     <title>Lumia - Espace membre</title>
     <!-- FAVICONS ICON -->

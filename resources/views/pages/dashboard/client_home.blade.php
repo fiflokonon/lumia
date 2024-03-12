@@ -122,7 +122,7 @@
                                         @endif
                                     @endif
                                     @if(isset($enrolment->formation->exams->first()->id))
-                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->formation->id) }}">Passer l'examen</a>
+                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
                                     @endif
                                 </div>
                             </div>
