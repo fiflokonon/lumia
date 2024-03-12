@@ -8,8 +8,6 @@
 
 <script src="/static/akademi/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
-
-
 <script src="/static/akademi/vendor/chart.js/Chart.bundle.min.js"></script>
 
 <script src="/static/akademi/vendor/apexchart/apexchart.js"></script>
@@ -57,5 +55,9 @@
 <script src="/static/akademi/js/demo.js"></script>
 
 <script src="/static/akademi/js/styleSwitcher.js"></script>
+
+<script src="/static/akademi/vendor/toastr/js/toastr.min.js"></script>
+
+<script src="/static/akademi/js/plugins-init/toastr-init.js"></script>
 
 

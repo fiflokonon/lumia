@@ -67,6 +67,7 @@ Route::middleware("auth")->group(function () {
     Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');
     Route::get('/formations/{id}/enrolments', [FormationController::class, 'formation_enrolments'])->name('formation_enrolments');
     Route::get('/enrolments/{id}/certificate', [EnrolmentController::class, 'preview_certificate'])->name('preview_certificate');
+    Route::get('/formations/{id}/evaluations', [FormationController::class, 'evaluation'])->name('get_evaluation');
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');

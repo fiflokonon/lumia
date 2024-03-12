@@ -644,6 +644,27 @@ Toastr
             }
 
         ),
+        $("#toastr-danger-top-full-width-resource").on("click", function () {
+                toastr.error("Vous n'avez pas accès aux ressources de la formation! Veuillez vous rapprocher des administrateurs! ", "Accès non autorisé!", {
+                    positionClass: "toast-top-full-width",
+                    timeOut: 5e3,
+                    closeButton: !0,
+                    debug: !1,
+                    newestOnTop: !0,
+                    progressBar: !0,
+                    preventDuplicates: !0,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    tapToDismiss: !1
+                })
+            }
+        ),
         $("#toastr-danger-bottom-full-width").on("click", function () {
                 toastr.error("This Is error Message", "Bottom Full Width", {
                     positionClass: "toast-bottom-full-width",

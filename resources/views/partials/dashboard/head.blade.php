@@ -24,6 +24,7 @@
     <link href="/static/akademi/css/style.css" rel="stylesheet">
     <link href="/static/akademi/vendor/toastr/css/toastr.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @php
         setcookie('navheaderBg', 'color_1', time() + 3600, '/');
         setcookie('sidebarBg', 'color_14', time() + 3600, '/');

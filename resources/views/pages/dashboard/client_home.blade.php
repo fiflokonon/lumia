@@ -9,6 +9,7 @@
         <!-- row -->
         <div class="container-fluid">
             <!-- Row -->
+            {{--
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -83,6 +84,7 @@
                     </div>
                 </div>
             </div>
+            --}}
             <div class="row">
                 @if(auth()->user()->enrolments->isNotEmpty())
                     @foreach(auth()->user()->enrolments as $enrolment)
@@ -130,17 +132,16 @@
                                         </li>
                                     </ul>
                                     @if($enrolment->payment_status != 'validated')
-                                        <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les
-                                            frais</a>
+                                        <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les frais</a>
                                     @else
                                         @if($enrolment->resource_access)
                                             <a class="btn btn-secondary"  href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
                                         @else
-                                            <button class="btn btn-red mb-2 me-2" id="toastr-danger-top-right">Ressources</button>
+                                            <button type="button" class="btn btn-dark" id="toastr-danger-top-full-width-resource">Ressources</button>
                                         @endif
                                     @endif
                                     @if(isset($enrolment->formation->exams->first()->id))
-                                        <a class="btn btn-info">Passer l'examen</a>
+                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->formation->id) }}">Passer l'examen</a>
                                     @endif
                                 </div>
                             </div>
@@ -152,8 +153,7 @@
                             <div class="card-body pb-xl-4 pb-sm-3 pb-0">
                                 <p class="text-danger text-center fw-bolder">Vous n'êtes pas encore pas inscrit à une
                                     formation !</p>
-                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">
-                                        Consulter le catalogue de formations</a></div>
+                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">Consulter le catalogue de formations</a></div>
                             </div>
                         </div>
                     </div>

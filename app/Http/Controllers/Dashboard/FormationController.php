@@ -372,4 +372,10 @@ class FormationController extends Controller
         return view('pages.dashboard.formations.exam_details', ['evaluation' => $exam]);
     }
 
+    public function evaluation($id)
+    {
+        $exam = FormationExam::findOrFail($id);
+        return view('pages.dashboard.formations.evaluation', ['exam' => $exam]);
+    }
+
 }
