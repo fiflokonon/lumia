@@ -316,6 +316,7 @@ class FormationController extends Controller
         $formation = Formation::findOrFail($id);
         return view('pages.dashboard.formations.create_exam', ['formation' => $formation]);
     }
+
     public function create_exam($id, Request $request)
     {
         $request->validate([
@@ -332,8 +333,9 @@ class FormationController extends Controller
             'options.*' => ['required', 'array'],
             'options.*.*' => ['required', 'string'],
             'correct_options' => ['required', 'array'],
-            'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
+            #'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
         ]);
+        #dd($request->questions);
         $formation = Formation::findOrFail($id);
         // Créer l'évaluation
         $evaluation = FormationExam::create([
@@ -355,14 +357,16 @@ class FormationController extends Controller
             ]);
 
             foreach ($request->options[$key] as $optionKey => $option) {
-                $isCorrect = isset($request->correct_options[$key]) && in_array($optionKey, $request->correct_options[$key]) ? 1 : 0;
+                // Vérifie si cette option est sélectionnée comme une réponse correcte
+                $isCorrect = isset($request->correct_options[$key]) && in_array($optionKey, $request->correct_options[$key]);
                 QuestionOption::create([
                     'exam_question_id' => $examQuestion->id,
                     'option' => $option,
-                    'is_correct' => $isCorrect,
+                    'is_correct' => $isCorrect ? 1 : 0,
                     'status' => true
                 ]);
             }
+
         }
         return redirect()->back()->with('success', 'Évaluation créée avec succès.');
     }
@@ -396,7 +400,7 @@ class FormationController extends Controller
             'options.*' => ['required', 'array'],
             'options.*.*' => ['required', 'string'],
             'correct_options' => ['required', 'array'],
-            'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
+            #'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
         ]);
 
         $evaluation = FormationExam::findOrFail($id);

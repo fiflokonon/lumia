@@ -94,9 +94,6 @@
                     questionsContainer.insertAdjacentHTML('beforeend', questionTemplate);
                 }
 
-                // Ajouter une question au chargement de la page
-                addQuestion();
-
                 // Événement pour ajouter une question
                 document.addEventListener('click', function(event) {
                     if (event.target.classList.contains('add-question')) {
