@@ -12,6 +12,7 @@
             </div>
             <h2>{{ $evaluation->title }}</h2>
             <p>{{ $evaluation->description }}</p>
+            <p class="text-dark"><b>Durée :</b> <span class="text-success">{{ $evaluation->duration }}</span> minutes</p>
             <p class="text-dark"><b>Note acceptée :</b> <span class="text-success">{{ $evaluation->accepted_score }}</span></p>
             <p class="text-dark"><b>Nombre total de points :</b> {{ $evaluation->total_points }}</p>
 

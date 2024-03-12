@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('formation_id');
             $table->string('title');
             $table->string('description')->nullable();
+            $table->bigInteger('duration')->nullable();
             $table->bigInteger('total_points');
             $table->bigInteger('accepted_score');
             $table->boolean('status')->default(false);

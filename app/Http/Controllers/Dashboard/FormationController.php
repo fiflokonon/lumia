@@ -323,6 +323,7 @@ class FormationController extends Controller
             'description' => ['nullable', 'string'],
             'total_points' => ['required', 'integer', 'min:1'],
             'accepted_score' => ['required', 'integer', 'min:0', 'max:' . $request->total_points],
+            'duration' => ['required', 'integer', 'min:1'],
             'questions' => ['required', 'array'],
             'questions.*' => ['required', 'string'],
             'question_points' => ['required', 'array'],
@@ -340,7 +341,8 @@ class FormationController extends Controller
             'description' => $request->description,
             'total_points' => $request->total_points,
             'accepted_score' => $request->accepted_score,
-            'formation_id' => $formation->id
+            'formation_id' => $formation->id,
+            'duration' => $request->duration
         ]);
         // Ajouter les questions et les réponses
         foreach ($request->questions as $key => $question) {
@@ -374,7 +376,8 @@ class FormationController extends Controller
 
     public function evaluation($id)
     {
-        $exam = FormationExam::findOrFail($id);
+        $formation = Formation::findOrFail($id);
+        $exam = $formation->exams->first();
         return view('pages.dashboard.formations.evaluation', ['exam' => $exam]);
     }
 

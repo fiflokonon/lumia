@@ -101,35 +101,16 @@
                                                 <i class="fas fa-star{{ $i < 4 ? ' text-warning' : '' }}"></i>
                                             @endfor
                                         </div>
-                                        <!-- Dropdown pour les options -->
-                                        {{--
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-reddit dropdown-toggle"
-                                                    data-bs-toggle="dropdown">Acions
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);">Modifier</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Voir les inscriptions</a>
-                                            </div>
-                                        </div>
-                                        --}}
                                     </div>
                                     <!-- Titre et description -->
                                     <h5 class="card-title">{{ $enrolment->formation->title }}</h5>
                                     <p class="card-text text-danger mb-2">{{ $enrolment->formation->type_formation->title }}</p>
                                     <!-- Liste des détails de la formation -->
                                     <ul class="list-group list-group-flush mb-1">
-                                        <li class="list-group-item py-1">
-                                            <b>Spécialité:</b> {{ $enrolment->formation->field_speciality->title }}</li>
-                                        <li class="list-group-item py-1"><b>Date de
-                                                début:</b> {{ Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}
-                                        </li>
-                                        <li class="list-group-item py-1"><b>Date de
-                                                fin:</b> {{ Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}
-                                        </li>
-                                        <li class="list-group-item py-1"><b>Prix:</b> {{ $enrolment->formation->price }}
-                                            Franc CFA
-                                        </li>
+                                        <li class="list-group-item py-1"><b>Spécialité:</b> {{ $enrolment->formation->field_speciality->title }}</li>
+                                        <li class="list-group-item py-1"><b>Date de début:</b> {{ Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                                        <li class="list-group-item py-1"><b>Date de fin:</b> {{ Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
+                                        <li class="list-group-item py-1"><b>Prix:</b> {{ $enrolment->formation->price }}Franc CFA</li>
                                     </ul>
                                     @if($enrolment->payment_status != 'validated')
                                         <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les frais</a>

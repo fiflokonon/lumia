@@ -22,6 +22,10 @@
                     <label for="total_points" class="form-label">Nombre total de points</label>
                     <input type="number" class="form-control" id="total_points" name="total_points" value="{{ old('total_points') }}" required>
                 </div>
+                <div class="mb-3">
+                    <label for="duration" class="form-label">Durée</label>
+                    <input type="number" class="form-control" id="duration" name="duration" value="{{ old('duration') }}" required>
+                </div>
                 <hr>
                 <h3>Questions et réponses</h3>
                 <div id="questions-container">

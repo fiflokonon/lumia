@@ -15,14 +15,12 @@
 </div>
 <script>
     // Durée de l'examen en secondes
-    let examDuration = {{ $exam->duration }}; // Durée en secondes
-
+    let examDuration = {{ $exam->duration * 60 }};
     // Fonction pour afficher les questions de l'examen
     function displayExamQuestions() {
         // Afficher la durée restante de l'examen
         const timerDisplay = document.getElementById('timerDisplay');
         updateTimerDisplay(); // Mettre à jour le minuteur initial
-
         // Décrémenter le temps toutes les secondes
         const countdownInterval = setInterval(function() {
             examDuration--;
@@ -46,19 +44,19 @@
         @foreach($exam->questions as $question)
         // Générer le HTML pour chaque question
         examQuestionsHtml += `<div class="question mb-3">`;
-        examQuestionsHtml += `<h4>${ $question->question }</h4>`;
+        examQuestionsHtml += `<h4>{{ $question->question }}</h4>`;
         examQuestionsHtml += `<ul class="list-unstyled">`;
         @foreach($question->answers as $answer)
         // Générer le HTML pour chaque réponse
         examQuestionsHtml += `<li>`;
         @if($question->answers->where('is_correct', true)->count() == 1)
         // Afficher une case à cocher si une seule réponse est attendue
-        examQuestionsHtml += `<input type="radio" name="question_${ $question->id }" value="${ $answer->id }">`;
+        examQuestionsHtml += `<input class="form-control" type="radio" name="question_${{ $question->id }}" value="{{ $answer->id }}">`;
         @else
         // Sinon, afficher une case à cocher
-        examQuestionsHtml += `<input type="checkbox" name="question_${ $question->id }[]" value="${ $answer->id }">`;
+        examQuestionsHtml += `<input class="form-control" type="checkbox" name="question_${{ $question->id }}[]" value="{{ $answer->id }}">`;
         @endif
-            examQuestionsHtml += `${ $answer->option }`;
+            examQuestionsHtml += `{{ $answer->option }}`;
         examQuestionsHtml += `</li>`;
         @endforeach
             examQuestionsHtml += `</ul>`;
