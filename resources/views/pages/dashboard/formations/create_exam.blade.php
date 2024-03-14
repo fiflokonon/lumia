@@ -43,7 +43,7 @@
                                 @foreach(old('options.'.$index, []) as $optionIndex => $option)
                                     <div class="option mb-2">
                                         <input type="text" class="form-control" name="options[{{ $index }}][]" value="{{ $option }}" placeholder="Réponse" required>
-                                        <input type="checkbox" name="correct_options[{{ $index }}][]" value="{{ $optionIndex }}" @if(in_array($optionIndex, old('correct_options.'.$index, []))) checked @endif> Correct
+                                        <input type="checkbox" data-correct-answer name="correct_options[{{ $index }}][]" value="{{ $optionIndex }}" @if(in_array($optionIndex, old('correct_options.'.$index, []))) checked @endif> Correct
                                         <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -71,26 +71,26 @@
                 // Fonction pour ajouter une question
                 function addQuestion() {
                     const questionTemplate = `
-            <div class="question mb-3">
-                <div class="d-flex align-items-center mb-2">
-                    <input type="text" class="form-control" name="questions[]" placeholder="Question" required>
-                    <input type="number" class="form-control ms-2" name="question_points[]" placeholder="Points" required>
-                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
-                        <i class="fas fa-trash"></i>
+        <div class="question mb-3">
+            <div class="d-flex align-items-center mb-2">
+                <input type="text" class="form-control" name="questions[]" placeholder="Question" required>
+                <input type="number" class="form-control ms-2" name="question_points[]" placeholder="Points" required>
+                <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="options-container mt-2">
+                <div class="option mb-2">
+                    <input type="text" class="form-control" name="options[][0]" placeholder="Réponse" required>
+                    <input type="checkbox" data-correct-answer name="correct_options[][0]" value="0"> Correct
+                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
+                       <i class="fas fa-trash"></i>
                     </button>
                 </div>
-                <div class="options-container mt-2">
-                    <div class="option mb-2">
-                        <input type="text" class="form-control" name="options[][0]" placeholder="Réponse" required>
-                        <input type="checkbox" name="correct_options[][0]" value="0"> Correct
-                        <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
-                           <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
             </div>
-        `;
+            <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
+        </div>
+    `;
                     questionsContainer.insertAdjacentHTML('beforeend', questionTemplate);
                 }
 
@@ -106,14 +106,14 @@
                     if (event.target.classList.contains('add-option')) {
                         const optionsContainer = event.target.parentElement.querySelector('.options-container');
                         const optionTemplate = `
-            <div class="option mb-2">
-                <input type="text" class="form-control" name="options[${optionsContainer.children.length}][]" placeholder="Réponse" required>
-                <input type="checkbox" name="correct_options[${optionsContainer.children.length}][]" value="${optionsContainer.children.length}"> Correct
-                <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
+        <div class="option mb-2">
+            <input type="text" class="form-control" name="options[${optionsContainer.children.length}][]" placeholder="Réponse" required>
+            <input type="checkbox" data-correct-answer name="correct_options[${optionsContainer.children.length}][]" value="${optionsContainer.children.length}"> Correct
+            <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    `;
                         optionsContainer.insertAdjacentHTML('beforeend', optionTemplate);
                     }
                 });

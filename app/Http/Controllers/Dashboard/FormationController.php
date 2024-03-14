@@ -332,12 +332,9 @@ class FormationController extends Controller
             'options' => ['required', 'array'],
             'options.*' => ['required', 'array'],
             'options.*.*' => ['required', 'string'],
-            'correct_options' => ['required', 'array'],
-            #'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
         ]);
-        #dd($request->questions);
+
         $formation = Formation::findOrFail($id);
-        // Créer l'évaluation
         $evaluation = FormationExam::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -347,7 +344,7 @@ class FormationController extends Controller
             'duration' => $request->duration,
             'status' => true
         ]);
-        // Ajouter les questions et les réponses
+
         foreach ($request->questions as $key => $question) {
             $examQuestion = ExamQuestion::create([
                 'formation_exam_id' => $evaluation->id,
@@ -356,19 +353,17 @@ class FormationController extends Controller
                 'status' => true
             ]);
 
-            foreach ($request->options[$key] as $optionKey => $option) {
-                // Vérifie si cette option est sélectionnée comme une réponse correcte
-                $isCorrect = isset($request->correct_options[$key]) && in_array($optionKey, $request->correct_options[$key]);
+            foreach ($request->options[$key] as $optionIndex => $option) {
+                $isCorrect = $request->has('correct_options.' . $key . '.' . $optionIndex) ? 1 : 0;
                 QuestionOption::create([
                     'exam_question_id' => $examQuestion->id,
                     'option' => $option,
-                    'is_correct' => $isCorrect ? 1 : 0,
+                    'is_correct' => $isCorrect,
                     'status' => true
                 ]);
             }
-
         }
-        return redirect()->back()->with('success', 'Évaluation créée avec succès.');
+        return redirect()->route('exam_details', ['id' => $evaluation->id])->with('success', 'Évaluation créée avec succès.');
     }
 
     public function exam_details($id)
