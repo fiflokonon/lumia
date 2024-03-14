@@ -35,13 +35,15 @@ class EnrolmentController extends Controller
     {
         $enrolment = Enrolment::findOrFail($id);
         $pdf = PDF::loadView('pages.dashboard.formations.certificate', ['enrolment' => $enrolment]);
+        #$pdf->getDomPDF()->setPaper('A5', 'paysage');
         if (isset($enrolment->certificate_link)){
-            return response()->download($enrolment->certificate_link, 'Certificat_Lumia_'.$enrolment->user->first_name .$enrolment->user_last_name . '.pdf');
+            return response()->download($enrolment->certificate_link, 'Certificat_Lumia_'.$enrolment->user->first_name. '_' .$enrolment->user_last_name . '.pdf');
         }else{
             $pdfFilePath = public_path('/certificates/'. uniqid() .$enrolment->id. '.pdf');
-            $pdf->save($pdfFilePath);
-            $enrolment->certificate_link = $pdfFilePath;
-            return response()->download($pdfFilePath, 'Certificat_Lumia_'.$enrolment->user->first_name .$enrolment->user_last_name . '.pdf');
+            return $pdf->download($pdfFilePath);
+            #$pdf->save($pdfFilePath);
+            #$enrolment->certificate_link = $pdfFilePath;
+            #return response()->download($pdfFilePath, 'Certificat_Lumia_'.$enrolment->user->first_name. '_' .$enrolment->user_last_name . '.pdf');
         }
     }
 

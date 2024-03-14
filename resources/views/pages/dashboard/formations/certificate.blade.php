@@ -10,23 +10,20 @@
         body {
             font-family: "DejaVu Sans Mono", serif;
             margin: auto; /* Centrer le contenu horizontalement */
-            max-width: 800px; /* Définir une largeur maximale pour s'adapter à différentes tailles d'écrans */
-            padding: 20px; /* Ajouter un espace autour du contenu */    
+            padding: 20px; /* Ajouter un espace autour du contenu */
         }
     </style>
 </head>
-<body style="background-color: #f8f8f8;" class="d-flex justify-content-center align-items-center">
-    <section class="card m-5 col-lg-8 col-11 shadow-sm">
-        <div class="card align-items-center m-lg-4 m-1 position-relative" style="background-color: whitesmoke; border: 2px #020202 solid; letter-spacing: 1px;">
-        <img src="{{public_path('/assets/images/logo.png')}}" alt="" class="col-3 py-3 m-auto">
-        <h2 class="fw-bolder" style="color: #518ffb;"> CERTIFICAT DE COMPÉTENCE </h2>
-        <p class="mb-1"> BJ01-SERA-S5-LC-2023 </p>
-        <div class="col-1 border border-transparent rounded-circle"
-             style="background-color: #f7df36; padding: 1px;"> </div>
-        <p class="my-3"> Ce certificat est attribué à </p>
-        <h2>{{ $enrolment->user->last_name }} {{ $enrolment->user->first_name }}</h2>
-        <div class="col-5 border border-transparent rounded-circle"
-             style="background-color: #f7df36; padding: 1px;"> </div>
+<body>
+    <div>
+        <div class="card m-lg-4 m-1 position-relative" style="background-color: #ffffff; border: 2px #020202 solid; letter-spacing: 1px;" >
+        <img src="{{public_path('/assets/images/logo.png')}}" alt="" class="col-3" style="margin-left: 220px;">
+        <h2 class="fw-bolder" style="color: #518ffb; margin-left: 100px;"> CERTIFICAT DE COMPÉTENCE </h2>
+        <p class="mb-1" style="margin-left: 250px;"> BJ01-SERA-S5-LC-2023 </p>
+        <div class="col-1 border border-transparent rounded-circle" style="background-color: #f7df36; padding: 1px; margin-left: 250px;"> </div>
+        <p class="my-3" style="margin-left: 200px;"> Ce certificat est attribué à </p>
+        <h2 style="margin-left: 250px;">{{ $enrolment->user->last_name }} {{ $enrolment->user->first_name }}</h2>
+        <div class="col-5 border border-transparent rounded-circle" style="background-color: #f7df36; padding: 1px; margin-left: 250px"> </div>
         <p class="my-2"> Pour avoir participé et validé la formation </p>
         <h3 class="fw-bolder text-uppercase" style="color: #518ffb;"> {{($enrolment->formation->title) }}</h3>
         <p class=""> du {{ \Carbon\Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }} au {{ \Carbon\Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }} </p>
@@ -56,7 +53,7 @@
             </div>
         </div>
     </div>
-    </section>
+    </div>
 </body>
 </html>
 
