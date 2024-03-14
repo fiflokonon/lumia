@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
     <style>
         body {
-            font-family: Roboto, 'sans-serif';
+            font-family: "DejaVu Sans Mono";
         }
         .download-button {
             text-align: center;
@@ -21,7 +21,7 @@
         <div class="col-lg-10 mt-5">
             <div class="card align-items-center m-lg-4 m-1 position-relative" style="background-color: whitesmoke; border: 2px #020202 solid; letter-spacing: 1px;">
                 <img src="/assets/images/logo.png" alt="" class="col-3 py-3 m-auto">
-                <h2 class="" style="color: #518ffb;"> CERTIFICAT DE COMPÉTENCE </h2>
+                <h2 class="fw-bolder" style="color: #518ffb;"> CERTIFICAT DE COMPÉTENCE </h2>
                 <p class="mb-1"> BJ01-SERA-S5-LC-2023 </p>
                 <div class="col-1 border border-transparent rounded-circle"
                      style="background-color: #f7df36; padding: 1px;"> </div>
@@ -29,8 +29,8 @@
                 <h2>{{ $enrolment->user->last_name }} {{ $enrolment->user->first_name }}</h2>
                 <div class="col-5 border border-transparent rounded-circle"
                      style="background-color: #f7df36; padding: 1px;"> </div>
-                <p class="my-2"> Pour a voir participé et validé la formation </p>
-                <h3 class="text-uppercase" style="color: #518ffb;"> {{($enrolment->formation->title) }}</h3>
+                <p class="my-2"> Pour avoir participé et validé la formation </p>
+                <h3 class="fw-bolder text-uppercase" style="color: #518ffb;"> {{($enrolment->formation->title) }}</h3>
                 <p class=""> du {{ \Carbon\Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }} au {{ \Carbon\Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }} </p>
                 <div class="d-flex w-100 justify-content-between px-4">
                     <div class="col-8 d-flex align-items-center justify-content-between" style="font-size: 13px;">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-4 d-flex flex-column justify-content-between align-items-end"
                          style="letter-spacing: 1px;">
-                        <p class="fw-bold my-0" style="color: #252525;"> Franco-Marie HOUESSOU </p>
+                        <p class="fw-bold my-0" style="color: #252525;">Franco-Marie HOUESSOU</p>
                         <div class="d-flex align-items-center position-relative">
                             <img src="/assets/images/cachet_lumia.png" alt="" class="mx-5" height="100px" style="rotate: -15deg;">
                             <img src="/assets/images/signature_lumia.png" alt="" class="m-auto position-absolute" height="60px" style="right: -10px;">
@@ -54,7 +54,7 @@
                         <div>
                             <p class="my-0" style="color: #1c1c1c;"> DIRECTEUR GÉNÉRAL </p>
                             <div class="col-5 border border-transparent rounded-circle mb-2 mx-2"
-                                 style="background-color: #f7df36; padding: 0.5px;"> </div>
+                                 style="background-color: #f7df36; padding: 1px;"> </div>
                         </div>
                     </div>
                 </div>
@@ -62,33 +62,12 @@
         </div>
         <div class="col-lg-2 mt-5">
             <div class="download-button">
-                <label for="format-select">Format de téléchargement :</label>
-                <select id="format-select" class="form-control mb-3">
-                    <option value="pdf">PDF</option>
-                    <option value="jpeg">JPEG</option>
-                    <option value="png">PNG</option>
-                </select>
-                <button onclick="downloadCertificate()" class="btn btn-primary btn-block w-100">Télécharger</button>
+                <a href="{{ route('download_certificate', $enrolment->id) }}" class="btn btn-primary btn-block w-100 mt-5">Télécharger</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script>
-    function downloadCertificate() {
-        // Récupérer la valeur sélectionnée dans le menu déroulant
-        var format = document.getElementById("format-select").value;
-        // En fonction du format sélectionné, télécharger le certificat dans ce format
-        if (format === "pdf") {
-            // Code pour télécharger au format PDF
-        } else if (format === "jpeg") {
-            // Code pour télécharger au format JPEG
-        } else if (format === "png") {
-            // Code pour télécharger au format PNG
-        }
-    }
-</script>
 </body>
 </html>
 

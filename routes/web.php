@@ -70,6 +70,7 @@ Route::middleware("auth")->group(function () {
     Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');
     Route::get('/formations/{id}/enrolments', [FormationController::class, 'formation_enrolments'])->name('formation_enrolments');
     Route::get('/enrolments/{id}/certificate', [EnrolmentController::class, 'preview_certificate'])->name('preview_certificate');
+    Route::get('/enrolments/{id}/download-certificate', [EnrolmentController::class, 'download_certificate'])->name('download_certificate');
     Route::get('/enrolments/{id}/evaluations', [EvaluationController::class, 'evaluation'])->name('get_evaluation');
     Route::post('/enrolments/{id}/submit-exam', [EvaluationController::class, 'submitExam'])->name('submit_exam');
 

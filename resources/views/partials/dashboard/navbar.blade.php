@@ -3,7 +3,7 @@
   ***********************************-->
 <div class="nav-header">
     <a href="/" class="brand-logo">
-        <img src="/assets/images/logo.png" alt="">
+        <img src="/assets/images/logo.png" alt="" width="100">
         {{--
         <svg class="logo-abbr" width="40" height="40" viewBox="0 0 48 54" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="3" width="48" height="48" rx="16" fill="#FB7D5B" />

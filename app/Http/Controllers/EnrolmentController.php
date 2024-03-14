@@ -7,6 +7,7 @@ use App\Mail\InscriptionValidation;
 use App\Models\Enrolment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class EnrolmentController extends Controller
 {
@@ -28,6 +29,20 @@ class EnrolmentController extends Controller
     {
         $enrolment = Enrolment::findOrFail($id);
         return view('pages.dashboard.formations.preview_certificate', ['enrolment' => $enrolment]);
+    }
+
+    public function download_certificate($id)
+    {
+        $enrolment = Enrolment::findOrFail($id);
+        $pdf = PDF::loadView('pages.dashboard.formations.certificate', ['enrolment' => $enrolment]);
+        if (isset($enrolment->certificate_link)){
+            return response()->download($enrolment->certificate_link, 'Certificat_Lumia_'.$enrolment->user->first_name .$enrolment->user_last_name . '.pdf');
+        }else{
+            $pdfFilePath = public_path('/certificates/'. uniqid() .$enrolment->id. '.pdf');
+            $pdf->save($pdfFilePath);
+            $enrolment->certificate_link = $pdfFilePath;
+            return response()->download($pdfFilePath, 'Certificat_Lumia_'.$enrolment->user->first_name .$enrolment->user_last_name . '.pdf');
+        }
     }
 
 }
