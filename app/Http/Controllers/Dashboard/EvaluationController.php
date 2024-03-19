@@ -22,8 +22,6 @@ class EvaluationController extends Controller
 
     public function submitExam($id, Request $request)
     {
-        #return $request->userResponses[3];
-        // Valider les données de la requête
         $request->validate([
             'examId' => 'required|exists:formation_exams,id',
             'userResponses' => 'required|array',
@@ -40,15 +38,14 @@ class EvaluationController extends Controller
             foreach ($question->answers as $answer) {
                 // Vérifier si la réponse de l'utilisateur est correcte
                 $userResponse = $request->userResponses[$question->id] ?? [];
-                #return $userResponse;
                 $isCorrect = in_array($answer->id, $userResponse);
+
                 // Si la réponse est correcte, ajouter les points de la question au score total
                 if ($isCorrect && $answer->is_correct) {
                     $totalScore += $question->point;
                     $correctAnswers[$question->id][] = $answer->id;
                 }
             }
-            return $correctAnswers;
         }
 
         // Créer une évaluation pour l'utilisateur
@@ -66,7 +63,6 @@ class EvaluationController extends Controller
                     'evaluation_id' => $evaluation->id,
                     'exam_question_id' => $questionId,
                     'question_option_id' => $answerId,
-                    'status' => true
                 ]);
             }
         }
