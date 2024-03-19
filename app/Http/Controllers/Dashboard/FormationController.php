@@ -314,7 +314,55 @@ class FormationController extends Controller
     public function add_exam($id)
     {
         $formation = Formation::findOrFail($id);
-        return view('pages.dashboard.formations.create_exam', ['formation' => $formation]);
+        return view('pages.dashboard.formations.new_exam', ['formation' => $formation]);
+    }
+
+    public function createExam(Request $request)
+    {
+        // Validation des données
+        $validatedData = $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'duree' => 'required|integer',
+            'total_points' => 'required|integer',
+            'accepted_score' => 'required|integer',
+            'questions' => 'required|array',
+            'questions.*.texte' => 'required|string',
+            'questions.*.reponses' => 'required|array',
+            'questions.*.reponses.*.texte' => 'required|string',
+            'questions.*.reponses.*.correct' => 'required|boolean',
+        ]);
+
+        // Création de l'examen
+        $examen = FormationExam::create([
+            'title' => $validatedData['titre'],
+            'description' => $validatedData['description'],
+            'duration' => $validatedData['duree'],
+            'total_points' => $validatedData['total_points'],
+            'accepted_score' => $validatedData['accepted_score'],
+        ]);
+
+        // Création des questions et des réponses
+        foreach ($validatedData['questions'] as $questionData) {
+            $question = ExamQuestion::create([
+                'formation_exam_id' => $examen->id,
+                'question' => $questionData['texte'],
+                'points' => 50,
+                'status' => true
+            ]);
+
+            foreach ($questionData['reponses'] as $reponseData) {
+                QuestionOption::create([
+                    'exam_question_id' => $question->id,
+                    'option' => $reponseData['texte'],
+                    'is_correct' => $reponseData['correct'],
+                    'status' => true
+                ]);
+            }
+        }
+
+        // Redirection vers la page de l'examen
+        return redirect()->route('exam_details', ['id' => $evaluation->id])->with('success', 'Évaluation créée avec succès.');
     }
 
     public function create_exam($id, Request $request)
