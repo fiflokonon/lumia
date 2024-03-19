@@ -19,6 +19,8 @@ return new class extends Migration
             $table->json('payment_details')->nullable();
             $table->string('payment_status')->nullable();
             $table->boolean('enrolment_confirmation')->default(false);
+            $table->string('enrolment_number')->nullable();
+            $table->string('certificate_qr_code_link')->nullable();
             $table->string('certificate_link')->nullable();
             $table->boolean('resource_access')->default(false);
             $table->boolean('status')->default(false);

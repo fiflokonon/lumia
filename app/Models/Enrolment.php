@@ -19,6 +19,8 @@ class Enrolment extends Model
         'payment_status',
         'enrolment_confirmation',
         'certificate_link',
+        'certificate_qr_code_link',
+        'enrolment_number',
         'status'
     ];
 

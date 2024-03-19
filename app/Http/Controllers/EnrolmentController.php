@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\InscriptionConfirmation;
+
 use App\Mail\InscriptionValidation;
 use App\Models\Enrolment;
 use Illuminate\Http\Request;
@@ -35,15 +35,15 @@ class EnrolmentController extends Controller
     {
         $enrolment = Enrolment::findOrFail($id);
         $pdf = PDF::loadView('pages.dashboard.formations.certificate', ['enrolment' => $enrolment]);
-        #$pdf->getDomPDF()->setPaper('A5', 'paysage');
+        $pdf->getDomPDF()->setPaper('A4', 'landscape');
         if (isset($enrolment->certificate_link)){
             return response()->download($enrolment->certificate_link, 'Certificat_Lumia_'.$enrolment->user->first_name. '_' .$enrolment->user_last_name . '.pdf');
         }else{
             $pdfFilePath = public_path('/certificates/'. uniqid() .$enrolment->id. '.pdf');
-            return $pdf->download($pdfFilePath);
-            #$pdf->save($pdfFilePath);
-            #$enrolment->certificate_link = $pdfFilePath;
-            #return response()->download($pdfFilePath, 'Certificat_Lumia_'.$enrolment->user->first_name. '_' .$enrolment->user_last_name . '.pdf');
+            #return $pdf->download($pdfFilePath);
+            $pdf->save($pdfFilePath);
+            $enrolment->certificate_link = $pdfFilePath;
+            return response()->download($pdfFilePath, 'Certificat_Lumia_'.$enrolment->user->first_name. '_' .$enrolment->user_last_name . '.pdf');
         }
     }
 
