@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: "DejaVu Sans Mono", serif;
-            margin: auto; /* Centrer le contenu horizontalement */
-            padding: 20px; /* Ajouter un espace autour du contenu */
+            margin: auto;
+            padding: 20px;
         }
     </style>
 </head>

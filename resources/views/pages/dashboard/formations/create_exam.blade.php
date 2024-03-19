@@ -26,72 +26,52 @@
                     <label for="duration" class="form-label">Durée</label>
                     <input type="number" class="form-control" id="duration" name="duration" value="{{ old('duration') }}" required>
                 </div>
-                <hr>
-                <h3>Questions et réponses</h3>
-                <div id="questions-container">
-                    <!-- Zone pour ajouter des questions -->
-                    @foreach(old('questions', []) as $index => $question)
-                        <div class="question mb-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <input type="text" class="form-control" name="questions[]" value="{{ $question }}" placeholder="Question" required>
-                                <input type="number" class="form-control ms-2" name="question_points[]" value="{{ old('question_points.'.$index) }}" placeholder="Points" required>
-                                <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                            <div class="options-container mt-2">
-                                @foreach(old('options.'.$index, []) as $optionIndex => $option)
-                                    <div class="option mb-2">
-                                        <input type="text" class="form-control" name="options[{{ $index }}][]" value="{{ $option }}" placeholder="Réponse" required>
-                                        <input type="checkbox" data-correct-answer name="correct_options[{{ $index }}][]" value="{{ $optionIndex }}" @if(in_array($optionIndex, old('correct_options.'.$index, []))) checked @endif> Correct
-                                        <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
-                        </div>
-                    @endforeach
-                </div>
                 <div class="mb-3">
                     <label for="accepted_score" class="form-label">Score minimum accepté</label>
                     <input type="number" class="form-control" id="accepted_score" name="accepted_score" value="{{ old('accepted_score') }}" required>
                 </div>
+                <hr>
+                <h3>Questions et réponses</h3>
+                <div id="questions-container">
+                    <!-- Zone pour ajouter des questions -->
+                </div>
+
                 <button type="button" class="btn btn-sm btn-success add-question">Ajouter une question</button>
                 <button type="button" class="btn btn-primary" id="save-btn">Enregistrer</button>
             </div>
         </form>
-
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const questionsContainer = document.getElementById('questions-container');
                 const saveBtn = document.getElementById('save-btn');
+                let questionIndex = 0; // Index des questions
 
                 // Fonction pour ajouter une question
                 function addQuestion() {
+
                     const questionTemplate = `
-        <div class="question mb-3">
-            <div class="d-flex align-items-center mb-2">
-                <input type="text" class="form-control" name="questions[]" placeholder="Question" required>
-                <input type="number" class="form-control ms-2" name="question_points[]" placeholder="Points" required>
-                <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-            <div class="options-container mt-2">
-                <div class="option mb-2">
-                    <input type="text" class="form-control" name="options[][0]" placeholder="Réponse" required>
-                    <input type="checkbox" data-correct-answer name="correct_options[][0]" value="0"> Correct
-                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
-                       <i class="fas fa-trash"></i>
+            <div class="question mb-3" data-question-index="${questionIndex}">
+                <div class="d-flex align-items-center mb-2">
+                    <input type="text" class="form-control" name="questions[]" placeholder="Question" required>
+                    <input type="number" class="form-control ms-2" name="question_points[]" placeholder="Points" required>
+                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
+                <div class="options-container mt-2">
+                    <div class="option mb-2">
+                        <input type="text" class="form-control" name="options[${questionIndex}][0]" placeholder="Réponse" required>
+                        <input type="checkbox" data-correct-answer name="correct_options[${questionIndex}][0]" value="0"> Correct
+                        <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
             </div>
-            <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
-        </div>
-    `;
+        `;
                     questionsContainer.insertAdjacentHTML('beforeend', questionTemplate);
+                    questionIndex++; // Incrémenter l'index des questions
                 }
 
                 // Événement pour ajouter une question
@@ -104,37 +84,28 @@
                 // Événement pour ajouter une option de réponse
                 questionsContainer.addEventListener('click', function(event) {
                     if (event.target.classList.contains('add-option')) {
-                        const optionsContainer = event.target.parentElement.querySelector('.options-container');
+                        const questionDiv = event.target.closest('.question');
+                        const optionsContainer = questionDiv.querySelector('.options-container');
+                        const optionIndex = optionsContainer.children.length;
                         const optionTemplate = `
-        <div class="option mb-2">
-            <input type="text" class="form-control" name="options[${optionsContainer.children.length}][]" placeholder="Réponse" required>
-            <input type="checkbox" data-correct-answer name="correct_options[${optionsContainer.children.length}][]" value="${optionsContainer.children.length}"> Correct
-            <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
-                <i class="fas fa-trash"></i>
-            </button>
-        </div>
-    `;
+                <div class="option mb-2">
+                    <input type="text" class="form-control" name="options[${questionDiv.dataset.questionIndex}][${optionIndex}]" placeholder="Réponse" required>
+                    <input type="checkbox" data-correct-answer name="correct_options[${questionDiv.dataset.questionIndex}][${optionIndex}]" value="${optionIndex}"> Correct
+                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
                         optionsContainer.insertAdjacentHTML('beforeend', optionTemplate);
                     }
                 });
 
                 // Événement pour supprimer une question ou une réponse
                 document.addEventListener('click', function(event) {
-                    console.log("Bouton de suppression");
-                    console.log("Événement : ", event);
-                    console.log("Classes des éléments cibles : ", event.target.classList);
-                    // Si le bouton de suppression d'une question est cliqué
-                    if (event.target.classList.contains('fa-trash') || event.target.classList.contains('remove-question')) {
+                    if (event.target.classList.contains('remove-question')) {
                         event.target.closest('.question').remove(); // Supprimer toute la question
-                    }else {
-                        console.log("Suppression de question - Faux");
-                    }
-                    // Si le bouton de suppression d'une réponse est cliqué
-                    if (event.target.classList.contains('fa fa-trash') || event.target.classList.contains('remove-option') ) {
-                        console.log("Suppression de reponses");
+                    } else if (event.target.classList.contains('remove-option')) {
                         event.target.closest('.option').remove(); // Supprimer seulement la réponse
-                    }else {
-                        console.log("Suppression de reponses - Faux");
                     }
                 });
 
@@ -156,6 +127,31 @@
             });
         </script>
     </div>
+    {{--
+@foreach(old('questions', []) as $index => $question)
+    <div class="question mb-3">
+        <div class="d-flex align-items-center mb-2">
+            <input type="text" class="form-control" name="questions[]" value="{{ $question }}" placeholder="Question" required>
+            <input type="number" class="form-control ms-2" name="question_points[]" value="{{ old('question_points.'.$index) }}" placeholder="Points" required>
+            <button type="button" class="btn btn-sm btn-danger ms-2 remove-question">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div class="options-container mt-2">
+            @foreach(old('options.'.$index, []) as $optionIndex => $option)
+                <div class="option mb-2">
+                    <input type="text" class="form-control" name="options[{{ $index }}][]" value="{{ $option }}" placeholder="Réponse" required>
+                    <input type="checkbox" data-correct-answer name="correct_options[{{ $index }}][]" value="{{ $optionIndex }}" @if(in_array($optionIndex, old('correct_options.'.$index, []))) checked @endif> Correct
+                    <button type="button" class="btn btn-sm btn-danger ms-2 remove-option">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-sm btn-success add-option">Ajouter une réponse</button>
+    </div>
+@endforeach
+--}}
 @endsection
 <!--**********************************
             Content body end

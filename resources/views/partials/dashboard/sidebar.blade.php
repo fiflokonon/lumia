@@ -8,7 +8,6 @@
 @endphp
 <div class="dlabnav">
     <div class="dlabnav-scroll">
-
         @if(auth()->user()->isNotClient())
             <ul class="metismenu" id="menu">
                 <li>

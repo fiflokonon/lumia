@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
     <style>
         body {
-            font-family: "DejaVu Sans Mono";
+            font-family: "DejaVu Sans Mono", serif;
         }
         .download-button {
             text-align: center;

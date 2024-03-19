@@ -314,7 +314,7 @@ class FormationController extends Controller
     public function add_exam($id)
     {
         $formation = Formation::findOrFail($id);
-        return view('pages.dashboard.formations.new_exam', ['formation' => $formation]);
+        return view('pages.dashboard.formations.create_exam', ['formation' => $formation]);
     }
 
     public function createExam(Request $request)
@@ -362,11 +362,12 @@ class FormationController extends Controller
         }
 
         // Redirection vers la page de l'examen
-        return redirect()->route('exam_details', ['id' => $evaluation->id])->with('success', 'Évaluation créée avec succès.');
+        return redirect()->route('exam_details', ['id' => $examen->id])->with('success', 'Évaluation créée avec succès.');
     }
 
     public function create_exam($id, Request $request)
     {
+        #dd($request->all());
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
@@ -423,7 +424,7 @@ class FormationController extends Controller
     public function edit_exam($id)
     {
         $exam = FormationExam::findOrFail($id);
-        return view('pages.dashboard.formations.edit_exam', ['evaluation' => $exam]);
+        return view('pages.dashboard.formations.edit_exam', ['exam' => $exam]);
     }
 
     public function update_exam($id, Request $request)
@@ -476,8 +477,7 @@ class FormationController extends Controller
                 ]);
             }
         }
-
-        return redirect()->back()->with('success', 'Évaluation mise à jour avec succès.');
+        return redirect()->route('exam_details', ['id' => $evaluation->id])->with('success', 'Évaluation créée avec succès.');
     }
 
 
