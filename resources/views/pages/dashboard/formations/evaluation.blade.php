@@ -101,8 +101,6 @@
                 // Ajouter la réponse de l'utilisateur à l'objet userResponses
                 userResponses[questionId] = userAnswer;
             });
-
-            console.log("User reponses..", userResponses);
             // Soumettre les réponses de l'utilisateur via une requête AJAX
             const csrfToken = $('meta[name="csrf-token"]').attr('content');
             $.ajax({

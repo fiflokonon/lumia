@@ -20,7 +20,7 @@ class EvaluationController extends Controller
         return view('pages.dashboard.formations.evaluation', ['exam' => $exam, 'enrolment' => $enrolment]);
     }
 
-    public function submitExam($id, Request $request)
+    public function submit_exam($id, Request $request)
     {
         $request->validate([
             'examId' => 'required|exists:formation_exams,id',
@@ -28,27 +28,32 @@ class EvaluationController extends Controller
             'userResponses.*' => 'array',
             'userResponses.*.*' => 'exists:question_options,id',
         ]);
+
         $enrolment = Enrolment::findOrFail($id);
-        // Récupérer l'examen
         $exam = FormationExam::findOrFail($request->examId);
-        // Calculer le score de l'utilisateur et les réponses correctes
+
         $totalScore = 0;
         $correctAnswers = [];
+
         foreach ($exam->questions as $question) {
+            $correctResponseCount = 0;
+            $pointsPerCorrectResponse = $question->points / $question->answers->where('is_correct', true)->count();
+
             foreach ($question->answers as $answer) {
-                // Vérifier si la réponse de l'utilisateur est correcte
                 $userResponse = $request->userResponses[$question->id] ?? [];
                 $isCorrect = in_array($answer->id, $userResponse);
 
-                // Si la réponse est correcte, ajouter les points de la question au score total
                 if ($isCorrect && $answer->is_correct) {
-                    $totalScore += $question->point;
+                    $totalScore += $pointsPerCorrectResponse;
                     $correctAnswers[$question->id][] = $answer->id;
+                    $correctResponseCount++;
                 }
             }
         }
 
-        // Créer une évaluation pour l'utilisateur
+        // Score minimum de zéro
+        $totalScore = max(0, $totalScore);
+
         $evaluation = Evaluation::create([
             'enrolment_id' => $enrolment->id,
             'score' => $totalScore,
@@ -56,7 +61,6 @@ class EvaluationController extends Controller
             'pass' => $totalScore >= $exam->accepted_score
         ]);
 
-        // Enregistrer les réponses de l'utilisateur pour cette évaluation
         foreach ($request->userResponses as $questionId => $response) {
             foreach ($response as $answerId) {
                 EvaluationAnswer::create([
@@ -67,11 +71,9 @@ class EvaluationController extends Controller
             }
         }
 
-        // Déterminer si l'utilisateur a réussi l'examen
         $passingGrade = $exam->accepted_score;
         $pass = $totalScore >= $passingGrade;
 
-        // Retourner une réponse JSON avec le résultat de l'évaluation
         return response()->json([
             'pass' => $pass,
             'totalScore' => $totalScore,
@@ -79,4 +81,5 @@ class EvaluationController extends Controller
             'evaluationId' => $evaluation->id,
         ]);
     }
+
 }
