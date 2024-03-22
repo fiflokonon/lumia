@@ -116,7 +116,7 @@
                 success: function(response) {
                     // Traitement de la réponse du serveur (succès ou échec)
                     console.log("Success");
-                    console.log(response);
+                    displayExamResult(response.pass);
                 },
                 error: function(xhr, status, error) {
                     // Gérer les erreurs de la requête AJAX
@@ -126,7 +126,55 @@
         }
         // Au clic sur le bouton "Soumettre l'examen"
         $('#submitExamButton').click(submitExam);
+        $('#retryExamButton').click(function() {
+            // Recharger la page
+            location.reload();
+        });
+        // Fonction pour afficher le modal avec les résultats de l'examen
+        function displayExamResult(passed) {
+            const modal = new bootstrap.Modal(document.getElementById('resultModal'), {});
+            const resultMessageElement = document.getElementById('resultMessage');
+            const returnToDashboardButton = document.getElementById('returnToDashboardButton');
+            const retryExamButton = document.getElementById('retryExamButton');
+            const goToDashboardButton = document.getElementById('goToDashboardButton');
+
+            if (passed) {
+                // Si l'examen est réussi
+                resultMessageElement.textContent = "Félicitations! Vous avez réussi l'examen.";
+                returnToDashboardButton.style.display = 'inline-block';
+                retryExamButton.style.display = 'none';
+                goToDashboardButton.style.display = 'none';
+            } else {
+                // Si l'examen a échoué
+                resultMessageElement.textContent = "Désolé, vous n'avez pas réussi l'examen.";
+                returnToDashboardButton.style.display = 'none';
+                retryExamButton.style.display = 'inline-block';
+                goToDashboardButton.style.display = 'inline-block';
+            }
+
+            modal.show();
+        }
     </script>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resultModalLabel">Résultat de l'examen</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Contenu du modal dynamique -->
+                <p id="resultMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <!-- Boutons dynamiques en fonction du résultat -->
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary" id="returnToDashboardButton" data-bs-dismiss="modal">Retour au dashboard</a>
+                <a href="" class="btn btn-primary" id="retryExamButton" style="display: none;">Repasser l'examen</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-primary" id="goToDashboardButton" style="display: none;">Aller au dashboard</a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

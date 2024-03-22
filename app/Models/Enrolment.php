@@ -33,4 +33,9 @@ class Enrolment extends Model
     {
         return $this->belongsTo(Formation::class);
     }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }
