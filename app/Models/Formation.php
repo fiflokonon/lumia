@@ -17,6 +17,7 @@ class Formation extends Model
       'duration',
       'start_date',
       'end_date',
+      'progress_status',
       'price',
       'pre_link',
       'official_link',
@@ -24,7 +25,7 @@ class Formation extends Model
       'status',
       'type_formation_id',
       'field_speciality_id',
-       'place'
+      'place'
     ];
 
     public function type_formation()

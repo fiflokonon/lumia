@@ -665,6 +665,27 @@ Toastr
                 })
             }
         ),
+        $("#toastr-danger-top-full-width-formation-no-closed").on("click", function () {
+                toastr.error("La formation n'est pas encore déclarée cloturée par les administrateurs! Veuillez réessayer l'accès au certificat plus tard ! ", "Accès non autorisé!", {
+                    positionClass: "toast-top-full-width",
+                    timeOut: 5e3,
+                    closeButton: !0,
+                    debug: !1,
+                    newestOnTop: !0,
+                    progressBar: !0,
+                    preventDuplicates: !0,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    tapToDismiss: !1
+                })
+            }
+        ),
         $("#toastr-danger-bottom-full-width").on("click", function () {
                 toastr.error("This Is error Message", "Bottom Full Width", {
                     positionClass: "toast-bottom-full-width",

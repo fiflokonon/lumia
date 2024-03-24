@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('duration')->nullable();
             $table->bigInteger('total_points');
             $table->bigInteger('accepted_score');
+            $table->boolean('available')->default(false);
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->timestamps();

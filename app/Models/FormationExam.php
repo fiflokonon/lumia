@@ -17,6 +17,7 @@ class FormationExam extends Model
         'accepted_score',
         'duration',
         'formation_id',
+        'available',
         'status'
     ];
 

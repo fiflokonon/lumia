@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('enrolment_deadline')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
+            $table->string('progress_status')->default('upcoming');
             $table->bigInteger('duration')->nullable();
             $table->bigInteger('price')->nullable();
             $table->string('pre_link')->nullable();

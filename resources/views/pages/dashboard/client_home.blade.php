@@ -107,22 +107,41 @@
                                     <p class="card-text text-danger mb-2">{{ $enrolment->formation->type_formation->title }}</p>
                                     <!-- Liste des détails de la formation -->
                                     <ul class="list-group list-group-flush mb-1">
-                                        <li class="list-group-item py-1"><b>Spécialité:</b> {{ $enrolment->formation->field_speciality->title }}</li>
-                                        <li class="list-group-item py-1"><b>Date de début:</b> {{ Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
-                                        <li class="list-group-item py-1"><b>Date de fin:</b> {{ Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
-                                        <li class="list-group-item py-1"><b>Prix:</b> {{ $enrolment->formation->price }}Franc CFA</li>
+                                        <li class="list-group-item py-1">
+                                            <b>Spécialité:</b> {{ $enrolment->formation->field_speciality->title }}</li>
+                                        <li class="list-group-item py-1"><b>Date de
+                                                début:</b> {{ Carbon::parse($enrolment->formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}
+                                        </li>
+                                        <li class="list-group-item py-1"><b>Date de
+                                                fin:</b> {{ Carbon::parse($enrolment->formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}
+                                        </li>
+                                        <li class="list-group-item py-1"><b>Prix:</b> {{ $enrolment->formation->price }}
+                                            Franc CFA
+                                        </li>
                                     </ul>
                                     @if($enrolment->payment_status != 'validated')
-                                        <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les frais</a>
+                                        <a href="{{ $enrolment->payment_link }}" class="btn btn-danger">Payer les
+                                            frais</a>
                                     @else
                                         @if($enrolment->resource_access)
-                                            <a class="btn btn-secondary"  href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
+                                            <a class="btn btn-secondary"
+                                               href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
                                         @else
                                             <button type="button" class="btn btn-dark" id="toastr-danger-top-full-width-resource">Ressources</button>
                                         @endif
                                     @endif
-                                    @if(isset($enrolment->formation->exams->first()->id))
-                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
+                                    @if($enrolment->formation->type->code = 'certified' && $enrolment->formation->exams->where('available', true)->first() !== null)
+                                        @if($enrolment->evaluations->where('pass', true)->first())
+                                            @if($enrolment->formation->progress_status == 'closed')
+                                                <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                            @else
+                                                <button class="btn text-light" id="toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
+                                            @endif
+                                        @else
+                                            <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
+                                        @endif
+                                    @elseif($enrolment->formation->type->code = 'specific')
+
                                     @endif
                                 </div>
                             </div>
@@ -134,7 +153,8 @@
                             <div class="card-body pb-xl-4 pb-sm-3 pb-0">
                                 <p class="text-danger text-center fw-bolder">Vous n'êtes pas encore pas inscrit à une
                                     formation !</p>
-                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">Consulter le catalogue de formations</a></div>
+                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">Consulter
+                                        le catalogue de formations</a></div>
                             </div>
                         </div>
                     </div>
