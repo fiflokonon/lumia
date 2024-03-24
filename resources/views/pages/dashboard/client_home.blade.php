@@ -130,7 +130,7 @@
                                             <button type="button" class="btn btn-dark" id="toastr-danger-top-full-width-resource">Ressources</button>
                                         @endif
                                     @endif
-                                    @if($enrolment->formation->type->code = 'certified' && $enrolment->formation->exams->where('available', true)->first() !== null)
+                                    @if($enrolment->formation->type_formation->code = 'certified' && $enrolment->formation->exams->where('available', true)->first() !== null)
                                         @if($enrolment->evaluations->where('pass', true)->first())
                                             @if($enrolment->formation->progress_status == 'closed')
                                                 <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
@@ -140,8 +140,36 @@
                                         @else
                                             <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
                                         @endif
-                                    @elseif($enrolment->formation->type->code = 'specific')
-
+                                    @elseif($enrolment->formation->type_formation->code = 'specific' && $enrolment->formation->exams->where('available', true)->first() !== null)
+                                        @php
+                                        $pass_exam = 0;
+                                        foreach ($enrolment->formation->exams->where('available', true)->get() as $exam){
+                                            if ($enrolment->evaluations()->where('pass', true)->first()){
+                                                $pass_exam++;
+                                            }
+                                        }
+                                        @endphp
+                                        @if($pass_exam == $enrolment->formation->exams->where('available', true)->count())
+                                            @if($enrolment->formation->progress_status == 'closed')
+                                                <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                            @else
+                                                <button class="btn text-light" id="toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
+                                            @endif
+                                        @else
+                                            <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer les examens</a>
+                                        @endif
+                                    @else
+                                        @if($enrolment->evaluations->where('pass', true)->first())
+                                            @if($enrolment->formation->progress_status == 'closed')
+                                                <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                            @else
+                                                <button class="btn text-light" id="toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
+                                            @endif
+                                        @else
+                                            @if($enrolment->formation->exams->where('available', true)->first() !== null)
+                                            <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
+                                            @endif
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -153,8 +181,7 @@
                             <div class="card-body pb-xl-4 pb-sm-3 pb-0">
                                 <p class="text-danger text-center fw-bolder">Vous n'êtes pas encore pas inscrit à une
                                     formation !</p>
-                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">Consulter
-                                        le catalogue de formations</a></div>
+                                <div class="text-center"><a class="btn btn-info" href="{{ route('formations') }}">Consulter le catalogue de formations</a></div>
                             </div>
                         </div>
                     </div>

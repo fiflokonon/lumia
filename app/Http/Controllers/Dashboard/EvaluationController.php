@@ -16,7 +16,7 @@ class EvaluationController extends Controller
     {
         $enrolment = Enrolment::findOrFail($id);
         $formation = $enrolment->formation;
-        $exam = $formation->exams->first();
+        $exam = $formation->exams->where('available', true)->first();
         return view('pages.dashboard.formations.evaluation', ['exam' => $exam, 'enrolment' => $enrolment]);
     }
 

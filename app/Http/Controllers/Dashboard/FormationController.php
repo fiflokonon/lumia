@@ -311,6 +311,19 @@ class FormationController extends Controller
         return redirect()->back()->with('success', 'Visibilité de la ressource mise à jour avec succès.');
     }
 
+    public function exam_availabilty($id)
+    {
+        $exam = FormationExam::findOrFail($id);
+        if ($exam->available){
+            $exam->available = false;
+            $exam->save();
+        }else{
+            $exam->available = true;
+            $exam->save();
+        }
+        return redirect()->back()->with('success', 'Disponibilité de l\'examen mise à jour avec succès.');
+    }
+
     public function add_exam($id)
     {
         $formation = Formation::findOrFail($id);

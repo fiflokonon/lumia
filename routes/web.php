@@ -63,6 +63,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/formations/{id}/exams', [FormationController::class, 'add_exam'])->name('add_exam');
     Route::post('/formations/{id}/exams', [FormationController::class, 'create_exam'])->name('create_exam');
     Route::get('/resources/{id}/change-visibility', [FormationController::class, 'resource_visibility'])->name('change_resource_visibility');
+    Route::get('/exams/{id}/change-availability', [FormationController::class, 'exam_availability'])->name('change_exam_availability');
     Route::get('/exams/{id}', [FormationController::class, 'exam_details'])->name('exam_details');
     Route::get('/exams/{id}/edit', [FormationController::class, 'edit_exam'])->name('edit_exam');
     Route::post('/exams/{id}/update', [FormationController::class, 'update_exam'])->name('update_exam');
