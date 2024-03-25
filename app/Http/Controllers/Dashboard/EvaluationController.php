@@ -12,11 +12,16 @@ use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
 {
-    public function evaluation($id)
+    public function evaluation($id, Request $request)
     {
         $enrolment = Enrolment::findOrFail($id);
         $formation = $enrolment->formation;
-        $exam = $formation->exams->where('available', true)->first();
+        if ($request->query('specific')){
+            $exam_id = $request->query('specific');
+            $exam = $formation->exams->where('id', $exam_id)->first();
+            return view('pages.dashboard.formations.evaluation', ['exam' => $exam, 'enrolment' => $enrolment]);
+        }
+        $exam = $formation->exams->first();
         return view('pages.dashboard.formations.evaluation', ['exam' => $exam, 'enrolment' => $enrolment]);
     }
 

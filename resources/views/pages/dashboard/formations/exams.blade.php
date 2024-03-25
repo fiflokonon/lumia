@@ -10,10 +10,10 @@
         <!-- row -->
         <div class="container-fluid">
             <div class="mb-3 text-end">
-                <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#addResourceModal">Ajouter une évaluation</button>
-                <a href="{{ route('resource_access', $formation->id) }}" class="btn btn-success">Gérer les accès aux ressources</a>
+                <a class="btn btn-info" href="{{ route('add_exam', $formation->id) }}">Ajouter une évaluation</a>
             </div>
             <div class="row">
+                @if($formation->exams->isNotEmpty())
                 @foreach($formation->exams as $index => $exam)
                     <div class="col-12 mb-2">
                         <div class="card">
@@ -30,16 +30,19 @@
                                     </div>
                                     <div>
                                         <!-- Bouton pour rendre visible ou invisible aux étudiants -->
-                                        @if($exam->available)
-                                            <a  href="{{ route('change_exam_availability', $exam->id) }}" class="btn btn-info">Publier l'examen</a>
+                                        @if(!$exam->available)
+                                            <a  href="{{ route('change_exam_availability', $exam->id) }}" class="btn btn-primary">Publier l'examen</a>
                                         @endif
-                                        <a  href="{{ route('exam_details', $exam->id) }}" class="btn btn-info">Voir</a>
+                                        <a  href="{{ route('exam_details', $exam->id) }}" class="btn btn-secondary">Voir</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <p class="text-danger text-center">Il n'existe pas encore d'évaluation pour cette formation</p>
+                @endif
             </div>
         </div>
     </div>
@@ -65,7 +68,9 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="" class="btn btn-primary">Passer l'examen</a>
+                                        @if(isset($enrolment))
+                                        <a href="{{ route('get_evaluation', ['id' => $enrolment->id, 'specific' => $exam->id]) }}" class="btn btn-primary">Passer l'examen</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +79,7 @@
                     @endif
                 @endforeach
                 @else
-                    <p class="text-danger text-center">Il n'existe pas encore de ressource pour cette formation</p>
+                    <p class="text-danger text-center">Il n'existe pas encore d'évaluation pour cette formation</p>
                 @endif
             </div>
         </div>

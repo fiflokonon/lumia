@@ -14,6 +14,7 @@ use App\Models\FormationResource;
 use App\Models\QuestionOption;
 use App\Models\TypeFormation;
 use App\Rules\AtLeastOneCorrectAnswer;
+use Dompdf\FontMetrics;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use GuzzleHttp\Psr7\Request as GRequest;
@@ -298,7 +299,7 @@ class FormationController extends Controller
         return redirect()->back()->with('success', 'Accès aux ressources de la formation mis à jour avec succès.');
     }
 
-    public function resource_visibilty($id)
+    public function resource_visibility($id)
     {
         $resource = FormationResource::findOrFail($id);
         if ($resource->visible_for_student){
@@ -311,17 +312,30 @@ class FormationController extends Controller
         return redirect()->back()->with('success', 'Visibilité de la ressource mise à jour avec succès.');
     }
 
-    public function exam_availabilty($id)
+    public function exam_availability($id)
     {
         $exam = FormationExam::findOrFail($id);
         if ($exam->available){
             $exam->available = false;
-            $exam->save();
         }else{
             $exam->available = true;
-            $exam->save();
         }
+        $exam->save();
         return redirect()->back()->with('success', 'Disponibilité de l\'examen mise à jour avec succès.');
+    }
+
+    public function formation_exams($id)
+    {
+        $user = auth()->user();
+        if ($user->isNotClient()){
+            $formation = Formation::findOrFail($id);
+            return view('pages.dashboard.formations.exams', ['formation' => $formation]);
+        }else{
+            $formation = Formation::findOrFail($id);
+            $enrolment = $user->enrolments->where('formation_id', $formation->id)->first();
+            return view('pages.dashboard.formations.exams', ['formation' => $formation, 'enrolment' => $enrolment]);
+        }
+
     }
 
     public function add_exam($id)
@@ -330,57 +344,8 @@ class FormationController extends Controller
         return view('pages.dashboard.formations.create_exam', ['formation' => $formation]);
     }
 
-    public function createExam(Request $request)
-    {
-        // Validation des données
-        $validatedData = $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'duree' => 'required|integer',
-            'total_points' => 'required|integer',
-            'accepted_score' => 'required|integer',
-            'questions' => 'required|array',
-            'questions.*.texte' => 'required|string',
-            'questions.*.reponses' => 'required|array',
-            'questions.*.reponses.*.texte' => 'required|string',
-            'questions.*.reponses.*.correct' => 'required|boolean',
-        ]);
-
-        // Création de l'examen
-        $examen = FormationExam::create([
-            'title' => $validatedData['titre'],
-            'description' => $validatedData['description'],
-            'duration' => $validatedData['duree'],
-            'total_points' => $validatedData['total_points'],
-            'accepted_score' => $validatedData['accepted_score'],
-        ]);
-
-        // Création des questions et des réponses
-        foreach ($validatedData['questions'] as $questionData) {
-            $question = ExamQuestion::create([
-                'formation_exam_id' => $examen->id,
-                'question' => $questionData['texte'],
-                'points' => 50,
-                'status' => true
-            ]);
-
-            foreach ($questionData['reponses'] as $reponseData) {
-                QuestionOption::create([
-                    'exam_question_id' => $question->id,
-                    'option' => $reponseData['texte'],
-                    'is_correct' => $reponseData['correct'],
-                    'status' => true
-                ]);
-            }
-        }
-
-        // Redirection vers la page de l'examen
-        return redirect()->route('exam_details', ['id' => $examen->id])->with('success', 'Évaluation créée avec succès.');
-    }
-
     public function create_exam($id, Request $request)
     {
-        #dd($request->all());
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
@@ -492,7 +457,5 @@ class FormationController extends Controller
         }
         return redirect()->route('exam_details', ['id' => $evaluation->id])->with('success', 'Évaluation créée avec succès.');
     }
-
-
 
 }

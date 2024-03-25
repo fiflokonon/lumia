@@ -169,7 +169,7 @@
             </div>
             <div class="modal-footer">
                 <!-- Boutons dynamiques en fonction du résultat -->
-                <a href="{{ route('dashboard') }}" class="btn btn-secondary" id="returnToDashboardButton" data-bs-dismiss="modal">Retour au dashboard</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary" id="returnToDashboardButton">Retour au dashboard</a>
                 <a href="" class="btn btn-primary" id="retryExamButton" style="display: none;">Repasser l'examen</a>
                 <a href="{{ route('dashboard') }}" class="btn btn-primary" id="goToDashboardButton" style="display: none;">Aller au dashboard</a>
             </div>
