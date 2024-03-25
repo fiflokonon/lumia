@@ -78,6 +78,9 @@
                         <!-- Liste des détails de la formation -->
                         <ul class="list-group list-group-flush mb-1">
                             <li class="list-group-item py-1"> <b>Spécialité:</b> {{ $formation->field_speciality->title }}</li>
+                            @if(isset($formation->place))
+                            <li class="list-group-item py-1"> <b>Lieu:</b> {{ $formation->place }}</li>
+                            @endif
                             <li class="list-group-item py-1"> <b>Clôture des inscriptions:</b> {{ \Carbon\Carbon::parse($formation->enrolment_date)->locale('fr')->translatedFormat('d F Y')  }} </li>
                             <li class="list-group-item py-1"><b>Date de début:</b>  {{ \Carbon\Carbon::parse($formation->start_date)->locale('fr')->translatedFormat('d F Y')  }}</li>
                             <li class="list-group-item py-1"> <b>Date de fin:</b> {{ \Carbon\Carbon::parse($formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}</li>

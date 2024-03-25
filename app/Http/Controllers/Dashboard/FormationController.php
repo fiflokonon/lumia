@@ -60,7 +60,8 @@ class FormationController extends Controller
             'type' => 'required|exists:type_formations,id',
             'speciality' => 'required|exists:field_specialities,id',
             'pre_link' => 'required|string|max:255',
-            'official_link' => 'required|string|max:255'
+            'official_link' => 'required|string|max:255',
+            'place' => 'nullable|string'
         ]);
 
         // Retourner les erreurs de validation s'il y en a
@@ -87,7 +88,8 @@ class FormationController extends Controller
             'type_formation_id' => $request->type,
             'field_speciality_id' => $request->speciality,
             'pre_link' => $request->pre_link,
-            'official_link' => $request->official_link
+            'official_link' => $request->official_link,
+            'place' => $request->place
         ]);
         // Enregistrement des questions associées à la formation
         if ($request->has('questions')) {

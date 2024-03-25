@@ -25,9 +25,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput9" class="form-label text-primary">Type de la formation <span class="required">*</span></label>
-                                    <select class="form-control" name="type">
+                                    <select class="form-control" name="type" id="formationType">
                                         @foreach($types as $type)
-                                            <option value="{{ $type->id }}" {{ old('type') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>                                        @endforeach
+                                            <option value="{{ $type->id }}" {{ old('type') == $type->id ? 'selected' : '' }} data-code="{{ $type->code }}">{{ $type->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -61,10 +62,17 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div id="placeField" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="place" class="form-label text-primary">Lieu <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="place" id="place" placeholder="Lieu de la formation" value="{{ old('place') }}">
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput14" class="form-label text-primary">Date de cloture des inscriptions<span class="required">*</span></label>
                                     <input type="date" name="enrolment_deadline" class="form-control" id="exampleFormControlInput14" value="{{ old('enrolment_deadline') }}">
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput13" class="form-label text-primary">Prix de la formation<span class="required">*</span></label>
                                     <input type="number" name="price" class="form-control" id="exampleFormControlInput13" placeholder="500000" value="{{ old('price') }}">
@@ -105,34 +113,55 @@
             </div>
         </div>
     </div>
+    <script>
+        function addQuestion() {
+            var questionsDiv = document.getElementById('questions');
+            var questionCount = questionsDiv.children.length + 1;
+
+            var newQuestionDiv = document.createElement('div');
+            newQuestionDiv.classList.add('mb-3');
+
+            var newQuestionLabel = document.createElement('label');
+            newQuestionLabel.setAttribute('for', 'question' + questionCount);
+            newQuestionLabel.classList.add('form-label', 'text-primary');
+            newQuestionLabel.textContent = 'Question ' + questionCount;
+
+            var newQuestionInput = document.createElement('input');
+            newQuestionInput.setAttribute('type', 'text');
+            newQuestionInput.classList.add('form-control');
+            newQuestionInput.setAttribute('name', 'questions[]');
+            newQuestionInput.setAttribute('id', 'question' + questionCount);
+            newQuestionInput.setAttribute('placeholder', 'Question ' + questionCount);
+
+            newQuestionDiv.appendChild(newQuestionLabel);
+            newQuestionDiv.appendChild(newQuestionInput);
+
+            questionsDiv.appendChild(newQuestionDiv);
+        }
+        // Fonction pour afficher ou masquer le champ "Lieu" en fonction du type sélectionné
+        function togglePlaceField() {
+            // Récupérer le type sélectionné
+            var selectedType = $('#formationType option:selected').data('code');
+
+            // Si le type sélectionné correspond à 'onsite', afficher le champ "Lieu", sinon le masquer
+            if (selectedType === 'onsite') {
+                $('#placeField').show();
+            } else {
+                $('#placeField').hide();
+            }
+        }
+
+        // Ajouter un écouteur d'événements pour détecter le changement de sélection dans le menu déroulant
+        $('#formationType').change(function() {
+            togglePlaceField();
+        });
+
+        // Appeler la fonction au chargement de la page pour afficher ou masquer le champ "Lieu" selon la valeur initiale
+        $(document).ready(function() {
+            togglePlaceField();
+        });
+    </script>
 </div>
-
-<script>
-    function addQuestion() {
-        var questionsDiv = document.getElementById('questions');
-        var questionCount = questionsDiv.children.length + 1;
-
-        var newQuestionDiv = document.createElement('div');
-        newQuestionDiv.classList.add('mb-3');
-
-        var newQuestionLabel = document.createElement('label');
-        newQuestionLabel.setAttribute('for', 'question' + questionCount);
-        newQuestionLabel.classList.add('form-label', 'text-primary');
-        newQuestionLabel.textContent = 'Question ' + questionCount;
-
-        var newQuestionInput = document.createElement('input');
-        newQuestionInput.setAttribute('type', 'text');
-        newQuestionInput.classList.add('form-control');
-        newQuestionInput.setAttribute('name', 'questions[]');
-        newQuestionInput.setAttribute('id', 'question' + questionCount);
-        newQuestionInput.setAttribute('placeholder', 'Question ' + questionCount);
-
-        newQuestionDiv.appendChild(newQuestionLabel);
-        newQuestionDiv.appendChild(newQuestionInput);
-
-        questionsDiv.appendChild(newQuestionDiv);
-    }
-</script>
 @endsection
 
 <!--**********************************
