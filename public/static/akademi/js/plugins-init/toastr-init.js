@@ -644,7 +644,7 @@ Toastr
             }
 
         ),
-        $("#toastr-danger-top-full-width-resource").on("click", function () {
+        $(".toastr-danger-top-full-width-resource").on("click", function () {
                 toastr.error("Vous n'avez pas accès aux ressources de la formation! Veuillez vous rapprocher des administrateurs! ", "Accès non autorisé!", {
                     positionClass: "toast-top-full-width",
                     timeOut: 5e3,
@@ -665,7 +665,7 @@ Toastr
                 })
             }
         ),
-        $("#toastr-danger-top-full-width-formation-no-closed").on("click", function () {
+        $(".toastr-danger-top-full-width-formation-no-closed").on("click", function () {
                 toastr.error("La formation n'est pas encore déclarée cloturée par les administrateurs! Veuillez réessayer l'accès au certificat plus tard ! ", "Formation non terminée!", {
                     positionClass: "toast-top-full-width",
                     timeOut: 5e3,

@@ -16,7 +16,7 @@ class TypeFormationSeeder extends Seeder
         TypeFormation::create(
             [
                 'title' => 'Formation certifiante',
-                'code' => 'certicated',
+                'code' => 'certificated',
                 'status' => true
             ]
         );
