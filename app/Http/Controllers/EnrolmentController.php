@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\InscriptionValidation;
 use App\Models\Enrolment;
-use BaconQrCode\Encoder\QrCode;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;

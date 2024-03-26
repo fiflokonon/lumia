@@ -97,7 +97,7 @@ class FormationController extends Controller
                 $formation->enrolment_questions()->create(['question_text' => $question]);
             }
         }
-        return redirect()->back()->with('success', 'Formation créée avec succès!');
+        return redirect()->route('dashboard')->with('success', 'Formation créée avec succès!');
     }
 
     public function enrol_formation($id)
@@ -208,6 +208,14 @@ class FormationController extends Controller
             Log::info($exception->getMessage());
             return back()->with('error', 'Une erreur est survenue lors de l\'inscription à la formation. Veuillez réessayer.');
         }
+    }
+
+    public function close_formation($id)
+    {
+        $formation = Formation::findOrFail($id);
+        $formation->progress_status = 'closed';
+        $formation->save();
+        return back()->with('success', "Formation cloturée avec succès");
     }
 
     public function formation_enrolments($id)
@@ -409,7 +417,6 @@ class FormationController extends Controller
 
     public function update_exam($id, Request $request)
     {
-        #dd($request->all());
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
@@ -424,7 +431,7 @@ class FormationController extends Controller
             'options.*' => ['required', 'array'],
             'options.*.*' => ['required', 'string'],
             'correct_options' => ['required', 'array'],
-            #'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
+            'correct_options.*' => ['required', 'array', new AtLeastOneCorrectAnswer],
         ]);
 
         $evaluation = FormationExam::findOrFail($id);

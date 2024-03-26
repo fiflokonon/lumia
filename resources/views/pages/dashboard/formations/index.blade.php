@@ -87,6 +87,12 @@
                             <li class="list-group-item py-1"><b>Prix:</b> {{ $formation->price }} Franc CFA</li>
                             <li class="list-group-item py-1"><b>Date de création:</b> {{ \Carbon\Carbon::parse($formation->created_at)->locale('fr')->translatedFormat('d F Y')  }}</li>
                         </ul>
+                        @if($formation->progress_status != 'closed')
+                            <a href="{{ route('close_formation', $formation->id) }}" class="btn text-light" style="background-color: darkred">Déclarer comme terminée</a>
+                        @else
+                            <button class="btn btn-outline-success text-center">Déjà terminée</button>
+
+                        @endif
                     </div>
                 </div>
             </div>

@@ -56,6 +56,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
     Route::post('/formations', [FormationController::class, 'create'])->name('new_formation');
     Route::get('/add-formations', [FormationController::class, 'add_formation'])->name('add_formations');
+    Route::get('/formations/{id}/close', [FormationController::class, 'close_formation'])->name('close_formation');
     Route::post('/formations/{id}/resources', [FormationController::class, 'createResource'])->name('add_resources');
     Route::get('/formations/{id}/resources', [FormationController::class, 'show_resources'])->name('formation_resources');
     Route::get('/formations/{id}/resource-access', [FormationController::class, 'manage_resource_access'])->name('resource_access');
