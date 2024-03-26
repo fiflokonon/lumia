@@ -71,10 +71,13 @@ Route::middleware("auth")->group(function () {
     Route::get('/formations/{id}/enrol', [FormationController::class, 'enrol_formation'])->name('enrol_formation');
     Route::post('/formations/{id}/register', [FormationController::class, 'registerForFormation'])->name('register_formation');
     Route::get('/formations/{id}/enrolments', [FormationController::class, 'formation_enrolments'])->name('formation_enrolments');
-    Route::get('/enrolments/{id}/certificate', [EnrolmentController::class, 'preview_certificate'])->name('preview_certificate');
+    Route::get('/enrolments/{id}/preview-certificate', [EnrolmentController::class, 'preview_certificate'])->name('preview_certificate');
+    Route::get('/enrolments/{id}/certificate', [EnrolmentController::class, 'generate_certificate'])->name('generate_certificate');
     Route::get('/enrolments/{id}/download-certificate', [EnrolmentController::class, 'download_certificate'])->name('download_certificate');
     Route::get('/enrolments/{id}/evaluations', [EvaluationController::class, 'evaluation'])->name('get_evaluation');
     Route::post('/enrolments/{id}/submit-exam', [EvaluationController::class, 'submit_exam'])->name('submit_exam');
+    Route::get('/certificates/{id}/preview', [EnrolmentController::class, 'get_certificate'])->name('get_certificate');
+
 
     Route::get('/fields', [FieldController::class, 'index'])->name('fields');
     Route::post('/fields', [FieldController::class, 'store'])->name('new_field');

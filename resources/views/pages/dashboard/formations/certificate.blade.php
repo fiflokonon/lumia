@@ -43,8 +43,8 @@
                 </div>
                 <div style="position: fixed; top: 520px; left: 450px; width: 150px;">
                     <figure style="letter-spacing: 0; margin-top: 10px;">
-                        <img src="{{public_path('/assets/images/qrcode.png')}}" style="width: 90px; height: 90px;" alt="">
-                        <figcaption style="font-size: 11px;"> ID : ml47f4cd</figcaption>
+                        <img src="{{public_path('certificates/qr/'.$enrolment->certificate_qr_code_link)}}" style="width: 90px; height: 90px;" alt="">
+                        <figcaption style="font-size: 11px;"> ID : {{ $enrolment->certificate_id }}</figcaption>
                     </figure>
                 </div>
                 <div style="position: fixed; top: 480px; left: 700px;">

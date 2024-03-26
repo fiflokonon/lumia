@@ -40,8 +40,8 @@
                             <p> <span class="fw-bold">Email :</span> clumiaconsulting@gmail.com</p>
                         </div>
                         <figure class="col-6 m-4" style="letter-spacing: 0;">
-                            <img src="/assets/images/qrcode.png" alt="" class="col-3">
-                            <figcaption style="font-size: 11px;"> ID : ml47f4cd </figcaption>
+                            <img src="/certificates/qr/{{$enrolment->certificate_qr_code_link}}" alt="" class="col-3">
+                            <figcaption style="font-size: 11px;"> ID : {{ $enrolment->certificate_id }} </figcaption>
                         </figure>
                     </div>
                     <div class="col-4 d-flex flex-column justify-content-between align-items-end"
@@ -53,18 +53,19 @@
                         </div>
                         <div>
                             <p class="my-0" style="color: #1c1c1c;"> DIRECTEUR GÉNÉRAL </p>
-                            <div class="col-5 border border-transparent rounded-circle mb-2 mx-2"
-                                 style="background-color: #f7df36; padding: 1px;"> </div>
+                            <div class="col-5 border border-transparent rounded-circle mb-2 mx-2" style="background-color: #f7df36; padding: 1px;"> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @if(auth()->user()->isNotClient() || $enrolment->user_id == auth()->user()->id)
         <div class="col-lg-2 mt-5">
             <div class="download-button">
                 <a href="{{ route('download_certificate', $enrolment->id) }}" class="btn btn-primary btn-block w-100 mt-5">Télécharger</a>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

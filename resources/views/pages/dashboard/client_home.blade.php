@@ -59,7 +59,7 @@
                                             @if($enrolment->formation->type_formation->code == 'certificated' && $enrolment->formation->exams->where('available', true)->first() !== null)
                                                 @if($enrolment->evaluations->where('pass', true)->first())
                                                     @if($enrolment->formation->progress_status == 'closed')
-                                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                                        <a class="btn btn-info" href="{{ route('generate_certificate', $enrolment->id) }}">Certificat</a>
                                                     @else
                                                         <button class="btn text-light toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
                                                     @endif
@@ -77,7 +77,7 @@
                                                 @endphp
                                                 @if($pass_exam == $enrolment->formation->exams->where('available', true)->count())
                                                     @if($enrolment->formation->progress_status == 'closed')
-                                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                                        <a class="btn btn-info" href="{{ route('generate_certificate', $enrolment->id) }}">Certificat</a>
                                                     @else
                                                         <button class="btn text-light toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
                                                     @endif
@@ -87,7 +87,7 @@
                                             @else
                                                 @if($enrolment->evaluations->where('pass', true)->first())
                                                     @if($enrolment->formation->progress_status == 'closed')
-                                                        <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Certificat</a>
+                                                        <a class="btn btn-info" href="{{ route('generate_certificate', $enrolment->id) }}">Certificat</a>
                                                     @else
                                                         <button class="btn text-light toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
                                                     @endif

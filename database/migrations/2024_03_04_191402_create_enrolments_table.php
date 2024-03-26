@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('enrolment_number')->nullable();
             $table->string('certificate_qr_code_link')->nullable();
             $table->string('certificate_link')->nullable();
+            $table->string('certificate_id')->nullable();
             $table->boolean('resource_access')->default(false);
             $table->boolean('status')->default(false);
             $table->softDeletes();
