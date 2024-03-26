@@ -51,8 +51,7 @@
                                             frais</a>
                                     @else
                                         @if($enrolment->resource_access)
-                                            <a class="btn btn-secondary"
-                                               href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
+                                            <a class="btn btn-secondary" href="{{ route('formation_resources', $enrolment->formation->id) }}">Ressources</a>
                                         @else
                                             <button type="button" class="btn btn-dark toastr-danger-top-full-width-resource">Ressources</button>
                                         @endif
@@ -69,10 +68,13 @@
                                             @elseif($enrolment->formation->type_formation->code == 'specific' && $enrolment->formation->exams->where('available', true)->first() !== null)
                                                 @php
                                                     $pass_exam = 0;
-                                                    foreach ($enrolment->formation->exams->where('available', true) as $exam){
-                                                        if ($enrolment->evaluations->where('pass', true)->first()){
+                                                    if (isset($enrolment->formation->exams)){
+                                                        foreach ($enrolment->formation->exams->where('available', true) as $exam)
+                                                        {
+                                                        if (isset($enrolment->evaluations) && $enrolment->evaluations->where('pass', true)->first()){
                                                             $pass_exam++;
                                                         }
+                                                    }
                                                     }
                                                 @endphp
                                                 @if($pass_exam == $enrolment->formation->exams->where('available', true)->count())
@@ -85,14 +87,14 @@
                                                     <a class="btn btn-info" href="{{ route('formation_exam_list', $enrolment->formation->id) }}">Passer les examens</a>
                                                 @endif
                                             @else
-                                                @if($enrolment->evaluations->where('pass', true)->first())
+                                                @if(isset($enrolment->evaluations) && $enrolment->evaluations->where('pass', true)->first())
                                                     @if($enrolment->formation->progress_status == 'closed')
                                                         <a class="btn btn-info" href="{{ route('generate_certificate', $enrolment->id) }}">Certificat</a>
                                                     @else
                                                         <button class="btn text-light toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
                                                     @endif
                                                 @else
-                                                    @if($enrolment->formation->exams->where('available', true)->first() !== null)
+                                                    @if(isset($enrolment->formation->exams) && $enrolment->formation->exams->where('available', true)->first() !== null)
                                                         <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
                                                     @endif
                                                 @endif
