@@ -69,7 +69,7 @@
                                                 @php
                                                     $pass_exam = 0;
                                                     if (isset($enrolment->formation->exams)){
-                                                        foreach ($enrolment->formation->exams->where('available', true) as $exam)
+                                                        foreach ($enrolment->formation->exams->where('available', true)->get() as $exam)
                                                         {
                                                         if (isset($enrolment->evaluations) && $enrolment->evaluations->where('pass', true)->first()){
                                                             $pass_exam++;
