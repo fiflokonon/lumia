@@ -8,7 +8,7 @@
         @include('partials.back_message')
         <div class="container-fluid">
             <div class="text-end">
-                @if(!$exam->available)
+                @if(!$evaluation->available)
                     <a  href="{{ route('change_exam_availability', $evaluation->id) }}" class="btn btn-primary">Publier l'examen</a>
                 @endif
                 <a  href="{{ route('exam_details', $evaluation->id) }}" class="btn btn-secondary">Voir</a>
