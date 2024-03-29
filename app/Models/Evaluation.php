@@ -12,6 +12,7 @@ class Evaluation extends Model
     protected $table = 'evaluations';
     protected $fillable = [
         'enrolment_id',
+        'formation_exam_id',
         'score',
         'pass',
         'status'
@@ -20,5 +21,10 @@ class Evaluation extends Model
     public function enrolment()
     {
         return $this->belongsTo(Enrolment::class);
+    }
+
+    public function formation_exam()
+    {
+        return $this->belongsTo(FormationExam::class);
     }
 }

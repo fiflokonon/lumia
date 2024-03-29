@@ -61,6 +61,7 @@ class EvaluationController extends Controller
 
         $evaluation = Evaluation::create([
             'enrolment_id' => $enrolment->id,
+            'formation_exam_id' => $exam->id,
             'score' => $totalScore,
             'status' => true,
             'pass' => $totalScore >= $exam->accepted_score

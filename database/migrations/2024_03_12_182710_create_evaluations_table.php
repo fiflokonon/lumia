@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('enrolment_id');
+            $table->foreignId('formation_exam_id')->nullable();
             $table->double('score');
             $table->boolean('pass')->default(false);
             $table->boolean('status')->default(false);
