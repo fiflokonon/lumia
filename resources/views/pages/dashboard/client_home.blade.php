@@ -66,10 +66,11 @@
                                                     <a class="btn btn-info" href="{{ route('get_evaluation', $enrolment->id) }}">Passer l'examen</a>
                                                 @endif
                                             @elseif($enrolment->formation->type_formation->code == 'specific' && $enrolment->formation->exams->where('available', true)->first() !== null)
+                                                @dd($enrolment->formation->exams->where('available', true) );
                                                 @php
                                                     $pass_exam = 0;
                                                     if (isset($enrolment->formation->exams)){
-                                                        foreach ($enrolment->formation->exams->where('available', true)->get() as $exam)
+                                                        foreach ($enrolment->formation->exams->where('available', true) as $exam)
                                                         {
                                                         if (isset($enrolment->evaluations) && $enrolment->evaluations->where('pass', true)->first()){
                                                             $pass_exam++;
