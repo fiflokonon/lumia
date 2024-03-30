@@ -35,6 +35,10 @@ class FormationController extends Controller
 
     public function type_formations($code)
     {
+        if ($code == 'all'){
+            $formations = Formation::all();
+            return view('pages.dashboard.formations.index', ['formations' => $formations]);
+        }
         $type = TypeFormation::where('code', $code)->first();
         return view('pages.dashboard.formations.index', ['formations' => $type->formations]);
     }

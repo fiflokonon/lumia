@@ -37,9 +37,9 @@
                     <ul aria-expanded="false">
                         <li><a href="{{ route('fields') }}">Domaines</a></li>
                         <li><a href="{{ route('specialities') }}">Spécialités</a></li>
-                        @foreach($type_formations as $type)
-                            <li><a href="{{ route('type_formations', ['code' => $type->code]) }}">{{ $type->title }}</a>
-                            </li>
+                        <li><a href="{{ route('type_formations', ['code' => 'all']) }}">Toutes les formations</a></li>
+                    @foreach($type_formations as $type)
+                            <li><a href="{{ route('type_formations', ['code' => $type->code]) }}">{{ $type->title }}</a></li>
                         @endforeach
                         <li><a href="../add-student/index.html">Formations expirées </a></li>
                     </ul>
