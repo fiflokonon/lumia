@@ -34,8 +34,7 @@
                                                     <a href="{{ route('change_exam_availability', $exam->id) }}"
                                                        class="btn btn-primary">Publier l'examen</a>
                                                 @endif
-                                                <a href="{{ route('exam_details', $exam->id) }}"
-                                                   class="btn btn-secondary">Voir</a>
+                                                <a href="{{ route('exam_details', $exam->id) }}" class="btn btn-secondary">Voir</a>
                                             </div>
                                         </div>
                                     </div>

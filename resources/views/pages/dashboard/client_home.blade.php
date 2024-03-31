@@ -82,8 +82,10 @@
                                                 @if($pass_exam == $enrolment->formation->exams->where('available', true)->count())
                                                     @if($enrolment->formation->progress_status == 'closed')
                                                         <a class="btn btn-info" href="{{ route('generate_certificate', $enrolment->id) }}">Certificat</a>
-                                                    @else
-                                                        <button class="btn text-light toastr-danger-top-full-width-formation-no-closed" style="background-color: lightslategray">Certificat</button>
+                                                        {{-- @else
+                                                        <button class="btn text-light toastr-danger-top-full-width-formation-no-closed"
+                                                                style="background-color: lightslategray">Certificat
+                                                        </button>--}}
                                                     @endif
                                                 @else
                                                     <a class="btn btn-info" href="{{ route('formation_exam_list', $enrolment->formation->id) }}">Passer les examens</a>
