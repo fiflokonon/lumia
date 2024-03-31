@@ -75,7 +75,7 @@
                         <!-- Titre et description -->
                         <h5 class="card-title">{{ $formation->title }}</h5>
                         <p class="card-text mb-2">{{ $formation->description }}</p>
-                        <p class="card-text text-danger mb-2">{{ $enrolment->formation->type_formation->title }}</p>
+                        <p class="card-text text-danger mb-2">{{ $formation->type_formation->title }}</p>
                         <!-- Liste des détails de la formation -->
                         <ul class="list-group list-group-flush mb-1">
                             <li class="list-group-item py-1"> <b>Spécialité:</b> {{ $formation->field_speciality->title }}</li>

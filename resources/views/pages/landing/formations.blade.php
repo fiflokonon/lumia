@@ -61,7 +61,7 @@
                         <a href="single-events.html">
                             <h2>{{ $formation->title }}</h2>
                         </a>
-                        <p class="card-text text-danger mb-2">{{ $enrolment->formation->type_formation->title }}</p>
+                        <p class="card-text text-danger mb-2">{{ $formation->type_formation->title }}</p>
                         <p class="text">
                             Spécialité : {{ $formation->field_speciality->title }}
                             <br>
