@@ -268,6 +268,10 @@
                                 Date de fin : {{ \Carbon\Carbon::parse($formation->end_date)->locale('fr')->translatedFormat('d F Y')  }}
                                 <br>
                                 Prix : {{ $formation->price }} FCFA
+                                @if(!empty($formation->place))
+                                    <br>
+                                    Lieu : {{ $formation->place }}
+                                @endif
                             </p>
                             <a href="{{ route('enrol_formation', $formation->id) }}" class="btn btn-primary text-light">S'inscrire</a>
                         </div>
