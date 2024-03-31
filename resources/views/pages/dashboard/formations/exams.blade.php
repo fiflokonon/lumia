@@ -71,7 +71,7 @@
                                                 </div>
                                                 <div>
                                                     @if($enrolment->evaluations->where('pass', true)->where('formation_exam_id', $exam->id)->first() !== null)
-                                                        <button class="btn btn-outline-success">Passé avec {{ $enrolment->evaluations->where('pass', true)->where('formation_exam_id', $exam->id)->first->score }}</button>
+                                                        <button class="btn btn-outline-success">Passé avec {{ $enrolment->evaluations->where('pass', true)->where('formation_exam_id', $exam->id)->first()->score }}</button>
                                                     @else
                                                         <a href="{{ route('get_evaluation', ['id' => $enrolment->id, 'specific' => $exam->id]) }}"
                                                            class="btn btn-primary">Passer l'examen</a>
