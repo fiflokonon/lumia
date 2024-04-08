@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\EvaluationController;
 use App\Http\Controllers\Dashboard\FieldController;
 use App\Http\Controllers\Dashboard\FieldSpecialityController;
 use App\Http\Controllers\Dashboard\FormationController;
+use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\EnrolmentController;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,10 @@ Route::middleware("auth")->group(function () {
     })->name('dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/roles/{code}/users', [UserController::class, 'role_users'])->name('role_users');
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    Route::get('/roles/{id}', [RoleController::class, 'show_role'])->name('role_details');
+    Route::get('/roles/{id}/edit', [RoleController::class, 'edit_role'])->name('role_edit');
+
 
     Route::get('/type/{code}/formations', [FormationController::class, 'type_formations'])->name('type_formations');
     Route::post('/formations', [FormationController::class, 'create'])->name('new_formation');

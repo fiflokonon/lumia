@@ -26,7 +26,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li><a href="../finance/index.html">Roles et permissions</a></li>
+                        <li><a href="{{ route('roles') }}">Roles et permissions</a></li>
                         <li><a href="../finance/index.html">Transactions</a></li>
                     </ul>
                 </li>
